@@ -34,7 +34,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :validatable,
-        :confirmable, :lockable, :timeoutable, :trackable
+        :lockable, :timeoutable, :trackable ,:jwt_authenticatable ,jwt_revocation_strategy: JwtDenylist
   before_validation :merge_username
   before_validation :check_if_password_confirmation?
 
@@ -45,7 +45,9 @@ class User < ApplicationRecord
   validates :gender, presence: true
   validates :phone_number, presence: true, :format => { 
                 with: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/, 
-                message: "not valid"}
+                message: "not valid",
+                :multiline => true
+              }
   validates :zip_code, presence: true, :numericality => { only_integer: true }, length: { is: 5 }
   validates :birth_date, presence: true
 
@@ -55,7 +57,7 @@ class User < ApplicationRecord
     non_binary: 2,
     other_types: 3,
   }
-
+  
   private
   def merge_username
     self.username = "#{self.first_name}#{self.last_name}" 
