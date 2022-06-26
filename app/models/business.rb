@@ -33,11 +33,23 @@ class Business < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :validatable, :trackable, :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
-  has_many_attached :photos
 
+  has_many_attached :photos
+  has_one :price
+  # before_save :create_price_point
 
   private 
   # def get_average_amout_expected_by_dollar_sign
   #   self.price.dollar_signs
+  # end
+
+  # def create_price_point
+  #   if !min_price.empty? && !max_price.empty?
+  #     Price.create(
+  #         :min_price => min_price,
+  #         :max_price => max_price,
+  #       )
+  #   end
+  #   self
   # end
 end

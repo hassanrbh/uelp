@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_25_154754) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_26_153256) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -67,6 +67,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_25_154754) do
     t.string "web_address"
     t.string "menu_web_address"
     t.integer "hours_of_opening", null: false
+    t.decimal "min_price", precision: 8, scale: 2, null: false
+    t.decimal "max_price", precision: 8, scale: 2, null: false
     t.index ["email"], name: "index_businesses_on_email", unique: true
     t.index ["reset_password_token"], name: "index_businesses_on_reset_password_token", unique: true
   end
@@ -77,6 +79,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_25_154754) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["jti"], name: "index_jwt_denylist_on_jti"
+  end
+
+  create_table "prices", force: :cascade do |t|
+    t.decimal "min_price", precision: 8, scale: 2, null: false
+    t.decimal "max_price", precision: 8, scale: 2, null: false
+    t.integer "average", null: false
+    t.string "dollar_signs", null: false
+    t.bigint "businesses_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["businesses_id"], name: "index_prices_on_businesses_id"
   end
 
   create_table "users", force: :cascade do |t|
