@@ -312,6 +312,7 @@ DEPENDENCIES
   guard-rspec
   image_processing (~> 1.2)
   jbuilder
+  jwt
   kredis
   launchy
   pg (~> 1.1)

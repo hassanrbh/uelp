@@ -169,7 +169,7 @@ Devise.setup do |config|
     jwt.revocation_requests = [
       ['DELETE', %r{^/sign_out$}]
     ]
-    jwt.expiration_time = 14.day.to_i
+    jwt.expiration_time = 30.minutes.to_i
   end
 
   # ==> Configuration for :rememberable
