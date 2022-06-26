@@ -17,5 +17,30 @@ class Price < ApplicationRecord
       primary_key:  :id,
       foreign_key: :businesses_id,
       dependent: :destroy
-      
+
+  before_validation :add_average_point
+  before_validation :configure_dollar_signs
+
+  protected
+  
+  def add_average_point
+    self.average = ((self.min_price + self.max_price) / 2).round(0)
+  end
+
+  def configure_dollar_signs
+    if (self.average != nil && self.average != 0)
+      case self.average
+      when (0..99)
+        self.dollar_signs = "$"
+      when (99..200)
+        self.dollar_signs = "$$"
+      when (200..500)
+        self.dollar_signs = "$$$"
+      when (200..800)
+        self.dollar_signs = "$$$$"
+      else c
+        self.dollar_signs = "$$$$$"
+      end
+    end
+  end
 end

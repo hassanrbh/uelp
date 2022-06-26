@@ -27,6 +27,8 @@
 #  web_address            :string
 #  menu_web_address       :string
 #  hours_of_opening       :integer          not null
+#  min_price              :decimal(8, 2)    not null
+#  max_price              :decimal(8, 2)    not null
 #
 class Business < ApplicationRecord
   # Include default devise modules. Others available are:
@@ -35,21 +37,25 @@ class Business < ApplicationRecord
         :recoverable, :rememberable, :validatable, :trackable, :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
 
   has_many_attached :photos
-  has_one :price
-  # before_save :create_price_point
+  has_one :price,
+      class_name: "Price",
+      primary_key:  :id,
+      foreign_key: :businesses_id,
+      dependent: :destroy
 
+  after_create :create_price_point
   private 
   # def get_average_amout_expected_by_dollar_sign
   #   self.price.dollar_signs
   # end
 
-  # def create_price_point
-  #   if !min_price.empty? && !max_price.empty?
-  #     Price.create(
-  #         :min_price => min_price,
-  #         :max_price => max_price,
-  #       )
-  #   end
-  #   self
-  # end
+  def create_price_point
+    if (min_price != nil && max_price != nil) && (min_price != 0 && max_price != 0)
+      Price.create(
+          :min_price => self.min_price,
+          :max_price => self.max_price,
+          :businesses_id => self.id
+        )
+    end
+  end
 end
