@@ -42,12 +42,13 @@ class Business < ApplicationRecord
       primary_key:  :id,
       foreign_key: :businesses_id,
       dependent: :destroy
-
   after_create :create_price_point
+
+  def get_average_amout_expected_by_dollar_sign
+    self.price.dollar_signs
+  end
+
   private 
-  # def get_average_amout_expected_by_dollar_sign
-  #   self.price.dollar_signs
-  # end
 
   def create_price_point
     if (min_price != nil && max_price != nil) && (min_price != 0 && max_price != 0)
