@@ -43,7 +43,7 @@ class Price < ApplicationRecord
         self.dollar_signs = "$$$"
       when (200..800)
         self.dollar_signs = "$$$$"
-      else c
+      else 
         self.dollar_signs = "$$$$$"
       end
     end

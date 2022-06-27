@@ -46,7 +46,7 @@ class Business < ApplicationRecord
   }
   validates :email, presence: true, :uniqueness => { :case_sensitive => true }
   validates :description, presence: true, :length => {
-    minimum: 50, too_short: "too short",
+    minimum: 20, too_short: "too short",
     maximum: 255, too_long: "too long",
   }
   validates :address, presence: true
@@ -90,7 +90,7 @@ class Business < ApplicationRecord
     self.errors.add(:port_incorrect, "Invalid address")
   end
 
-  def get_average_amout_expected_by_dollar_sign
+  def get_average_amout_by_dollar_sign
     self.price.dollar_signs
   end
 
