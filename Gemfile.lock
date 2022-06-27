@@ -125,6 +125,7 @@ GEM
       i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
     formatador (1.1.0)
+    geocoder (1.8.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     guard (2.18.0)
@@ -309,6 +310,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   faker
+  geocoder
   guard-rspec
   image_processing (~> 1.2)
   jbuilder

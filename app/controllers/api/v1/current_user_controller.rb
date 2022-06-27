@@ -1,6 +1,4 @@
-class Api::V1::CurrentUserController < ApplicationController
-  before_action :authenticate_user!
-  
+class Api::V1::CurrentUserController < ApplicationController  
   def index
     render json: current_user, status: :ok
   end

@@ -12,7 +12,12 @@
 #  updated_at    :datetime         not null
 #
 class Price < ApplicationRecord
-  belongs_to :business, 
+  validates :min_price, :presence => true, numericality: true
+  validates :max_price, :presence => true, numericality: true
+  validates :average, :presence => true, numericality: true
+  validates :dollar_signs, presence: true, length: {maximum: 5}
+
+  belongs_to :business,
       class_name: "Business",
       primary_key:  :id,
       foreign_key: :businesses_id,
@@ -22,7 +27,7 @@ class Price < ApplicationRecord
   before_validation :configure_dollar_signs
 
   protected
-  
+
   def add_average_point
     self.average = ((self.min_price + self.max_price) / 2).round(0)
   end

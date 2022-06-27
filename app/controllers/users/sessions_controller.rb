@@ -5,16 +5,9 @@ class Users::SessionsController < Devise::SessionsController
 
   def respond_with(resource, _opts = {})
     if resource.persisted?
-        render json: {
-          code: 200,
-          message: "you are logged In",
-          user: current_user,
-        }, :status => :ok
-    else 
-        render json: {
-          status: 401,
-          message: "Couldn't find an active session."
-        }, status: :unauthorized
+      render :create, :status => :ok
+    else
+      render :errors, :status => :unauthorized
     end
   end
 
@@ -24,10 +17,10 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def log_out_success
-    render json: { message: "you are logged out" ,code: 202}, status: :ok
+    render :logout, status: :ok
   end
 
   def log_out_failure
-    render json: { message: "Hmm something happened", code: 403}, status: :unauthorized
+    render :logout_failure, status: :unauthorized
   end
 end

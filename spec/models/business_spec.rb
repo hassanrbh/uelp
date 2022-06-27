@@ -29,6 +29,9 @@
 #  hours_of_opening       :integer          not null
 #  min_price              :decimal(8, 2)    not null
 #  max_price              :decimal(8, 2)    not null
+#  city                   :string           not null
+#  latitude               :decimal(, )
+#  longitude              :decimal(, )
 #
 require 'rails_helper'
 

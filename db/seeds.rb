@@ -4,7 +4,7 @@
     :name => Faker::Company.name,
     :password => "password123",
     :password_confirmation => "password123",
-    :description => Faker::Lorem.unique,
+    :description => Faker::Lorem.paragraph_by_chars(number: 50, supplemental: false),
     :address => Faker::Address.street_address,
     :address_1 => Faker::Address.secondary_address,
     :zip_code => Faker::Address.zip_code,
@@ -13,7 +13,8 @@
     :phone_number => Faker::PhoneNumber.phone_number,
     :hours_of_opening => rand(100),
     :min_price => rand(1000),
-    :max_price => rand(1000)
+    :max_price => rand(1000),
+    :city => Faker::Address.city
   )
   business.save!
 end
