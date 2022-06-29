@@ -2,9 +2,9 @@ class ApplicationController < ActionController::API
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
-
+  
   def configure_permitted_parameters
-    if current_user
+    if params[:user].present?
       permitted_params = [
         :first_name, 
         :last_name,

@@ -14,13 +14,13 @@ Rails.application.routes.draw do
   }, path: "user/", path_names: {
     sign_in: 'login',
     sign_out: "logout",
-    sign_up: "register"
   }
 
   namespace :api do
     namespace :v1 do
       resources :current_user, only: [:index]
       resources :current_biz, only: [:index]
+      resources :businesses, only: [:show], param: :slug
     end
   end
 end
