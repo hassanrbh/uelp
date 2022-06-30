@@ -3,13 +3,13 @@ import LeftNav from './left_nav'
 import RightNav from './right_nav'
 import Search from './search'
 
-const Header = () => {
+const Header = ({user, logout}) => {
   return (
     <div className="mx-auto m-4">
       <div className="flex justify-between">
-        <LeftNav />
+        <LeftNav className="w-15 h-9 pr-5 relative left-8"/>
         <Search />
-        <RightNav />
+        <RightNav user={user}/>
       </div>
     </div>
   )

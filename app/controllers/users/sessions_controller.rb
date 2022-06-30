@@ -13,7 +13,9 @@ class Users::SessionsController < Devise::SessionsController
       render :create, :status => :ok
     else
       @errors.push("email or password are incorrect");
-      render :errors, :status => :unauthorized
+      render json: { 
+        errors: @errors,
+      }, :status => :unauthorized
     end
   end
 

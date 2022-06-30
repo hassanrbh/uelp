@@ -1,30 +1,29 @@
 import axios from "axios";
 
-const API_URL = "https://localhost:3000/user/"
+const API_URL = "http://localhost:3000/user"
 
-class AuthService {
-  login(email,password) {
-    return axios.post(API_URL + "/login", {
-      email,
-      password,
+class AuthService {  
+  async login(email,password) {
+    const resp = await fetch(API_URL + "/login", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: {
+          email,
+          password,
+        },
+      }),
     })
-    .then(response => {
-      if (response.message.code === 200) {
-        this.setUser();
-        this.setToken();
-      }
-      return response.data;
-    })
+    this.setToken(resp);
+    return resp.json();
   }
   setToken(res) {
-    localStorage.setItem("token", JSON.stringify(res.headers.get("Authorization")));
-  }
-  setUser(res) {
-    localStorage.setItem("user", JSON.stringify(res.data.current_user));
+    localStorage.setItem("token", res.headers.get("Authorization"));
   }
   logout() {
     localStorage.removeItem("token");
-    localStorage.removeItem("user");
   }
   register(
     email,
@@ -55,7 +54,6 @@ class AuthService {
   }
   getCurrentUser() {
     return {
-      current_user: JSON.parse(localStorage.getItem("user")),
       jwt: JSON.parse(localStorage.getItem("token")),
     }
   }

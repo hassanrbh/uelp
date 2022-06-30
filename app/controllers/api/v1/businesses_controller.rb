@@ -15,6 +15,10 @@ class Api::V1::BusinessesController < ApplicationController
     end
   end
 
+  def public
+    
+  end
+
   def show
     @business = Business.find_by_name(params[:slug])
     render :show, :status => :ok
