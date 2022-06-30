@@ -16,7 +16,7 @@ import Register from "./components/register/Register";
 import ProtectedRoute from "./utils/protectedRoute";
 
 const App = () => {
-  const [currentUser, setCurrentUser] = useState(undefined);
+  const [currentUser, setCurrentUser] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   let location = useLocation();
   useEffect(() => {
@@ -30,6 +30,8 @@ const App = () => {
 
   const logout = () => {
     AuthService.logout();
+    setCurrentUser(undefined)
+    setIsLoggedIn(false);
     window.location.reload();
   }
 
