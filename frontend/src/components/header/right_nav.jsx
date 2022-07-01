@@ -1,6 +1,5 @@
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
-import StyledBadge from "./styled_badge";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import Tippy from "@tippyjs/react";
 import { useState } from "react";
@@ -8,8 +7,9 @@ import SvgElementNotification from "./svgElementNotification";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
 import { Link } from "react-router-dom";
+import MenuList from "./MenuList";
 
-const RightNav = () => {
+const RightNav = ({ username, logout }) => {
   const [isHover, setIsHover] = useState(false);
   const addColors = (e) => {
     setIsHover(true);
@@ -20,20 +20,15 @@ const RightNav = () => {
 
   return (
     <div className="relative right-8 flex flex-row-reverse">
-      <Stack direction="row-reverse" spacing={4}>
-        <StyledBadge
-          overlap="circular"
-          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-          variant="dot"
+      <Stack direction="row-reverse" spacing={2}>
+        <MenuList username={username} />
+        <Tippy
+          content={<span className="font-bold">Notifications</span>}
+          interactive={true}
+          animation="scale"
+          className="mr-[9px]"
         >
-          <Avatar
-            alt="Remy Sharp"
-            src={require("../../assets/images/boy-cartoon-face-free-vector.jpeg")}
-            className="cursor-pointer"
-          />
-        </StyledBadge>
-        <Tippy content={"Notification"} interactive={true} animation="scale">
-          <Link to="/notifications">
+          <Link to="/profile/notifications">
             <svg
               onMouseEnter={addColors}
               onMouseLeave={clearColors}
@@ -82,18 +77,25 @@ const RightNav = () => {
           </Link>
         </Tippy>
         <Link to="/profile/messages">
-          <Tippy animation="scale" content="Messages" interactive={true}>
+          <Tippy
+            animation="scale"
+            content={<span className="font-bold">Messages</span>}
+            interactive={true}
+          >
             <svg
               width="30px"
               height="30px"
+              x="0px"
+              y="0px"
               viewBox="0 0 20 20"
-              fill="none"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              enableBackground="new 0 0 214.6279 199.8223"
               xmlns="http://www.w3.org/2000/svg"
               className="cursor-pointer absolute right-[6.8rem] top-2"
             >
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M1.68542 6.65868C0.758716 6.96758 0.779177 8.28543 1.71502 8.56541L9.20844 10.8072L11.6551 18.5165C11.948 19.4394 13.2507 19.4488 13.5569 18.5302L18.8602 2.62029C19.1208 1.83853 18.3771 1.09479 17.5953 1.35538L1.68542 6.65868ZM5.31842 7.55586L16.3304 3.8852L12.6316 14.9817L10.9548 9.69826C10.8547 9.38295 10.6052 9.13754 10.2883 9.04272L5.31842 7.55586Z"
                 fill="currentColor"
               />

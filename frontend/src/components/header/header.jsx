@@ -13,7 +13,7 @@ const Header = ({ user, logout }) => {
         {user?.errors ? (
           <RightNavVist />
         ) : (
-          <RightNav user={user} logout={logout} />
+          <RightNav username={user?.username} logout={logout} />
         )}
       </div>
     </div>
