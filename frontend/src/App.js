@@ -15,6 +15,10 @@ import Profile from "./components/profile/Profile";
 import Messages from "./components/profile/Messages";
 import Notifications from "./components/profile/Notifications";
 import Settings from "./components/profile/Settings";
+import Friends from "./components/profile/Friends";
+import Logout from "./components/profile/Logout";
+import WriteReview from "./components/profile/WriteReview";
+import BusinessHome from "./components/businesses/BusinessHome"
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -33,7 +37,6 @@ const App = () => {
     AuthService.logout();
     setCurrentUser(undefined);
     setIsLoggedIn(false);
-    window.location.reload();
   };
 
   return (
@@ -49,38 +52,28 @@ const App = () => {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route
-          path="/profile/messages"
-          element={
-            <ProtectedRoute>
-              <Messages />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/profile/notifications"
-          element={
-            <ProtectedRoute>
-              <Notifications />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/profile/settings"
-          element={
-            <ProtectedRoute>
-              <Settings />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/profile/messages" element={<ProtectedRoute>
+            <Messages />
+          </ProtectedRoute>
+        }/>
+        <Route path="/profile/notifications" element={<ProtectedRoute>
+            <Notifications />
+          </ProtectedRoute>
+        }/>
+        <Route path="/profile" element={<ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        }/>
+        <Route path="/profile/account_settings" element={<ProtectedRoute>
+            <Settings />
+          </ProtectedRoute>
+        }/>
+        <Route path="/profile/logout" element={<Logout />}/>
+        <Route path="/profile/friends" element={<ProtectedRoute>
+          <Friends />
+        </ProtectedRoute>} />
+        <Route path="/biz" element={<BusinessHome />} />
+        <Route path="/profile/writereview" element={<WriteReview />}/>
         <Route path="/user_details" element={<Yelper />} />
         <Route path="/" element={<Home />} />
         <Route path="*" element={<Error />} />

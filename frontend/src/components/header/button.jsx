@@ -1,9 +1,15 @@
-import React from 'react'
+import React from "react";
 
-const Button = () => {
+const Button = ({svgElement, element, css}) => {
   return (
-    <div>Button</div>
-  )
-}
+    <button
+      type="button"
+      className={css}
+        >
+          {svgElement}
+          <span className="font-medium subpixel-antialiased">{element}</span>
+    </button>
+  );
+};
 
-export default Button
+export default Button;
