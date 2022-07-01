@@ -6,6 +6,10 @@ import Tippy from "@tippyjs/react";
 import Avatar from "@mui/material/Avatar";
 import {Link} from "react-router-dom";
 import OrLineUp from "../login/OrLineUp"
+import FaceIcon from '@mui/icons-material/Face';
+import PeopleIcon from '@mui/icons-material/People';
+import SettingsIcon from '@mui/icons-material/Settings';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 const MenuList = ({ username ,logout}) => {
   function classNames(...classes) {
@@ -43,36 +47,48 @@ const MenuList = ({ username ,logout}) => {
         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
           <Menu.Item>
             {({ active }) => (
-              <Link to={`/user_details?username=${username}`} className={classNames(
-                active ? "bg-gray-100" : "",
-                "block px-4 py-2 text-sm text-gray-700")}>
-                  About Me
-              </Link>
+              <div className="hover:bg-gray-100">
+                <FaceIcon className="absolute m-1"/>
+                <Link to={`/user_details?username=${username}`} className={classNames(
+                  active ? "bg-gray-100" : "",
+                  "block px-4 py-2 text-sm  text-gray-700 font-bold ml-4")}>
+                    About Me
+                </Link>
+              </div>
             )}
           </Menu.Item>
           <Menu.Item>
             {({ active }) => (
-              <Link to="/profile/friends" className={classNames(
-                active ? "bg-gray-100" : "",
-                "block px-4 py-2 text-sm text-gray-700"
-              )}>Find Friends</Link>
+              <div className="hover:bg-gray-100">
+                <PeopleIcon className="absolute m-1"/>
+                <Link to="/profile/friends" className={classNames(
+                  active ? "bg-gray-100" : "",
+                  "block px-4 py-2 text-sm text-gray-700 font-bold ml-4"
+                )}>Find Friends</Link>
+              </div>
             )}
           </Menu.Item>
           <Menu.Item>
             {({ active }) => (
-              <Link to="/profile/account_settings" className={classNames(
-                active ? "bg-gray-100" : "",
-                "block px-4 py-2 text-sm text-gray-700"
-              )}>Account Settings</Link>
+              <div className="hover:bg-gray-100">
+                <SettingsIcon className="absolute m-1"/>
+                <Link to="/profile/account_settings" className={classNames(
+                  active ? "bg-gray-100" : "",
+                  "block px-4 py-2 text-sm text-gray-700 font-bold ml-4"
+                )}>Account Settings</Link>
+              </div>
             )}
           </Menu.Item>
           <OrLineUp />
           <Menu.Item>
             {({ active }) => (
-              <Link to="/profile" onClick={() => logout()} className={classNames(
-                active ? "bg-gray-100" : "",
-                "block px-4 py-2 text-sm text-gray-700"
-              )}>Log Out</Link>
+              <div className="hover:bg-gray-100">
+                <LogoutIcon className="absolute m-1"/>
+                <Link to="/profile" onClick={() => logout()} className={classNames(
+                  active ? "bg-gray-100" : "",
+                  "block px-4 py-2 text-sm text-gray-700 font-bold ml-4"
+                )}>Log Out</Link>
+              </div>
             )}
           </Menu.Item>
         </Menu.Items>
