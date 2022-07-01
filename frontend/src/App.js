@@ -10,6 +10,7 @@ import AuthService from "./services/user.service";
 import Error from "./components/errors/Error";
 import Register from "./components/register/Register";
 import ProtectedRoute from "./utils/protectedRoute";
+import Yelper from "./components/profile/Yelper";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -44,6 +45,7 @@ const App = () => {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/user_details" element={<Yelper />} />
         <Route path="/" element={<Home />} />
         <Route path="*" element={<Error />} />
       </Routes>

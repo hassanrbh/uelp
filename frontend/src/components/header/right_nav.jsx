@@ -2,10 +2,25 @@ import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import StyledBadge from "./styled_badge";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import Tippy from "@tippyjs/react";
+import { useState } from "react";
+import SvgElementNotification from "./svgElementNotification";
+import "tippy.js/dist/tippy.css";
+import 'tippy.js/animations/scale.css';
+import {Link} from "react-router-dom"
+
 const RightNav = () => {
+  const [isHover, setIsHover] = useState(false);
+  const addColors = (e) => {
+    setIsHover(true);
+  };
+  const clearColors = (e) => {
+    setIsHover(false);
+  };
+
   return (
     <div className="relative right-8 flex flex-row-reverse">
-      <Stack direction="row" spacing={3}>
+      <Stack direction="row-reverse" spacing={5}>
         <StyledBadge
           overlap="circular"
           anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
@@ -17,10 +32,50 @@ const RightNav = () => {
             className="cursor-pointer"
           />
         </StyledBadge>
+        <Tippy content={"Notification"} interactive={true} animation="scale">
+          <Link to="/notifications" >
+            <svg
+              onMouseEnter={addColors}
+              onMouseLeave={clearColors}
+              xmlns="http://www.w3.org/2000/svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              version="1.1"
+              id="webnotification"
+              x="0px"
+              y="0px"
+              viewBox="0 0 214.6279 199.8223"
+              enableBackground="new 0 0 214.6279 199.8223"
+              width="30"
+              height="30"
+              className="cursor-pointer absolute right-12 top-2 mr-2"
+            >
+              <g>
+                <path
+                  fill="#5CB0FF"
+                  d="M110.4863,184h82.5234l-41.2617-75.6484L110.4863,184z M155.748,168h-8v-44h8V168z"
+                />
+                <path
+                  fill="#1C71DA"
+                  d="M91.748,160V84h42.989c0.0146,0.7878,0.0696,1.5579,0.0696,2.3516c0,2.2109,1.7891,4,4,4s4-1.7891,4-4   c0-0.7937-0.0603-1.5632-0.0745-2.3516h25.0159h5.6484h2.3516c0-46.3164-37.6836-84-84-84h-8v0.4053   C41.1726,4.45,7.748,40.3838,7.748,84c0,46.3164,37.6836,84,84,84c2.2109,0,4-1.7891,4-4S93.959,160,91.748,160z M83.748,158.6755   c-19.9287-6.438-35.0586-36.3945-35.0586-72.324c0-0.7937,0.0549-1.5637,0.0696-2.3516h34.989V158.6755z M49.1655,76   C51.75,44.7942,65.7729,19.8376,83.748,14.0312V76H49.1655z M91.748,76V12.707c21.6829,0,39.6248,27.5808,42.5825,63.293H91.748z    M167.3181,76h-24.9685c-2.3884-29.9812-14.96-54.8911-31.9993-65.6013C140.7681,18.0952,163.9641,44.0977,167.3181,76z    M73.1458,10.3987C56.1064,21.1089,43.5349,46.0188,41.1465,76H16.178C19.532,44.0977,42.728,18.0952,73.1458,10.3987z M15.748,84   h25.0159c-0.0142,0.7883-0.0745,1.5579-0.0745,2.3516c0,28.5327,9.217,53.6572,23.1233,68.2603   C35.7031,143.4497,15.748,116.0374,15.748,84z"
+                />
+                <path
+                  fill="#1C71DA"
+                  d="M203.2598,186.0859l-48-88c-1.3984-2.5703-5.625-2.5703-7.0234,0l-48,88   c-0.6758,1.2383-0.6484,2.7422,0.0703,3.957c0.7227,1.2109,2.0312,1.957,3.4414,1.957h96c1.4102,0,2.7188-0.7461,3.4414-1.957   C203.9082,188.8281,203.9355,187.3242,203.2598,186.0859z M110.4863,184l41.2617-75.6484L193.0098,184H110.4863z"
+                />
+                <rect x="147.748" y="124" fill="#FFFFFF" width="8" height="44" />
+                <rect
+                  x="147.748"
+                  y="171.3333"
+                  fill="#FFFFFF"
+                  width="8"
+                  height="4.9167"
+                />
+              </g>
+              {isHover ? <SvgElementNotification /> : null}
+            </svg>
+          </Link>
+        </Tippy>
       </Stack>
-      <svg width="24" height="24" class="icon_svg">
-        <path d="M22.64 17.23A7.31 7.31 0 0120 11.59V9A8 8 0 004 9v2.59a7.31 7.31 0 01-2.64 5.64A1 1 0 002 19h6a4 4 0 008 0h6a1 1 0 00.64-1.77zM6 9a6 6 0 0112 0v2.59c.001.472.038.943.11 1.41H5.89A9.36 9.36 0 006 11.59V9zm6 12a2 2 0 01-2-2h4a2 2 0 01-2 2zm-7.72-4a9.42 9.42 0 001.08-2h13.28a9.42 9.42 0 001.08 2H4.28z"></path>
-      </svg>
     </div>
   );
 };
