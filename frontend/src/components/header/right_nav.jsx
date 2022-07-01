@@ -6,8 +6,8 @@ import Tippy from "@tippyjs/react";
 import { useState } from "react";
 import SvgElementNotification from "./svgElementNotification";
 import "tippy.js/dist/tippy.css";
-import 'tippy.js/animations/scale.css';
-import {Link} from "react-router-dom"
+import "tippy.js/animations/scale.css";
+import { Link } from "react-router-dom";
 
 const RightNav = () => {
   const [isHover, setIsHover] = useState(false);
@@ -20,7 +20,7 @@ const RightNav = () => {
 
   return (
     <div className="relative right-8 flex flex-row-reverse">
-      <Stack direction="row-reverse" spacing={5}>
+      <Stack direction="row-reverse" spacing={4}>
         <StyledBadge
           overlap="circular"
           anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
@@ -33,7 +33,7 @@ const RightNav = () => {
           />
         </StyledBadge>
         <Tippy content={"Notification"} interactive={true} animation="scale">
-          <Link to="/notifications" >
+          <Link to="/notifications">
             <svg
               onMouseEnter={addColors}
               onMouseLeave={clearColors}
@@ -62,7 +62,13 @@ const RightNav = () => {
                   fill="#1C71DA"
                   d="M203.2598,186.0859l-48-88c-1.3984-2.5703-5.625-2.5703-7.0234,0l-48,88   c-0.6758,1.2383-0.6484,2.7422,0.0703,3.957c0.7227,1.2109,2.0312,1.957,3.4414,1.957h96c1.4102,0,2.7188-0.7461,3.4414-1.957   C203.9082,188.8281,203.9355,187.3242,203.2598,186.0859z M110.4863,184l41.2617-75.6484L193.0098,184H110.4863z"
                 />
-                <rect x="147.748" y="124" fill="#FFFFFF" width="8" height="44" />
+                <rect
+                  x="147.748"
+                  y="124"
+                  fill="#FFFFFF"
+                  width="8"
+                  height="44"
+                />
                 <rect
                   x="147.748"
                   y="171.3333"
@@ -75,6 +81,29 @@ const RightNav = () => {
             </svg>
           </Link>
         </Tippy>
+        <Link to="/profile/messages">
+          <Tippy animation="scale" content="Messages" interactive={true}>
+            <svg
+              width="30px"
+              height="30px"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="cursor-pointer absolute right-[6.8rem] top-2"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M1.68542 6.65868C0.758716 6.96758 0.779177 8.28543 1.71502 8.56541L9.20844 10.8072L11.6551 18.5165C11.948 19.4394 13.2507 19.4488 13.5569 18.5302L18.8602 2.62029C19.1208 1.83853 18.3771 1.09479 17.5953 1.35538L1.68542 6.65868ZM5.31842 7.55586L16.3304 3.8852L12.6316 14.9817L10.9548 9.69826C10.8547 9.38295 10.6052 9.13754 10.2883 9.04272L5.31842 7.55586Z"
+                fill="currentColor"
+              />
+              <path
+                d="M17.7674 1.43951L18.8105 2.51742L9.98262 11.0605L8.93948 9.98265L17.7674 1.43951Z"
+                fill="currentColor"
+              />
+            </svg>
+          </Tippy>
+        </Link>
       </Stack>
     </div>
   );

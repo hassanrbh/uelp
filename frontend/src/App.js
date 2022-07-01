@@ -11,6 +11,9 @@ import Error from "./components/errors/Error";
 import Register from "./components/register/Register";
 import ProtectedRoute from "./utils/protectedRoute";
 import Yelper from "./components/profile/Yelper";
+import Profile from "./components/profile/Profile";
+import Messages from "./components/profile/Messages";
+import Notifications from "./components/profile/Notifications";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -45,6 +48,9 @@ const App = () => {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/profile/messages" element={<Messages />} />
+        <Route path="/profile/notifications" element={<Notifications />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/user_details" element={<Yelper />} />
         <Route path="/" element={<Home />} />
         <Route path="*" element={<Error />} />
