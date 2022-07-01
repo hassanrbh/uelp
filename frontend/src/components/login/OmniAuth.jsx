@@ -1,9 +1,9 @@
-import React from 'react'
-import FacebookIcon from '@mui/icons-material/Facebook';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import GoogleIcon from '@mui/icons-material/Google';
+import React from "react";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import GoogleIcon from "@mui/icons-material/Google";
 
-const OmniAuth = ({service, className}) => {
+const OmniAuth = ({ service, className }) => {
   return (
     <button className={className}>
       <div>
@@ -15,7 +15,7 @@ const OmniAuth = ({service, className}) => {
         Continue with <span className="capitalize text-center">{service}</span>
       </div>
     </button>
-  )
-}
+  );
+};
 
-export default OmniAuth
+export default OmniAuth;

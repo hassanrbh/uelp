@@ -1,6 +1,6 @@
-import React from 'react'
-import FooterLogin from './FooterLogin'
-import LoginForm from './LoginInterceptor'
+import React from "react";
+import FooterLogin from "./FooterLogin";
+import LoginForm from "./LoginInterceptor";
 
 const Login = () => {
   return (
@@ -10,7 +10,7 @@ const Login = () => {
         <FooterLogin />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

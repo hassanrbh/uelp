@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000/user"
+const API_URL = "http://localhost:3000/user";
 
-class AuthService {  
-  async login(email,password) {
+class AuthService {
+  async login(email, password) {
     const resp = await fetch(API_URL + "/login", {
       method: "post",
       headers: {
@@ -15,7 +15,7 @@ class AuthService {
           password,
         },
       }),
-    })
+    });
     this.setToken(resp);
     return resp.json();
   }
@@ -35,27 +35,28 @@ class AuthService {
     birth_date,
     gender,
     phone_number
-    ) {
-    return axios.post(API_URL, {
-      email,
-      password,
-      password_confirmation,
-      first_name: f_name,
-      last_name: l_name,
-      zip_code,
-      birth_date,
-      gender,
-      phone_number,
-    })
-    .then(response => {
-      this.setUser();
-      this.setToken();
-    }) 
+  ) {
+    return axios
+      .post(API_URL, {
+        email,
+        password,
+        password_confirmation,
+        first_name: f_name,
+        last_name: l_name,
+        zip_code,
+        birth_date,
+        gender,
+        phone_number,
+      })
+      .then((response) => {
+        this.setUser();
+        this.setToken();
+      });
   }
   getCurrentUser() {
     return {
       jwt: JSON.parse(localStorage.getItem("token")),
-    }
+    };
   }
 }
 

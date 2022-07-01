@@ -1,19 +1,23 @@
-import React, { useState } from 'react'
-import LeftNav from './left_nav'
-import RightNavVist from './RightNavVist'
-import RightNav from './right_nav'
-import Search from './search'
+import React, { useState } from "react";
+import LeftNav from "./left_nav";
+import RightNavVist from "./RightNavVist";
+import RightNav from "./right_nav";
+import Search from "./search";
 
-const Header = ({user, logout}) => {
+const Header = ({ user, logout }) => {
   return (
     <div className="mx-auto m-4">
       <div className="flex justify-between">
-        <LeftNav className="w-15 h-9 pr-5 relative left-8"/>
+        <LeftNav className="w-15 h-9 pr-5 relative left-8" />
         <Search />
-        {user?.errors ? <RightNavVist /> : <RightNav user={user}/>}
+        {user?.errors ? (
+          <RightNavVist />
+        ) : (
+          <RightNav user={user} logout={logout} />
+        )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
