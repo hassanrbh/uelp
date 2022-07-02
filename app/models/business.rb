@@ -71,7 +71,8 @@ class Business < ApplicationRecord
   has_one :price,
       class_name: "Price",
       primary_key:  :id,
-      foreign_key: :businesses_id      
+      foreign_key: :businesses_id 
+  has_one :categorie
   after_create :create_price_point
 
   def check_for_web_address
