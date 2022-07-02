@@ -19,6 +19,7 @@ import Friends from "./components/profile/Friends";
 import Logout from "./components/profile/Logout";
 import WriteReview from "./components/profile/WriteReview";
 import BusinessHome from "./components/businesses/BusinessHome"
+import Search from "./components/search/search";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -72,6 +73,7 @@ const App = () => {
         <Route path="/profile/friends" element={<ProtectedRoute>
           <Friends />
         </ProtectedRoute>} />
+        <Route path="/search" element={<Search />}/>
         <Route path="/biz" element={<BusinessHome />} />
         <Route path="/profile/writereview" element={<WriteReview />}/>
         <Route path="/user_details" element={<Yelper />} />
