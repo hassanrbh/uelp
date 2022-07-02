@@ -1,4 +1,4 @@
-2.times do
+3.times do
   business = Business.new(
     :email => Faker::Internet.email,
     :name => Faker::Company.name,
@@ -10,11 +10,12 @@
     :zip_code => Faker::Address.zip_code,
     :state => Faker::Address.state,
     :country => Faker::Address.country,
-    :phone_number => Faker::PhoneNumber.phone_number,
+    :phone_number => Faker::PhoneNumber.cell_phone,
     :hours_of_opening => rand(100),
     :min_price => rand(1000),
     :max_price => rand(1000),
-    :city => Faker::Address.city
+    :city => Faker::Address.city,
+    :categorie_name => "Delivery",
   )
   business.save!
 end

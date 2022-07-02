@@ -32,6 +32,7 @@
 #  city                   :string           not null
 #  latitude               :decimal(, )
 #  longitude              :decimal(, )
+#  categorie_name         :string
 #
 class Business < ApplicationRecord
   # Include default devise modules. Others available are:
@@ -40,7 +41,7 @@ class Business < ApplicationRecord
         :recoverable, :rememberable, :validatable, :trackable, :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
   geocoded_by :full_address
   after_validation :geocode
-  validates :name, :presence => true, :length => { in: 6..30 }, :uniqueness => true, :format => {
+  validates :name, :presence => true, :length => { in: 6..50 }, :uniqueness => true, :format => {
     with: /(?:\s*[a-zA-Z0-9,_\.\077\0100\*\+\&\#\'\~\;\-\!\@\;]{2,}\s*)*/,
     message: "not valid business name"
   }
@@ -53,7 +54,7 @@ class Business < ApplicationRecord
   validates :city, presence: true
   validates :country, presence: true
   validates :state, presence: true
-  validates :phone_number, :presence => true, :length => { in: 10..13 }, :uniqueness => true, :format => { 
+  validates :phone_number, :presence => true, :length => { in: 10..20 }, :uniqueness => true, :format => { 
     with: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/, 
     message: "not valid",
     :multiline => true
@@ -74,6 +75,11 @@ class Business < ApplicationRecord
       foreign_key: :businesses_id 
   has_one :categorie
   after_create :create_price_point
+  after_create :create_categorie_point
+
+  scope :filter_by_category, -> (category) { where("lower(categorie_name) LIKE ?", "%#{category}%") }
+  scope :filter_by_country, -> (country) { where("lower(country) LIKE ?", country) }
+  scope :filter_by_state, -> (state) { where("lower(state) LIKE ?", state) }
 
   def check_for_web_address
     regex_check_host = /^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$/
@@ -98,16 +104,37 @@ class Business < ApplicationRecord
   def full_address
     ["TN 37086, United States"].compact.join(', ')
   end
+  
+  def location
+    ["#{self.state}, #{self.country}"].compact.join(', ')
+  end
 
+  def self.search_by_category(category)
+    Business.filter_by_category(category)
+  end
+  def self.search_by_category_and_country(category, country)
+    Business.filter_by_category(category).filter_by_country(country)
+  end
+  def self.search_by_category_and_country_and_state(category, country, state)
+    Business.filter_by_category(category).filter_by_country(country)
+  end
   private 
-
+  
   def create_price_point
     if (min_price != nil && max_price != nil) && (min_price != 0 && max_price != 0)
       Price.create(
-          :min_price => self.min_price,
-          :max_price => self.max_price,
-          :businesses_id => self.id
-        )
+        :min_price => self.min_price,
+        :max_price => self.max_price,
+        :businesses_id => self.id
+      )
     end
+  end
+
+  def create_categorie_point
+    if !(self.categorie_name == nil && self.categorie_name.empty?)
+      categorie = Categorie.new(:name => self.categorie_name, :business => self)
+      categorie.save
+    end
+    self
   end
 end

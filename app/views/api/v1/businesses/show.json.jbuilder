@@ -27,4 +27,7 @@ json.profile do
     json.latitude @business.latitude
     json.longitude @business.longitude
   end
+  json.categories do
+    json.category @business.categorie_name
+  end
 end

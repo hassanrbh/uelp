@@ -27,5 +27,8 @@ json.all_businesses(@businesses) do |business|
         json.latitude business.latitude
         json.longitude business.longitude
       end
+      json.categories do
+        json.category business.categorie_name
+      end
     end
 end

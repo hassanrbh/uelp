@@ -32,6 +32,7 @@
 #  city                   :string           not null
 #  latitude               :decimal(, )
 #  longitude              :decimal(, )
+#  categorie_name         :string
 #
 FactoryBot.define do
   factory :business do
