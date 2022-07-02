@@ -23,9 +23,9 @@ const Moreinfo = () => {
           <Button
             svgElement={<AddBusinessIcon className="mr-1" />}
             element="Businesses"
-            css="flex items-center rounded-lg bg-rose-600 px-4 py-2 opacity-100
+            css="flex items-center rounded-lg bg-blue-600 px-4 py-2
             text-white right-3  hover:opacity-70
-            mt-[2px] hover:bg-rose-300 transition-all ease-in-out"
+            mt-[2px] hover:bg-blue-300 transition-all ease-in-out"
           />
         </Link>
     </div>    

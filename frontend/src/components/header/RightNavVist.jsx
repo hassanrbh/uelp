@@ -11,9 +11,9 @@ const RightNavVist = () => {
       <Link to="/register" className="mr-[10px]">
         <Button svgElement={<SubscriptionsIcon className="mr-1"/>}
             element="Sign Up"
-            css="flex items-center rounded-lg bg-red-500 px-4 py-2 opacity-100
+            css="flex items-center rounded-lg bg-blue-600 px-4 py-2 opacity-100
             text-white right-3 hover:opacity-70
-            mt-[2px] hover:bg-red-500 transition mr-5 ease-in-out"/>
+            mt-[2px] hover:bg-blue-300 transition mr-5 ease-in-out"/>
       </Link>
       <Link to="/login" className="mr-[1px]">
         <Button svgElement={<VpnKeyIcon className="mr-1" />}
