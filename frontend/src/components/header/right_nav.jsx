@@ -9,8 +9,11 @@ import "tippy.js/animations/scale.css";
 import { Link } from "react-router-dom";
 import MenuList from "./MenuList";
 import Button from "./button";
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import AddBusinessIcon from '@mui/icons-material/AddBusiness';
+import "tippy.js/dist/tippy.css";
+import "tippy.js/animations/scale.css";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import AddBusinessIcon from "@mui/icons-material/AddBusiness";
+
 
 const RightNav = ({ username, logout }) => {
   const [isHover, setIsHover] = useState(false);
@@ -24,7 +27,7 @@ const RightNav = ({ username, logout }) => {
   return (
     <div className="relative right-8 flex flex-row-reverse">
       <Stack direction="row-reverse" spacing={2}>
-        <MenuList username={username} logout={logout}/>
+        <MenuList username={username} logout={logout} />
         <Tippy
           content={<span className="font-bold">Notifications</span>}
           interactive={true}
@@ -106,23 +109,26 @@ const RightNav = ({ username, logout }) => {
                 d="M17.7674 1.43951L18.8105 2.51742L9.98262 11.0605L8.93948 9.98265L17.7674 1.43951Z"
                 fill="currentColor"
               />
-
             </svg>
           </Tippy>
         </Link>
         <Link to="/profile/writereview">
-          <Button svgElement={<VisibilityIcon className="mr-1"/>} 
+          <Button
+            svgElement={<VisibilityIcon className="mr-1" />}
             element="Write Review"
             css="flex items-center rounded-lg bg-black px-4 py-2 opacity-100
             text-white right-3 mr-[64px] hover:opacity-70
-            mt-[2px] hover:bg-gray-500 transition ease-in-out"/>
+            mt-[2px] hover:bg-gray-500 transition ease-in-out"
+          />
         </Link>
         <Link to="/biz">
-          <Button svgElement={<AddBusinessIcon className="mr-1"/>} 
+          <Button
+            svgElement={<AddBusinessIcon className="mr-1" />}
             element="Businesses"
             css="flex items-center rounded-lg bg-rose-600 px-4 py-2 opacity-100
             text-white right-3  hover:opacity-70
-            mt-[2px] hover:bg-rose-300 transition-all ease-in-out"/>
+            mt-[2px] hover:bg-rose-300 transition-all ease-in-out"
+          />
         </Link>
       </Stack>
     </div>

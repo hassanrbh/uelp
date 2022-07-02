@@ -4,17 +4,17 @@ import { Fragment } from "react";
 import StyledBadge from "./styled_badge";
 import Tippy from "@tippyjs/react";
 import Avatar from "@mui/material/Avatar";
-import {Link} from "react-router-dom";
-import OrLineUp from "../login/OrLineUp"
-import FaceIcon from '@mui/icons-material/Face';
-import PeopleIcon from '@mui/icons-material/People';
-import SettingsIcon from '@mui/icons-material/Settings';
-import LogoutIcon from '@mui/icons-material/Logout';
+import { Link } from "react-router-dom";
+import OrLineUp from "../login/OrLineUp";
+import FaceIcon from "@mui/icons-material/Face";
+import PeopleIcon from "@mui/icons-material/People";
+import SettingsIcon from "@mui/icons-material/Settings";
+import LogoutIcon from "@mui/icons-material/Logout";
 
-const MenuList = ({ username ,logout}) => {
+const MenuList = ({ username, logout }) => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
-  } 
+  }
   return (
     <Menu as="div" className="ml-3 relative">
       <div>
@@ -48,11 +48,15 @@ const MenuList = ({ username ,logout}) => {
           <Menu.Item>
             {({ active }) => (
               <div className="hover:bg-gray-100">
-                <FaceIcon className="absolute m-1"/>
-                <Link to={`/user_details?username=${username}`} className={classNames(
-                  active ? "bg-gray-100" : "",
-                  "block px-4 py-2 text-sm  text-gray-700 font-bold ml-4")}>
-                    About Me
+                <FaceIcon className="absolute m-1" />
+                <Link
+                  to={`/user_details?username=${username}`}
+                  className={classNames(
+                    active ? "bg-gray-100" : "",
+                    "block px-4 py-2 text-sm  text-gray-700 font-bold ml-4"
+                  )}
+                >
+                  About Me
                 </Link>
               </div>
             )}
@@ -60,22 +64,32 @@ const MenuList = ({ username ,logout}) => {
           <Menu.Item>
             {({ active }) => (
               <div className="hover:bg-gray-100">
-                <PeopleIcon className="absolute m-1"/>
-                <Link to="/profile/friends" className={classNames(
-                  active ? "bg-gray-100" : "",
-                  "block px-4 py-2 text-sm text-gray-700 font-bold ml-4"
-                )}>Find Friends</Link>
+                <PeopleIcon className="absolute m-1" />
+                <Link
+                  to="/profile/friends"
+                  className={classNames(
+                    active ? "bg-gray-100" : "",
+                    "block px-4 py-2 text-sm text-gray-700 font-bold ml-4"
+                  )}
+                >
+                  Find Friends
+                </Link>
               </div>
             )}
           </Menu.Item>
           <Menu.Item>
             {({ active }) => (
               <div className="hover:bg-gray-100">
-                <SettingsIcon className="absolute m-1"/>
-                <Link to="/profile/account_settings" className={classNames(
-                  active ? "bg-gray-100" : "",
-                  "block px-4 py-2 text-sm text-gray-700 font-bold ml-4"
-                )}>Account Settings</Link>
+                <SettingsIcon className="absolute m-1" />
+                <Link
+                  to="/profile/account_settings"
+                  className={classNames(
+                    active ? "bg-gray-100" : "",
+                    "block px-4 py-2 text-sm text-gray-700 font-bold ml-4"
+                  )}
+                >
+                  Account Settings
+                </Link>
               </div>
             )}
           </Menu.Item>
@@ -83,11 +97,17 @@ const MenuList = ({ username ,logout}) => {
           <Menu.Item>
             {({ active }) => (
               <div className="hover:bg-gray-100">
-                <LogoutIcon className="absolute m-1"/>
-                <Link to="/profile" onClick={() => logout()} className={classNames(
-                  active ? "bg-gray-100" : "",
-                  "block px-4 py-2 text-sm text-gray-700 font-bold ml-4"
-                )}>Log Out</Link>
+                <LogoutIcon className="absolute m-1" />
+                <Link
+                  to="/profile"
+                  onClick={() => logout()}
+                  className={classNames(
+                    active ? "bg-gray-100" : "",
+                    "block px-4 py-2 text-sm text-gray-700 font-bold ml-4"
+                  )}
+                >
+                  Log Out
+                </Link>
               </div>
             )}
           </Menu.Item>
