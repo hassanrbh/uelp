@@ -112,7 +112,7 @@ const RightNav = ({ username, logout }) => {
             </svg>
           </Tippy>
         </Link>
-        <Link to="/profile/writereview">
+        <Link to="/profile/writereview" className="h-0">
           <Button
             svgElement={<VisibilityIcon className="mr-1" />}
             element="Write Review"
@@ -121,7 +121,7 @@ const RightNav = ({ username, logout }) => {
             mt-[2px] hover:bg-gray-500 transition ease-in-out"
           />
         </Link>
-        <Link to="/biz">
+        <Link to="/biz" className="h-0">
           <Button
             svgElement={<AddBusinessIcon className="mr-1" />}
             element="Businesses"

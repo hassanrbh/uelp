@@ -1,9 +1,10 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import { useState, useEffect , lazy, Suspense } from "react";
+import { useState, useEffect , lazy } from "react";
 import { switchHeaders } from "./utils/switchHeader";
-import SuspenseLazy from "./utils/suspense_lazy";
+
 import UserService from "./services/auth.service";
 import AuthService from "./services/user.service";
+import SuspenseLazy from "./utils/suspense_lazy";
 
 import Header from "./components/header/header";
 const  Home = lazy(() => import("./components/home/Home"));
@@ -27,13 +28,11 @@ const  Search = lazy(() => import("./components/search/search"));
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   let location = useLocation();
   useEffect(() => {
     const fetchUser = async () => {
       const user = await UserService.getUser();
       setCurrentUser(user);
-      setIsLoggedIn(true);
     };
     fetchUser();
   }, []);
@@ -41,7 +40,6 @@ const App = () => {
   const logout = () => {
     AuthService.logout();
     setCurrentUser(undefined);
-    setIsLoggedIn(false);
   };
 
   return (
