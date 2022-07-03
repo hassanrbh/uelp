@@ -1,25 +1,29 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import Header from "./components/header/header";
-import Home from "./components/home/Home";
-import Login from "./components/login/Login";
-import HeaderLogin from "./components/login/HeaderLogin";
+import { useState, useEffect , lazy, Suspense } from "react";
 import { switchHeaders } from "./utils/switchHeader";
-import { useState, useEffect } from "react";
+import SuspenseLazy from "./utils/suspense_lazy";
 import UserService from "./services/auth.service";
 import AuthService from "./services/user.service";
-import Error from "./components/errors/Error";
-import Register from "./components/register/Register";
-import ProtectedRoute from "./utils/protectedRoute";
-import Yelper from "./components/profile/Yelper";
-import Profile from "./components/profile/Profile";
-import Messages from "./components/profile/Messages";
-import Notifications from "./components/profile/Notifications";
-import Settings from "./components/profile/Settings";
-import Friends from "./components/profile/Friends";
-import Logout from "./components/profile/Logout";
-import WriteReview from "./components/profile/WriteReview";
-import BusinessHome from "./components/businesses/BusinessHome"
-import Search from "./components/search/search";
+
+import Header from "./components/header/header";
+const  Home = lazy(() => import("./components/home/Home"));
+const  Login = lazy(() => import("./components/login/Login"));
+const  HeaderLogin = lazy(() => import("./components/login/HeaderLogin"));
+const  Error = lazy(() => import("./components/errors/Error"));
+const  Register = lazy(() => import("./components/register/Register"));
+const  ProtectedRoute = lazy(() => import("./utils/protectedRoute"));
+const  Yelper = lazy(() => import("./components/profile/Yelper"));
+const  Profile = lazy(() => import("./components/profile/Profile"));
+const  Messages = lazy(() => import("./components/profile/Messages"));
+const  Notifications = lazy(() => import("./components/profile/Notifications"));
+const  Settings = lazy(() => import("./components/profile/Settings"));
+const  Friends = lazy(() => import("./components/profile/Friends"));
+const  Logout = lazy(() => import("./components/profile/Logout"));
+const  WriteReview = lazy(() => import("./components/profile/WriteReview"));
+const  BusinessHome = lazy(() => import("./components/businesses/BusinessHome"));
+const  Search = lazy(() => import("./components/search/search"));
+
+
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -51,34 +55,34 @@ const App = () => {
         logout
       )}
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<SuspenseLazy element={<Login />}/>}/>
+        <Route path="/register" element={<SuspenseLazy element={<Register />}/>}/>
         <Route path="/profile/messages" element={<ProtectedRoute>
-            <Messages />
+            <SuspenseLazy element={<Messages />}/>
           </ProtectedRoute>
         }/>
         <Route path="/profile/notifications" element={<ProtectedRoute>
-            <Notifications />
+            <SuspenseLazy element={<Notifications />}/>
           </ProtectedRoute>
         }/>
         <Route path="/profile" element={<ProtectedRoute>
-            <Profile />
+            <SuspenseLazy element={<Profile />}/>
           </ProtectedRoute>
         }/>
         <Route path="/profile/account_settings" element={<ProtectedRoute>
-            <Settings />
+            <SuspenseLazy element={<Settings />}/>
           </ProtectedRoute>
         }/>
-        <Route path="/profile/logout" element={<Logout />}/>
+        <Route path="/profile/logout" element={<SuspenseLazy element={<Logout />}/>}/>
         <Route path="/profile/friends" element={<ProtectedRoute>
-          <Friends />
+          <SuspenseLazy element={<Friends />}/>
         </ProtectedRoute>} />
-        <Route path="/search" element={<Search />}/>
-        <Route path="/biz" element={<BusinessHome />} />
-        <Route path="/profile/writereview" element={<WriteReview />}/>
-        <Route path="/user_details" element={<Yelper />} />
-        <Route path="/" element={<Home />} />
-        <Route path="*" element={<Error />} />
+        <Route path="/search" element={<SuspenseLazy element={<Search />}/>}/>
+        <Route path="/biz" element={<SuspenseLazy element={<BusinessHome />}/>} />
+        <Route path="/profile/writereview" element={<SuspenseLazy element={<WriteReview />}/>}/>
+        <Route path="/user_details" element={<SuspenseLazy element={<Yelper />} />} />
+        <Route path="/" element={<SuspenseLazy element={<Home />}/>} />
+        <Route path="*" element={<SuspenseLazy element={<Error />}/>} />
       </Routes>
     </div>
   );
