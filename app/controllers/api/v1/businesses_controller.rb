@@ -21,6 +21,11 @@ class Api::V1::BusinessesController < ApplicationController
     end
   end
 
+  def latest
+    @latest_businesses = Business.filter_by_latest 
+    render :json => @latest_businesses.to_json(), :status => :ok
+  end
+
   def search(search_category, country, state)
     if !(country.nil?)
       @businesses = Business.search_by_category_and_country(search_category, country)

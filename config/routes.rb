@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       resources :current_user, only: [:index]
       resources :current_biz, only: [:index]
       resources :businesses, only: [:show, :index], param: :slug
+      get "/latest", to: "businesses#latest";
     end
   end
 end
