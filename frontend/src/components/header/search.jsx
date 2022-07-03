@@ -38,7 +38,7 @@ const Search = () => {
       >
         {({ isSubmitting }) => (
           <>
-            <Form className="flex items-center ">
+            <Form className="flex items-center">
               <label htmlFor="voice-search" className="sr-only">
                 Search
               </label>
@@ -137,7 +137,7 @@ const Search = () => {
         )}
       </Formik>
       {modalOpener ? (
-        <ul className="border bg-slate-100 rounded-lg pt-1 mt-1 z-40" onClick={() => {
+        <ul className="border bg-slate-100 rounded-lg pt-1 mt-1 absolute z-50" onClick={() => {
           window.location.reload();
         }}  onBlur={() => setModalOpener(false)} >
           {isLoading ? <div>Loading ...</div> : null}

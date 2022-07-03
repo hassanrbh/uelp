@@ -16,7 +16,7 @@ const MenuList = ({ username, logout }) => {
     return classes.filter(Boolean).join(" ");
   }
   return (
-    <Menu as="div" className="ml-3 relative">
+    <Menu as="div" className="ml-3 relative z-50">
       <div>
         <Tippy content={<span className="font-bold">{username}.</span>}>
           <Menu.Button className=" flex text-sm rounded-full focus:outline-none">
