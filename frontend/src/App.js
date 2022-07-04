@@ -7,6 +7,8 @@ import AuthService from "./services/user.service";
 import SuspenseLazy from "./utils/suspense_lazy";
 
 import Header from "./components/header/header";
+const  UnitBusiness = lazy(() => import("./components/businesses/UnitBusiness"))
+const  Contact = lazy(() => import("./components/contacts/contact"));
 const  Home = lazy(() => import("./components/home/Home"));
 const  Login = lazy(() => import("./components/login/Login"));
 const  HeaderLogin = lazy(() => import("./components/login/HeaderLogin"));
@@ -77,7 +79,9 @@ const App = () => {
         </ProtectedRoute>} />
         <Route path="/search" element={<SuspenseLazy element={<Search />}/>}/>
         <Route path="/biz" element={<SuspenseLazy element={<BusinessHome />}/>} />
+        <Route path="/biz/:business_name" element={<SuspenseLazy element={<UnitBusiness />}/>}/>
         <Route path="/profile/writereview" element={<SuspenseLazy element={<WriteReview />}/>}/>
+        <Route path="/contacts/:contact_id" element={<SuspenseLazy element={<Contact />}/>}/>
         <Route path="/user_details" element={<SuspenseLazy element={<Yelper />} />} />
         <Route path="/" element={<SuspenseLazy element={<Home />}/>} />
         <Route path="*" element={<SuspenseLazy element={<Error />}/>} />

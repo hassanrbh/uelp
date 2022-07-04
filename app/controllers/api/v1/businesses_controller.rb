@@ -1,5 +1,6 @@
 class Api::V1::BusinessesController < ApplicationController
   before_action :authenticate_user!
+  respond_to :json
 
   def index
     limit = params[:limit]
@@ -22,8 +23,8 @@ class Api::V1::BusinessesController < ApplicationController
   end
 
   def latest
-    @latest_businesses = Business.filter_by_latest 
-    render :json => @latest_businesses.to_json(), :status => :ok
+    @latest_businesses = Business.filter_by_latest
+    render :latest, :status => :ok
   end
 
   def search(search_category, country, state)
