@@ -26,6 +26,12 @@ class UserService {
     });
     return data;
   }
+  async getLatestBusinesses() {
+    const {data} = await axios.get(API_URL + "/latest", {
+      headers: authHeader(),
+    })
+    return data;
+  }
 }
 
 export default new UserService();
