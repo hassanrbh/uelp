@@ -68,7 +68,7 @@ class Business < ApplicationRecord
   validates :max_price, presence: true, numericality: true
   validate :check_for_web_address, if: -> { !self.web_address.blank? }
 
-  has_many_attached :photos
+  has_many_attached :images
   has_one :price,
       class_name: "Price",
       primary_key:  :id,

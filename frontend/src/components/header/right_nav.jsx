@@ -15,7 +15,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import AddBusinessIcon from "@mui/icons-material/AddBusiness";
 
 
-const RightNav = ({ username, logout }) => {
+const RightNav = ({ username, logout, avatar }) => {
   const [isHover, setIsHover] = useState(false);
   const addColors = (e) => {
     setIsHover(true);
@@ -27,14 +27,14 @@ const RightNav = ({ username, logout }) => {
   return (
     <div className="relative right-8 flex flex-row-reverse">
       <Stack direction="row-reverse" spacing={2}>
-        <MenuList username={username} logout={logout} />
+        <MenuList username={username} logout={logout} avatar={avatar} />
         <Tippy
           content={<span className="font-bold">Notifications</span>}
           interactive={true}
           animation="scale"
           className="mr-[9px]"
         >
-          <Link to="/profile/notifications">
+          <Link to="/profile/notifications" className="2xl:block xl:block">
             <svg
               onMouseEnter={addColors}
               onMouseLeave={clearColors}
@@ -82,7 +82,7 @@ const RightNav = ({ username, logout }) => {
             </svg>
           </Link>
         </Tippy>
-        <Link to="/profile/messages">
+        <Link to="/profile/messages" className="2xl:block xl:block">
           <Tippy
             animation="scale"
             content={<span className="font-bold">Messages</span>}
@@ -118,7 +118,8 @@ const RightNav = ({ username, logout }) => {
             element="Write Review"
             css="flex items-center rounded-lg bg-black px-4 py-2 opacity-100
             text-white right-3 mr-[64px] hover:opacity-70
-            mt-[2px] hover:bg-gray-500 transition ease-in-out"
+            mt-[2px] hover:bg-gray-500 transition ease-in-out
+            lg:hidden smm:hidden sm:hidden 2xl:block xl:block"
           />
         </Link>
         <Link to="/biz" className="h-0">
@@ -127,7 +128,8 @@ const RightNav = ({ username, logout }) => {
             element="Businesses"
             css="flex items-center rounded-lg bg-rose-600 px-4 py-2 opacity-100
             text-white right-3  hover:opacity-70
-            mt-[2px] hover:bg-rose-300 transition-all ease-in-out"
+            mt-[2px] hover:bg-rose-300 transition-all smm:hidden
+            ease-in-out 2xl:block lg:hidden sm:hidden 2xl:block"
           />
         </Link>
       </Stack>

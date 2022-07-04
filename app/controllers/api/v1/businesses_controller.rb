@@ -23,7 +23,7 @@ class Api::V1::BusinessesController < ApplicationController
   end
 
   def latest
-    @latest_businesses = Business.filter_by_latest
+    @latest_businesses = Business.filter_by_latest.includes(:price)
     render :latest, :status => :ok
   end
 

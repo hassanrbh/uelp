@@ -11,7 +11,7 @@ import PeopleIcon from "@mui/icons-material/People";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 
-const MenuList = ({ username, logout }) => {
+const MenuList = ({ username, logout, avatar }) => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
@@ -27,8 +27,8 @@ const MenuList = ({ username, logout }) => {
               variant="dot"
             >
               <Avatar
-                alt="Remy Sharp"
-                src={require("../../assets/images/boy-cartoon-face-free-vector.jpeg")}
+                alt="User Logo"
+                src={avatar}
                 className="cursor-pointer"
               />
             </StyledBadge>
