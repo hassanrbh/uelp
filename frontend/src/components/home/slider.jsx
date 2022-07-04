@@ -13,7 +13,7 @@ import AddressInfo from './AddressInfo';
 
 SwiperCore.use([ Autoplay ]);
 
-const Slider = ({business}) => {
+const Slider = ({business, idx}) => {
   const swiper = new Swiper(".swiper", {
     // configure Swiper to use modules
     modules: [Navigation, Pagination],  
@@ -29,7 +29,7 @@ const Slider = ({business}) => {
     navigation: {
       nextEl: '.swiper-button-next_custom',
       prevEl: '.swiper-button-prev_custom',
-      disabledClass: "invisible",
+      disabledClass: "hidden",
     },
 
     scrollbar: {
@@ -40,8 +40,8 @@ const Slider = ({business}) => {
   });
 
   return (
-    <div className="flex flex-col" key={useId} >
-      <Link to={`/biz/${business.name}`}>
+    <div className="flex flex-col" key={idx}>
+      <Link to={`/biz/${business.profile.private_details.name}`} className="group">
         <div className="swiper h-[250px] w-[300px]">
             <div className="swiper-wrapper">
               <div className="swiper-slide flex justify-center items-center font-extrabold rounded-[8px] bg-no-repeat bg-center	 bg-cover bg-[url('https://www.freshbooks.com/blog/wp-content/uploads/2017/04/royalty-free-images.jpg.optimal.jpg')]" data-swiper-parallax="-50%" ></div>
@@ -52,19 +52,18 @@ const Slider = ({business}) => {
             <div className="swiper-pagination"></div>
             
             <button type="button" className="swiper-button-prev_custom group">
-              <span className="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none  transition-all ease-in-out">
-                  <svg className="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800  transition-all ease-in-out" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
+              <span className="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/20 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none  transition-all ease-in-out">
+                  <svg className="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-400  transition-all ease-in-out" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
                   <span className="hidden">Previous</span>
               </span>
             </button>
 
-            <button type="button" className="swiper-button-next_custom group">
+            <button type="button" className="group-hover:swiper-button-next_custom group">
               <span className="inline-flex justify-center items-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none transition-all ease-in-out">
                   <svg className="w-5 h-5 text-white sm:w-6 sm:h-6 dark:text-gray-800  transition-all ease-in-out" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
                   <span className="hidden">Next</span>
               </span>
             </button>
-
             <div className="swiper-scrollbar"></div>
         </div>
       </Link>

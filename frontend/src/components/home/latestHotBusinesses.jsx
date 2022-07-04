@@ -26,10 +26,8 @@ const LatestHotBusinesses = () => {
 
   if (isError) return <div>{error}</div>
 
-  return isSuccess ? data.all_businesses.map((business) => (
-    <>
-      <Slider business={business}/>
-    </>
+  return isSuccess ? data.all_businesses.map((business,idx) => (
+    <Slider business={business} key={idx}/>
   )): null
 }
 
