@@ -1,8 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
 const FooterLogin = () => {
   return (
-    <div className="sm:hidden">
+    <div className="">
       <img
         src={require("../../assets/images/signup_illustration.png")}
         alt="footer login"

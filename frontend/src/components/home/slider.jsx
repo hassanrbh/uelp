@@ -44,9 +44,9 @@ const Slider = ({business, idx}) => {
       <Link to={`/biz/${business.profile.private_details.name}`}>
         <div className="swiper h-[250px] w-[300px]">
             <div className="swiper-wrapper">
-              <div className="swiper-slide flex justify-center items-center font-extrabold rounded-[8px] bg-no-repeat bg-center	 bg-cover bg-[url('https://www.freshbooks.com/blog/wp-content/uploads/2017/04/royalty-free-images.jpg.optimal.jpg')]" data-swiper-parallax="-50%" ></div>
-              <div className="swiper-slide flex justify-center items-center font-extrabold rounded-[8px] bg-no-repeat bg-center	 bg-cover bg-[url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudHN8ZW58MHx8MHx8&w=1000&q=80')]" data-swiper-parallax="-50%" ></div>
-              <div className="swiper-slide flex justify-center items-center font-extrabold rounded-[8px] bg-no-repeat bg-center	 bg-cover bg-[url('https://news.airbnb.com/wp-content/uploads/sites/4/2021/11/Home-Alone-Airbnb-01-Exterior-Credit-Sarah-Crowley.jpg')]" data-swiper-parallax="-50%" ></div>
+              <div className="swiper-slide flex justify-center items-center font-extrabold rounded-[8px] bg-no-repeat bg-center	 bg-cover bg-[url('https://www.freshbooks.com/blog/wp-content/uploads/2017/04/royalty-free-images.jpg.optimal.jpg')]" ></div>
+              <div className="swiper-slide flex justify-center items-center font-extrabold rounded-[8px] bg-no-repeat bg-center	 bg-cover bg-[url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudHN8ZW58MHx8MHx8&w=1000&q=80')]" ></div>
+              <div className="swiper-slide flex justify-center items-center font-extrabold rounded-[8px] bg-no-repeat bg-center	 bg-cover bg-[url('https://news.airbnb.com/wp-content/uploads/sites/4/2021/11/Home-Alone-Airbnb-01-Exterior-Credit-Sarah-Crowley.jpg')]" ></div>
             </div>
 
             <div className="swiper-pagination"></div>
