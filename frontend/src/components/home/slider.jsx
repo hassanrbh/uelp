@@ -76,18 +76,17 @@ const Slider = ({business, idx}) => {
           <Link to={`/contacts/${business.profile.private_details.phone_number}`}>
             <span className="text-blue-400 text-sm font-bold">{business.profile.private_details.phone_number}</span>
           </Link>
-          <span className="font-medium text-sm">{business.profile.additional_info.hours_of_opening}Wh</span>
+          <span className="text-sm mr-1"><span className="font-bold">{business.profile.additional_info.hours_of_opening}</span>Wh</span>
         </div>
         <div className="flex justify-between">
           <Tippy content={<AddressInfo business_details={business.profile.business_details}/>} interactive={true} animation="scale">
-            <p className="font-semibold text-sm cursor-pointer">{business.profile.coords_details.full_address}</p>
+            <p className="font-medium text-sm cursor-pointer">{business.profile.coords_details.full_address}</p>
           </Tippy>
-          <p className="font-semibold text-sm text-blue-400">{business.profile.categories.category}</p>
+          <p className="font-semibold text-sm">{business.profile.categories.category}</p>
         </div>
       </div>
     </div>
   )
-
 }
 
 export default Slider

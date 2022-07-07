@@ -2,10 +2,10 @@ import React from 'react'
 import Header from './header';
 import LoginForm from './LoginForm';
 
-const LoginInterceptor = () => {
+const LoginInterceptor = ({seToggle, toggle}) => {
   return (
     <div>
-      <Header />
+      <Header seToggle={seToggle} toggle={toggle}/>
       <LoginForm />
     </div>
   )

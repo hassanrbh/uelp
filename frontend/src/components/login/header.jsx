@@ -1,19 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AllOmniAuth from "./allOmniAuth";
-import OmniAuth from "./OmniAuth";
 import OrLineUp from "./OrLineUp";
-import Or_line_up from "./OrLineUp";
 
-const Header = () => {
+const Header = ({seToggle, toggle}) => {
   return (
     <div className="mt-[117px] text-center">
       <h1 className="text-red-600 font-bold text-2xl">Log in to Uelp</h1>
       <h2 className="font-bold text-sm">
         New to Yelp?
-        <Link to="/register" className="text-blue-400 font-semibold pl-1">
-          Sign up
-        </Link>
+        <button onClick={() => seToggle(!toggle)} className="text-blue-400 font-semibold pl-1"> 
+          Sign Up
+        </button>
       </h2>
       <p className="text-sm p-1 mb-3">
         By logging in, you agree to Uelp's

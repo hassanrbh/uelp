@@ -34,6 +34,7 @@ const LoginForm = () => {
       }}
     >
       {({ isSubmitting }) => (
+        <>
         <Form className="flex flex-col">
           <Field
             type="email"
@@ -101,6 +102,7 @@ const LoginForm = () => {
             </button>
           )}
         </Form>
+        </>
       )}
     </Formik>
   );
