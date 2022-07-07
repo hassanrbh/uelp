@@ -8,19 +8,21 @@ const Login = () => {
 
   return (
     <div className="container mx-auto flex justify-center items-center h-[400px]">
-      <div className="flex m-auto gap-36 p-10">
         {!toggle ? (
           <>
-            <LoginInterceptor seToggle={setIsToggle} toggle={toggle}/>
-            <FooterLogin />
+            <div className="flex m-auto gap-36 p-10">
+              <LoginInterceptor seToggle={setIsToggle} toggle={toggle}/>
+              <FooterLogin />
+            </div>
           </>
         ) : (
           <>
-            <Register />
-            <FooterLogin />
+            <div className="flex m-auto gap-36 p-10">
+              <Register setIsToggle={setIsToggle} toggle={toggle} />
+              <FooterLogin />
+            </div>
           </>
         )}
-      </div>
     </div>
   );
 };

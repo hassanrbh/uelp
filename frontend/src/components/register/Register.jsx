@@ -1,8 +1,9 @@
 import React from 'react'
+import RegisterForm from './RegisterForm'
 
-const Register = () => {
+const Register = ({setIsToggle, toggle}) => {
   return (
-    <div>Register</div>
+    <RegisterForm setIsToggle={setIsToggle} toggle={toggle}/>
   )
 }
 

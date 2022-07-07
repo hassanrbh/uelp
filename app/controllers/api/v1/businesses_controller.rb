@@ -40,7 +40,7 @@ class Api::V1::BusinessesController < ApplicationController
 
   def show
     @business = Business.find_by_name(params[:slug])
-    if (@business.present?)
+    if @business.present?
       render :show, :status => :ok
       return ;
     end

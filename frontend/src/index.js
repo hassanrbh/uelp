@@ -10,6 +10,7 @@ import { SkeletonTheme } from "react-loading-skeleton";
 const queryclient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
 root.render(
   <SkeletonTheme baseColor="#dfdfdf" highlightColor="#d6d6d6">
     <BrowserRouter>

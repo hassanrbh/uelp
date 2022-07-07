@@ -31,6 +31,7 @@ const  Search = lazy(() => import("./components/search/search"));
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
   let location = useLocation();
+
   useEffect(() => {
     const fetchUser = async () => {
       const user = await UserService.getUser();
@@ -56,7 +57,6 @@ const App = () => {
       )}
       <Routes>
         <Route path="/login" element={<SuspenseLazy element={<Login />}/>}/>
-        <Route path="/register" element={<SuspenseLazy element={<Register />}/>}/>
         <Route path="/profile/messages" element={<ProtectedRoute>
             <SuspenseLazy element={<Messages />}/>
           </ProtectedRoute>
