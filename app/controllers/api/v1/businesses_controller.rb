@@ -23,7 +23,7 @@ class Api::V1::BusinessesController < ApplicationController
   end
 
   def latest
-    @latest_businesses = Business.filter_by_latest.includes(:price)
+    @latest_businesses = Business.filter_by_latest.includes(:price).with_attached_images
     render :latest, :status => :ok
   end
 
@@ -39,7 +39,7 @@ class Api::V1::BusinessesController < ApplicationController
   end
 
   def show
-    @business = Business.find_by_name(params[:slug])
+    @business = Business.with_attached_images.find_by_name(params[:slug])
     if @business.present?
       render :show, :status => :ok
       return ;
