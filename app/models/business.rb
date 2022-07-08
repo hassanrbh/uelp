@@ -54,11 +54,12 @@ class Business < ApplicationRecord
   validates :city, presence: true
   validates :country, presence: true
   validates :state, presence: true
-  validates :phone_number, :presence => true, :length => { in: 10..20 }, :uniqueness => true, :format => { 
-    with: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/, 
-    message: "not valid",
-    :multiline => true
-  }
+  validates :phone_number, :presence => true, :length => { in: 10..20 }, :uniqueness => true
+  # , :format => { 
+  #   with: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/, 
+  #   message: "not valid",
+  #   :multiline => true
+  # }
   validates :web_address, :uniqueness => true, :format => {
     with: URI::DEFAULT_PARSER.make_regexp(%w[http https]),
     message: "are not accessible"

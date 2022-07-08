@@ -6,6 +6,7 @@ import HandleErrorMessage from "./HandleErrorMessage";
 
 const RegisterContent = () => {
   const [currentStep, setCurrentStep] = useState(0);
+
   return (
     <Formik
       initialValues={{

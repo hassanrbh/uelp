@@ -1,4 +1,4 @@
-5.times do
+15.times do |i|
   business = Business.new(
     :email => Faker::Internet.email,
     :name => Faker::Company.name,
@@ -17,5 +17,7 @@
     :city => Faker::Address.city,
     :categorie_name => "Delivery",
   )
+
+  business.images.attach(io: File.open(Rails.root.join("db", "sample", "images", "business_#{i + 1}.jpg")), filename: business.name)
   business.save!
 end
