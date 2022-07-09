@@ -42,9 +42,9 @@ const Slider = ({business, idx}) => {
       <Link to={`/biz/${business.profile.private_details.name}`}>
         <div className="swiper h-[250px] w-[300px]">
             <div className="swiper-wrapper">
-              <div className="swiper-slide flex justify-center items-center font-extrabold rounded-[8px] bg-no-repeat bg-center	bg-cover" style={{backgroundImage: `url(${business.profile.images.thumbnail})`}}></div>
-              <div className="swiper-slide flex justify-center items-center font-extrabold rounded-[8px] bg-no-repeat bg-center	bg-cover bg-[url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudHN8ZW58MHx8MHx8&w=1000&q=80')]" ></div>
-              <div className="swiper-slide flex justify-center items-center font-extrabold rounded-[8px] bg-no-repeat bg-center	bg-cover bg-[url('https://news.airbnb.com/wp-content/uploads/sites/4/2021/11/Home-Alone-Airbnb-01-Exterior-Credit-Sarah-Crowley.jpg')]" ></div>
+              <div className="swiper-slide flex justify-center items-center font-extrabold rounded-[17px] bg-no-repeat bg-center	bg-cover" style={{backgroundImage: `url(${business.profile.images.thumbnail})`}}></div>
+              <div className="swiper-slide flex justify-center items-center font-extrabold rounded-[17px] bg-no-repeat bg-center	bg-cover bg-[url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudHN8ZW58MHx8MHx8&w=1000&q=80')]" ></div>
+              <div className="swiper-slide flex justify-center items-center font-extrabold rounded-[17px] bg-no-repeat bg-center	bg-cover bg-[url('https://news.airbnb.com/wp-content/uploads/sites/4/2021/11/Home-Alone-Airbnb-01-Exterior-Credit-Sarah-Crowley.jpg')]" ></div>
             </div>
 
             <div className="swiper-pagination"></div>
@@ -66,19 +66,30 @@ const Slider = ({business, idx}) => {
         </div>
       </Link>
       <div className="mt-2">
-        <div className="flex justify-between pl-1">
-          <p className="font-bold">{business.profile.private_details.name}</p>
-          <p className="font-bold text-red-700">{business.profile.price_info.average}</p>
+        <div className="flex justify-between">
+          <p className="font-medium text-[16px]">{business.profile.private_details.name}</p>
+          <div className="flex">
+            <p className="font-bold text-rose-400 hover:text-green-400 cursor-pointer text-sm mr-[2px]">{business.profile.price_info.average}</p>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+            </svg>
+          </div>
         </div>
         <div className="flex justify-between">
           <Link to={`/contacts/${business.profile.private_details.phone_number}`}>
-            <span className="text-blue-400 text-sm font-bold">{business.profile.private_details.phone_number}</span>
+            <span className="text-gray-600 text-sm font-medium">{business.profile.private_details.phone_number}</span>
           </Link>
-          <span className="text-sm mr-1"><span className="font-bold">{business.profile.additional_info.hours_of_opening}</span>Wh</span>
+          <div className="flex cursor-pointer">
+            <span className="font-bold text-xs mr-[2px]">{business.profile.additional_info.hours_of_opening}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd" />
+              <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z" />
+            </svg>
+          </div>
         </div>
-        <div className="flex justify-between">
+        <div className="flex justify-between mt-[5px] ">
           <Tippy content={<AddressInfo business_details={business.profile.business_details}/>} interactive={true} animation="scale">
-            <p className="font-medium text-sm cursor-pointer">{business.profile.coords_details.full_address}</p>
+            <p className="font-medium text-sm text-gray-600 cursor-pointer">{business.profile.coords_details.full_address}</p>
           </Tippy>
           <p className="font-semibold text-sm">{business.profile.categories.category}</p>
         </div>
