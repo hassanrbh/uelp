@@ -7,6 +7,7 @@ class Api::V1::BusinessesController < ApplicationController
     search_categorie = params[:search_by_category]
     country = params[:country].present? ? params[:country].downcase : params[:country]
     state = params[:state]
+    search_by_name = params[:search_by_name]
     if limit.present?
       @businesses = 
         Business
@@ -17,9 +18,16 @@ class Api::V1::BusinessesController < ApplicationController
       render :index, :status => :ok
     elsif search_categorie.present?
       return search(search_categorie, country, state)
+    elsif search_by_name.present?
+      return search_by(search_by_name)
     else
       render :sick_of_loading, :status => :ok
     end
+  end
+
+  def search_by(name)
+    @latest_businesses = Business.filter_by_name(name).includes(:price).with_attached_images
+    render :latest, :status => :ok
   end
 
   def latest

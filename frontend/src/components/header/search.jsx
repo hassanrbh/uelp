@@ -1,21 +1,34 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
 import { useMutation } from "react-query";
 import UserService from "../../services/auth.service";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Tippy from "@tippyjs/react";
+import "tippy.js/animations/scale.css";
 
 const Search = () => {
   const [fetchedBusinesses, setIsFetchedBusinesses] = useState([]);
   const [modalOpener, setModalOpener] = useState(false);
+  const [input, setInput] = useState("");
+  const navigate = useNavigate()
+
+  function handleChange(e) {
+    setInput(e.currentTarget.value)
+    mutate(e.currentTarget.value);
+  }
+  function handleSearch(e) {
+    e.preventDefault();
+    return navigate("/search", {
+      state: fetchedBusinesses
+    })
+  }
 
   const { mutate, isLoading, isSuccess } = useMutation(
-    UserService.getFilteredBusinesses,
+    UserService.getFilteredBusinessesby,
     {
       onSuccess: function (data) {
         setIsFetchedBusinesses(data);
         setModalOpener(true)
-        console.log(data);
       },
     }
   );
@@ -25,20 +38,13 @@ const Search = () => {
       <Formik
         initialValues={{ search_input: "" }}
         onSubmit={(values, { setSubmitting }) => {
-          mutate(values.search_input);
+          console.log(values)
           setSubmitting(false);
         }}
-        enableReinitialize={true}
-        validationSchema={Yup.object({
-          search_input: Yup.string()
-            .min(2, "Too Little to search")
-            .max(20, "Too much to search")
-            .required("Required"),
-        })}
       >
         {({ isSubmitting }) => (
           <>
-            <Form className="flex items-center sm:hidden smm:hidden 2xl:flex xl:flex lg:flex ">
+            <Form className="flex items-center sm:hidden smm:hidden 2xl:flex xl:flex lg:flex " autoComplete="off" onSubmit={handleSearch}>
               <label htmlFor="voice-search" className="sr-only">
                 Search
               </label>
@@ -61,8 +67,10 @@ const Search = () => {
                   type="text"
                   id="voice-search"
                   name="search_input"
+                  onChange={handleChange}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 pr-[600px] font-bold "
                   placeholder="Tacos, Cheap Dinner .."
+                  value={input}
                 />
                 <button
                   type="button"
@@ -137,14 +145,19 @@ const Search = () => {
         )}
       </Formik>
       {modalOpener ? (
-        <ul className="border bg-slate-100 rounded-lg pt-1 mt-1 absolute z-50" onClick={() => {
-          window.location.reload();
-        }}  onBlur={() => setModalOpener(false)} >
-          {isLoading ? <div>Loading ...</div> : null}
-          {isSuccess
-            ? fetchedBusinesses.map((business) => (
-              <Link to={`/biz/${business.name}`} key={business.id} >
-                <li className="m-1 font-bold hover:text-red-400 cursor-pointer" >{business.name}</li>
+        <ul className="border bg-slate-100 rounded-lg pt-1 mt-1 absolute z-50 w-[400px]" onBlur={() => setModalOpener(false)} >
+          {isLoading ? (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 animate-spin	" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
+            </svg>
+          ) : null}
+          {isSuccess && fetchedBusinesses?.all_businesses?.length >= 1
+            ? fetchedBusinesses.all_businesses.map((business,_) => (
+              <Link to={`/biz/${business.profile.private_details.name}`} key={_} className="flex m-1 hover:bg-white rounded">
+                <Tippy content={<img src={business.profile.images.thumbnail} alt={business.profile.private_details.name} className="rounded"/>} interactive={true} animation="scale" arrow={false} placement="bottom">
+                  <img src={business.profile.images.thumbnail} alt={business.profile.private_details.name} width={50} height={50} className="rounded"/>
+                </Tippy>
+                <li className="m-1 font-bold cursor-pointer" >{business.profile.private_details.name}</li>
               </Link>
               ))
             : null}

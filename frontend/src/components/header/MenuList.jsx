@@ -10,6 +10,7 @@ import FaceIcon from "@mui/icons-material/Face";
 import PeopleIcon from "@mui/icons-material/People";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
+import "tippy.js/animations/scale.css";
 
 const MenuList = ({ username, logout, avatar }) => {
   function classNames(...classes) {
@@ -18,7 +19,8 @@ const MenuList = ({ username, logout, avatar }) => {
   return (
     <Menu as="div" className="ml-3 relative z-50">
       <div>
-        <Tippy content={<span className="font-bold">{username}.</span>}>
+        <Tippy content={<span className="font-bold">{username}.</span>} interactive={true}
+          animation="scale">
           <Menu.Button className=" flex text-sm rounded-full focus:outline-none">
             <span className="sr-only">Open user menu</span>
             <StyledBadge

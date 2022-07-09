@@ -1,4 +1,3 @@
-import { Skeleton } from '@mui/material';
 import React from 'react'
 import { useQuery } from 'react-query';
 import userService from '../../services/auth.service';
@@ -15,6 +14,7 @@ const LatestHotBusinesses = () => {
   return isSuccess ? data.all_businesses.map((business,idx) => (
     <Slider business={business} key={idx}/>
   )): null
+  
 }
 
 export default LatestHotBusinesses;

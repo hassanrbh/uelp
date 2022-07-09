@@ -82,6 +82,7 @@ class Business < ApplicationRecord
   scope :filter_by_country, -> (country) { where("lower(country) LIKE ?", country) }
   scope :filter_by_state, -> (state) { where("lower(state) LIKE ?", state) }
   scope :filter_by_latest, -> { where("created_at > ?", 7.days.ago ).limit(15) }
+  scope :filter_by_name, -> (name) { where("lower(name) LIKE ?", "%#{name}%") }
 
   def check_for_web_address
     regex_check_host = /^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$/

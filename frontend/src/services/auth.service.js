@@ -20,8 +20,8 @@ class UserService {
       headers: authHeader(),
     });
   }
-  async getFilteredBusinesses(categorie) {
-    const {data} = await axios.get(API_URL+ `/businesses?search_by_category=${categorie}`, {
+  async getFilteredBusinessesby(name) {
+    const {data} = await axios.get(API_URL+ `/businesses?search_by_name=${name}`, {
       headers: authHeader(),
     });
     return data;
