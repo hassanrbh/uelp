@@ -323,6 +323,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate
+  bcrypt
   bootsnap
   capybara
   debug

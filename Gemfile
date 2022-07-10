@@ -21,6 +21,7 @@ gem "jwt"
 gem "geocoder"
 gem 'redis-rails'
 gem 'sidekiq'
+gem "bcrypt"
 
 
 group :development, :test do

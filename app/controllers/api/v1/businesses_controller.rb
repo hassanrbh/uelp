@@ -11,7 +11,7 @@ class Api::V1::BusinessesController < ApplicationController
     if limit.present?
       @businesses = 
         Business
-          .includes(:price)
+          .includes(:price) 
             .all
               .order(:created_at)
                 .limit(limit);
