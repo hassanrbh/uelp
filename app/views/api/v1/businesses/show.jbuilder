@@ -30,4 +30,7 @@ json.profile do
   json.categories do
     json.category @business.categorie_name
   end
+  json.images do
+    json.thumbnail rails_blob_url(@business.images[0])
+  end
 end

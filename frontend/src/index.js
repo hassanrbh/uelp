@@ -6,15 +6,15 @@ import { BrowserRouter } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { SkeletonTheme } from "react-loading-skeleton";
+import client from "./react-query";
 
-const queryclient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <SkeletonTheme baseColor="#dfdfdf" highlightColor="#d6d6d6">
     <BrowserRouter>
-      <QueryClientProvider client={queryclient}>
+      <QueryClientProvider client={client}>
         <Suspense
           fallback={
             <div className="flex items-center justify-center space-x-2">
