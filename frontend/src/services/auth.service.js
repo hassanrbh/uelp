@@ -20,16 +20,61 @@ class UserService {
       headers: authHeader(),
     });
   }
+  editBusiness(slug, edited_business) {
+    const {
+      description,
+      zip_code,
+      city,
+      state,
+      country,
+      address,
+      address_1,
+      address_2,
+      phone_number,
+      menu_web_address,
+      min_price,
+      max_price,
+      categorie_name,
+    } = edited_business;
+
+    const { data } = axios.put(
+      API_URL + `/business/${slug}`,
+      {
+        business: {
+          description,
+          zip_code,
+          city,
+          state,
+          country,
+          address,
+          address_1,
+          address_2,
+          phone_number,
+          menu_web_address,
+          min_price,
+          max_price,
+          categorie_name,
+        },
+      },
+      {
+        headers: authHeader(),
+      }
+    );
+    return data;
+  }
   async getFilteredBusinessesby(name) {
-    const {data} = await axios.get(API_URL+ `/businesses?search_by_name=${name}`, {
-      headers: authHeader(),
-    });
+    const { data } = await axios.get(
+      API_URL + `/businesses?search_by_name=${name}`,
+      {
+        headers: authHeader(),
+      }
+    );
     return data;
   }
   async getLatestBusinesses() {
-    const {data} = await axios.get(API_URL + "/latest", {
+    const { data } = await axios.get(API_URL + "/latest", {
       headers: authHeader(),
-    })
+    });
     return data;
   }
 }

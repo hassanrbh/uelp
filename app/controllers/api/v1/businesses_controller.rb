@@ -73,7 +73,7 @@ class Api::V1::BusinessesController < ApplicationController
       :errors => [
         "May be there is not a business"
       ]
-    }
+    }, :status => :not_found
   end
 
   def filtering_params(params)
