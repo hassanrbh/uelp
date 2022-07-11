@@ -31,8 +31,10 @@ class Api::V1::BusinessesController < ApplicationController
   end
 
   def latest
-    @latest_businesses = Business.filter_by_latest.includes(:price).with_attached_images
-    render :latest, :status => :ok
+    @latest_businesses = Business.filter_by_latest_cached
+    if stale?(last_modified: @latest_businesses.last.updated_at)
+      render :latest, :status => :ok
+    end
   end
 
   def search(search_category, country, state)
@@ -49,8 +51,10 @@ class Api::V1::BusinessesController < ApplicationController
   def show
     @business = Business.with_attached_images.find_by_name(params[:slug])
     if @business.present?
-      render :show, :status => :ok
-      return ;
+      if stale?(last_modified: @business.updated_at, public: true)
+        render :show, :status => :ok
+        return ;
+      end
     end
     render :json => {
       :errors => ["There is no business associated"]

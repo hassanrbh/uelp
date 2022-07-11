@@ -41,6 +41,7 @@ class Business < ApplicationRecord
         :recoverable, :rememberable, :validatable, :trackable, :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
   geocoded_by :full_address
   after_validation :geocode
+  after_save :perform_caching_job
   validates :name, :presence => true, :length => { in: 6..50 }, :uniqueness => true, :format => {
     with: /(?:\s*[a-zA-Z0-9,_\.\077\0100\*\+\&\#\'\~\;\-\!\@\;]{2,}\s*)*/,
     message: "not valid business name"
@@ -73,16 +74,22 @@ class Business < ApplicationRecord
   has_one :price,
       class_name: "Price",
       primary_key:  :id,
-      foreign_key: :businesses_id 
-  has_one :categorie
+      foreign_key: :businesses_id,
+      touch: true
+  has_one :categorie, touch: true
   after_create :create_price_point
   after_create :create_categorie_point
-
+  
   scope :filter_by_category, -> (category) { where("lower(categorie_name) LIKE ?", "%#{category}%") }
   scope :filter_by_country, -> (country) { where("lower(country) LIKE ?", country) }
   scope :filter_by_state, -> (state) { where("lower(state) LIKE ?", state) }
-  scope :filter_by_latest, -> { where("created_at > ?", 7.days.ago ).limit(15) }
   scope :filter_by_name, -> (name) { where("lower(name) LIKE ?", "%#{name}%") }
+
+  def self.filter_by_latest_cached
+    Rails.cache.fetch([self, :filter_by_latest_cached], expires_in: 24.hours) do
+      self.filter_by_latest
+    end
+  end
 
   def check_for_web_address
     regex_check_host = /^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$/
@@ -139,5 +146,13 @@ class Business < ApplicationRecord
       categorie.save
     end
     self
+  end
+
+  def self.filter_by_latest
+    where("created_at > ?", 7.days.ago ).limit(15).includes(:price).with_attached_images
+  end
+
+  def perform_caching_job
+    CachingCategoriesJob.perform_later
   end
 end

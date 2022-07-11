@@ -21,10 +21,19 @@ class Price < ApplicationRecord
       class_name: "Business",
       primary_key:  :id,
       foreign_key: :businesses_id,
-      dependent: :destroy
+      dependent: :destroy,
+      touch: true
 
   before_validation :add_average_point
   before_validation :configure_dollar_signs
+
+  after_save :cache_me
+
+  private
+
+  def cache_me
+    CachingPricesJob.perform_later
+  end
 
   protected
 
