@@ -61,7 +61,33 @@ class Api::V1::BusinessesController < ApplicationController
     }
   end
 
+  def edit
+    @business = Business.find_by_name(params[:slug])
+    if (@business.update(business_params_edit))
+      if stale?(last_modified: @business.updated_at, public: true)
+        render :json => @business, :status => :ok
+        return ;
+      end
+    end
+    render :json => {
+      :errors => [
+        "May be there is not a business"
+      ]
+    }
+  end
+
   def filtering_params(params)
     params.slice(:search_by_category, :country, :state)
+  end
+
+  def business_params_edit
+    permissions = [
+      :description, :zip_code, :city, 
+      :state, :country, :address, :address_1, 
+      :address_2, :phone_number, :menu_web_address, 
+      :hours_of_opening, :min_price, :max_price, :categorie_name
+    ]
+
+    params.require(:business).permit(permissions)
   end
 end

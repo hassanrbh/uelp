@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :current_user, only: [:index]
       resources :current_biz, only: [:index]
-      resources :businesses, only: [:show, :index], param: :slug
+      resources :businesses, only: [:show, :index, :edit], param: :slug
       get "/latest", to: "businesses#latest";
     end
   end
