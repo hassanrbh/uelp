@@ -15,10 +15,11 @@ class UserService {
       headers: authHeader(),
     });
   }
-  getBusiness(slug) {
-    return axios.get(API_URL + `/businesses/${slug}`, {
+  async getBusiness(slug) {
+    const {data} = await axios.get(API_URL + `/businesses/${slug}`, {
       headers: authHeader(),
     });
+    return data;
   }
   editBusiness(slug, edited_business) {
     const {
