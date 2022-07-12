@@ -1,11 +1,11 @@
-import React from 'react'
-import client from '../../react-query';
+import React from "react";
+import Images from "./images";
 
 const SubHeader = () => {
-  const images = client.getQueryData(["unit-business"]).profile.images.thumbnail
-
   return (
-    <div>SubHeader</div>
+    <>
+      <Images />
+    </>
   )
 }
 

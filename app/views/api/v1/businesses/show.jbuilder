@@ -31,6 +31,6 @@ json.profile do
     json.category @business.categorie_name
   end
   json.images do
-    json.thumbnail rails_blob_url(@business.images[0])
+    json.images @business.images.map{|img| (rails_blob_url(img) )}
   end
 end
