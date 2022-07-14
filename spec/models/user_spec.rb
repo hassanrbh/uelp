@@ -29,6 +29,7 @@
 #  birth_date             :datetime
 #  gender                 :integer          not null
 #  phone_number           :string           not null
+#  full_address           :string
 #
 require 'rails_helper'
 

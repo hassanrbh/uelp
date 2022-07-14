@@ -29,6 +29,7 @@
 #  birth_date             :datetime
 #  gender                 :integer          not null
 #  phone_number           :string           not null
+#  full_address           :string
 #
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
