@@ -6,3 +6,4 @@ end
 if (@yelper.avatar.attached?)
   json.avatar rails_blob_url(@yelper.avatar)
 end
+json.address @yelper.full_address
