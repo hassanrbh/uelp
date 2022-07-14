@@ -5,6 +5,8 @@ import { useQuery } from "react-query";
 import UserService from "../../services/auth.service";
 import { useNavigate } from "react-router-dom";
 
+import UserProfile from "./UserProfile/UserProfile";
+
 const Yelper = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -23,9 +25,9 @@ const Yelper = () => {
           return navigate("/profile/nonexisted", {
             replace: true,
             state: {
-              errors: error.response.data.errors.message
-            }
-          })
+              errors: error.response.data.errors.message,
+            },
+          });
         }
       },
       enabled: isFetchingAnonymousUser,
@@ -45,7 +47,21 @@ const Yelper = () => {
     return setFetchingAnonymousUser(false);
   }, [searchParams, currentUser]);
 
-  return <div>{searchParams.get("username")}</div>;
+  return (
+    <>
+      <div className="bg-[#f5f5f5] h-[195px]">
+        <div className="container mx-auto px-[195px]">
+          <UserProfile
+            user={
+              searchParams.get("username") !== currentUser?.username
+                ? AnonymousUser
+                : currentUser
+            }
+          />
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default Yelper;

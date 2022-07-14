@@ -3,3 +3,6 @@ json.activities do
   json.last_sign_in_at @yelper.last_sign_in_at
   json.sign_in_count @yelper.sign_in_count
 end
+if (@yelper.avatar.attached?)
+  json.avatar rails_blob_url(@yelper.avatar)
+end
