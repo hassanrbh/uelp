@@ -6,4 +6,6 @@ json.address current_user.full_address
 json.zip_code current_user.zip_code
 json.birth_date current_user.birth_date
 json.gender current_user.gender
+json.first_name current_user.first_name
+json.last_name current_user.last_name
 json.phone_number current_user.phone_number

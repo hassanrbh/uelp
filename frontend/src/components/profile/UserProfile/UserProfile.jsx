@@ -8,7 +8,7 @@ const UserProfile = ({user}) => {
     <div className="flex mt-[24px] absolute">
       <UserProfileLogo avatar={user?.avatar}/>
       <div className="flex">
-        <UserProfileInfo zip={user.zip_code} userInfo={user.username}/>
+        <UserProfileInfo address={user?.address} firstName={user?.first_name} lastName={user?.last_name} />
       </div>
     </div>
   )
