@@ -6,7 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { SkeletonTheme } from "react-loading-skeleton";
-import client from "./react-query";
+import client from "./services/react-query";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

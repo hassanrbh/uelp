@@ -1,5 +1,5 @@
 import React, {useState, useRef} from 'react'
-import client from '../../react-query';
+import client from '../../services/react-query';
 import '@splidejs/react-splide/css/skyblue';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 
