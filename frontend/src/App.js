@@ -1,5 +1,5 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import { useState, useEffect , lazy } from "react";
+import { useState , lazy } from "react";
 import { switchHeaders } from "./utils/switchHeader";
 import { useQuery } from "react-query";
 
@@ -7,8 +7,8 @@ import UserService from "./services/auth.service";
 import AuthService from "./services/user.service";
 import SuspenseLazy from "./utils/suspense_lazy";
 import NonExistError from "./components/profile/NonExistError"
-
 import Header from "./components/header/header";
+
 const  UnitBusiness = lazy(() => import("./components/businesses/UnitBusiness"))
 const  Contact = lazy(() => import("./components/contacts/contact"));
 const  Home = lazy(() => import("./components/home/Home"));
@@ -29,6 +29,7 @@ const  BusinessHome = lazy(() => import("./components/businesses/BusinessHome"))
 const  Search = lazy(() => import("./components/search/search"));
 const  UserPhotos = lazy(() => import("./components/profile/UserPhotos"))
 const  AddUserPhotos = lazy(() => import("./components/profile/AddUserPhotos"))
+const  FindFriends = lazy(() => import("./components/profile/FindFriends"));
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -60,6 +61,7 @@ const App = () => {
         <Route path="/user_photos" element={<ProtectedRoute><SuspenseLazy element={<UserPhotos />}></SuspenseLazy></ProtectedRoute>}/>
         <Route path="/user_photos/add" element={<ProtectedRoute><SuspenseLazy element={<AddUserPhotos />}/></ProtectedRoute>}/>
         <Route path="/profile/messages" element={<ProtectedRoute><SuspenseLazy element={<Messages />}/></ProtectedRoute>}/>
+        <Route path="/profile/find-friends" element={<ProtectedRoute><SuspenseLazy element={<FindFriends />}/></ProtectedRoute>}/>
         <Route path="/profile/notifications" element={<ProtectedRoute><SuspenseLazy element={<Notifications />}/></ProtectedRoute>}/>
         <Route path="/profile" element={<ProtectedRoute><SuspenseLazy element={<Profile />}/></ProtectedRoute>}/>
         <Route path="/profile/account_settings" element={<ProtectedRoute><SuspenseLazy element={<Settings />}/></ProtectedRoute>}/>

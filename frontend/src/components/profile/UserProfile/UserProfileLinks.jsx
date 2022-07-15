@@ -23,7 +23,7 @@ const UserProfileLinks = () => {
       </div>
       <div className="flex">
         <FingerPrintIcon width={20} height={20} className="text-[#0073bb] pt-[2px] mr-1" />
-        <Link to={"/"} className="text-[#0073bb] font-medium">
+        <Link to={"/profile/find-friends"} className="text-[#0073bb] font-medium">
           Find Friends
         </Link>
       </div>
