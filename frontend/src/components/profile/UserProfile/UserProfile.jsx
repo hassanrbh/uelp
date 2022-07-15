@@ -9,6 +9,7 @@ const UserProfile = ({user}) => {
       <UserProfileLogo avatar={user?.avatar}/>
       <div className="flex">
         <UserProfileInfo address={user?.address} firstName={user?.first_name} lastName={user?.last_name} />
+        <UserProfileLinks />
       </div>
     </div>
   )

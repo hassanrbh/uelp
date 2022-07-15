@@ -27,6 +27,8 @@ const  Logout = lazy(() => import("./components/profile/Logout"));
 const  WriteReview = lazy(() => import("./components/profile/WriteReview"));
 const  BusinessHome = lazy(() => import("./components/businesses/BusinessHome"));
 const  Search = lazy(() => import("./components/search/search"));
+const  UserPhotos = lazy(() => import("./components/profile/UserPhotos"))
+const  AddUserPhotos = lazy(() => import("./components/profile/AddUserPhotos"))
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -55,26 +57,14 @@ const App = () => {
       )}
       <Routes>
         <Route path="/login" element={<SuspenseLazy element={<Login />}/>}/>
-        <Route path="/profile/messages" element={<ProtectedRoute>
-            <SuspenseLazy element={<Messages />}/>
-          </ProtectedRoute>
-        }/>
-        <Route path="/profile/notifications" element={<ProtectedRoute>
-            <SuspenseLazy element={<Notifications />}/>
-          </ProtectedRoute>
-        }/>
-        <Route path="/profile" element={<ProtectedRoute>
-            <SuspenseLazy element={<Profile />}/>
-          </ProtectedRoute>
-        }/>
-        <Route path="/profile/account_settings" element={<ProtectedRoute>
-            <SuspenseLazy element={<Settings />}/>
-          </ProtectedRoute>
-        }/>
+        <Route path="/user_photos" element={<ProtectedRoute><SuspenseLazy element={<UserPhotos />}></SuspenseLazy></ProtectedRoute>}/>
+        <Route path="/user_photos/add" element={<ProtectedRoute><SuspenseLazy element={<AddUserPhotos />}/></ProtectedRoute>}/>
+        <Route path="/profile/messages" element={<ProtectedRoute><SuspenseLazy element={<Messages />}/></ProtectedRoute>}/>
+        <Route path="/profile/notifications" element={<ProtectedRoute><SuspenseLazy element={<Notifications />}/></ProtectedRoute>}/>
+        <Route path="/profile" element={<ProtectedRoute><SuspenseLazy element={<Profile />}/></ProtectedRoute>}/>
+        <Route path="/profile/account_settings" element={<ProtectedRoute><SuspenseLazy element={<Settings />}/></ProtectedRoute>}/>
         <Route path="/profile/logout" element={<SuspenseLazy element={<Logout />}/>}/>
-        <Route path="/profile/friends" element={<ProtectedRoute>
-          <SuspenseLazy element={<Friends />}/>
-        </ProtectedRoute>} />
+        <Route path="/profile/friends" element={<ProtectedRoute><SuspenseLazy element={<Friends />}/></ProtectedRoute>} />
         <Route path="/search" element={<SuspenseLazy element={<Search />}/>}/>
         <Route path="/biz" element={<SuspenseLazy element={<BusinessHome />}/>} />
         <Route path="/biz/:business_name" element={<SuspenseLazy element={<UnitBusiness />}/>}/>
