@@ -1,10 +1,8 @@
 import React, {useState} from 'react'
 import { ShareIcon } from "@heroicons/react/outline"
-import { useMutation, useQuery } from 'react-query';
 
 // todo: Adding Opening Modal LOGIC 
 // todo: Adding closing modal LOGIC
-// todo: set up in the api the api point that will access to save the biz
 
 const Share = () => {
 
