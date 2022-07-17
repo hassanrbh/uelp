@@ -21,7 +21,6 @@ const UnitBusiness = () => {
     <>
     {isSuccess ? (
       <>
-        <div>{data?.profile?.private_details.name}</div>
         <SubHeader />
       </>
     ): null}

@@ -86,7 +86,7 @@ class Business < ApplicationRecord
   scope :filter_by_name, -> (name) { where("lower(name) LIKE ?", "%#{name}%") }
 
   def self.filter_by_latest_cached
-    Rails.cache.fetch([self, :filter_by_latest_cached], expires_in: 24.hours) do
+    Rails.cache.fetch([self, :filter_by_latest_cached], expires_in: 1.hours) do
       self.filter_by_latest
     end
   end
@@ -149,7 +149,7 @@ class Business < ApplicationRecord
   end
 
   def self.filter_by_latest
-    where("created_at > ?", 7.days.ago ).limit(15).includes(:price).with_attached_images
+    where("updated_at < ?", 7.days.ago ).limit(15).includes(:price).with_attached_images
   end
 
   def perform_caching_job

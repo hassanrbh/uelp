@@ -1,6 +1,6 @@
 import React from "react";
-import BusinessInfo from "./BusinessInfo";
-import Images from "./images";
+import BusinessInfo from "./flyer/BusinessInfo";
+import Images from "./flyer/images";
 
 const SubHeader = () => {
   return (
