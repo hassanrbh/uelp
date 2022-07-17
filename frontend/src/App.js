@@ -31,6 +31,7 @@ const  UserPhotos = lazy(() => import("./components/profile/UserPhotos"))
 const  AddUserPhotos = lazy(() => import("./components/profile/AddUserPhotos"))
 const  FindFriends = lazy(() => import("./components/profile/FindFriends"));
 
+
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
   let location = useLocation();
@@ -70,7 +71,7 @@ const App = () => {
         <Route path="/search" element={<SuspenseLazy element={<Search />}/>}/>
         <Route path="/biz" element={<SuspenseLazy element={<BusinessHome />}/>} />
         <Route path="/biz/:business_name" element={<SuspenseLazy element={<UnitBusiness />}/>}/>
-        <Route path="/profile/writereview" element={<SuspenseLazy element={<WriteReview />}/>}/>
+        <Route path="/writereview" element={<SuspenseLazy element={<WriteReview />}/>}/>
         <Route path="/contacts/:contact_id" element={<SuspenseLazy element={<Contact />}/>}/>
         <Route path="/profile/nonexisted" element={<NonExistError />} />
         <Route path="/user_details" element={<SuspenseLazy element={<Yelper />} />} />

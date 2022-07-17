@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import UserService from "../../services/auth.service";
 import SubHeader from './subHeader';
+import ActionsSegment from './ActionsSegment';
 
 const UnitBusiness = () => {
   const { business_name } = useParams();
@@ -22,6 +23,7 @@ const UnitBusiness = () => {
     {isSuccess ? (
       <>
         <SubHeader />
+        <ActionsSegment />
       </>
     ): null}
     </>
