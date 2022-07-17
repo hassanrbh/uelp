@@ -30,6 +30,7 @@ const  Search = lazy(() => import("./components/search/search"));
 const  UserPhotos = lazy(() => import("./components/profile/UserPhotos"))
 const  AddUserPhotos = lazy(() => import("./components/profile/AddUserPhotos"))
 const  FindFriends = lazy(() => import("./components/profile/FindFriends"));
+const  BizUserPhotos = lazy(() => import("./components/businesses/BusinessesPhotos/BizUserPhotos"));
 
 
 const App = () => {
@@ -61,6 +62,7 @@ const App = () => {
         <Route path="/login" element={<SuspenseLazy element={<Login />}/>}/>
         <Route path="/user_photos" element={<ProtectedRoute><SuspenseLazy element={<UserPhotos />}></SuspenseLazy></ProtectedRoute>}/>
         <Route path="/user_photos/add" element={<ProtectedRoute><SuspenseLazy element={<AddUserPhotos />}/></ProtectedRoute>}/>
+        <Route path="/biz_user_photos" element={<ProtectedRoute><SuspenseLazy element={<BizUserPhotos />}/></ProtectedRoute>}/>
         <Route path="/profile/messages" element={<ProtectedRoute><SuspenseLazy element={<Messages />}/></ProtectedRoute>}/>
         <Route path="/profile/find-friends" element={<ProtectedRoute><SuspenseLazy element={<FindFriends />}/></ProtectedRoute>}/>
         <Route path="/profile/notifications" element={<ProtectedRoute><SuspenseLazy element={<Notifications />}/></ProtectedRoute>}/>
