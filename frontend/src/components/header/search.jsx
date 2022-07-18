@@ -68,7 +68,7 @@ const Search = () => {
                   id="voice-search"
                   name="search_input"
                   onChange={handleChange}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 pr-[600px] font-bold "
+                  className="border border-gray-300 text-sm bg-[aliceblue] text-black rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 pr-[600px] font-bold "
                   placeholder="Tacos, Cheap Dinner .."
                   value={input}
                 />

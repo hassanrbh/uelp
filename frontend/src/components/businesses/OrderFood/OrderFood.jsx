@@ -30,7 +30,12 @@ const OrderFood = () => {
   const v2ToPayment = (e) => {
     e.preventDefault();
     return navigate(
-      
+      "/order", {
+        replace: true,
+        state: {
+          captureAddress
+        }
+      }
     )
   };
 
