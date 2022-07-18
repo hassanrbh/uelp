@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import AnimatedBar from "./AnimatedBar";
 
 const OrderFood = () => {
   const [toggleForDelivery, setIsToggleForDelivery] = useState(true);
@@ -22,7 +23,7 @@ const OrderFood = () => {
   };
 
   return (
-    <div className="border border-[#ebebeb] w-[363px] h-[303px] rounded ml-[30px]">
+    <div className="border border-[#ebebeb] w-[363px] h-auto rounded-lg ml-[30px]">
       <div className="m-4">
         <h1 className="font-extrabold text-[rgb(45, 46, 47)] text-xl">
           Order Food
@@ -39,10 +40,7 @@ const OrderFood = () => {
             </li>
             {toggleForDelivery ? (
               <>
-                <motion.div
-                  animate={{ x: 80 , scale: 1.25}}
-                  className="bg-[#e00707] bottom-0 h-[4px] left-0 rounded mt-[3px] transition-all"
-                ></motion.div>
+                <AnimatedBar x={80}/>
               </>
             ) : null}
           </div>
@@ -57,15 +55,16 @@ const OrderFood = () => {
             </li>
             {toggleForTakeout ? (
               <>
-                <motion.div
-                  animate={{ x: -80 , scale: 1.25 }}
-                  className="bg-[#e00707] bottom-0 h-[4px] left-0 rounded mt-[3px] transition-all"
-                ></motion.div>
+                <AnimatedBar x={-80}/>
               </>
             ) : null}
           </div>
         </ul>
-        {toggleForDelivery ? <div>Hello</div> : null}
+        {toggleForDelivery ? (
+          <>
+          Hell
+          </>
+        ) : null}
         {toggleForTakeout ? <div>World</div> : null}
       </div>
     </div>
