@@ -5,6 +5,7 @@ const OrderFood = () => {
   const [isActiveDelivery, setIsActiveDelivery] = useState(true);
   const [toggleForTakeout, setIsToggleForTakeout] = useState(false);
   const [isActiveTakeout, setIsActiveTakeout] = useState(false);
+  const [inProp, setInProp] = useState(false);
 
   const toggling = (e) => {
     if (e.target.dataset.id === "delivery") {
@@ -38,7 +39,7 @@ const OrderFood = () => {
             </li>
             {toggleForDelivery ? (
               <>
-                <div className="bg-[#e00707] bottom-0 h-[4px] left-0 rounded mt-[2px] opacity-100 transition-all"></div>
+                <div className="bg-[#e00707] bottom-0 h-[4px] left-0 rounded mt-[2px] transition-all"></div>
               </>
             ) : null}
           </div>
