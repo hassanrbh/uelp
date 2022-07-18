@@ -1,11 +1,11 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 const OrderFood = () => {
   const [toggleForDelivery, setIsToggleForDelivery] = useState(true);
   const [isActiveDelivery, setIsActiveDelivery] = useState(true);
   const [toggleForTakeout, setIsToggleForTakeout] = useState(false);
   const [isActiveTakeout, setIsActiveTakeout] = useState(false);
-  const [inProp, setInProp] = useState(false);
 
   const toggling = (e) => {
     if (e.target.dataset.id === "delivery") {
@@ -27,7 +27,7 @@ const OrderFood = () => {
         <h1 className="font-extrabold text-[rgb(45, 46, 47)] text-xl">
           Order Food
         </h1>
-        <ul onClick={(e) => toggling(e)} className="flex ml-4 mt-5 gap-4">
+        <ul onClick={(e) => toggling(e)} className="flex ml-4 mt-5 mb-[20px] gap-4">
           <div>
             <li
               data-id="delivery"
@@ -39,7 +39,10 @@ const OrderFood = () => {
             </li>
             {toggleForDelivery ? (
               <>
-                <div className="bg-[#e00707] bottom-0 h-[4px] left-0 rounded mt-[2px] transition-all"></div>
+                <motion.div
+                  animate={{ x: 80 , scale: 1.25}}
+                  className="bg-[#e00707] bottom-0 h-[4px] left-0 rounded mt-[3px] transition-all"
+                ></motion.div>
               </>
             ) : null}
           </div>
@@ -54,7 +57,10 @@ const OrderFood = () => {
             </li>
             {toggleForTakeout ? (
               <>
-                <div className="bg-[#e00707] bottom-0 h-[4px] left-0 rounded mt-[2px] transition-all"></div>
+                <motion.div
+                  animate={{ x: -80 , scale: 1.25 }}
+                  className="bg-[#e00707] bottom-0 h-[4px] left-0 rounded mt-[3px] transition-all"
+                ></motion.div>
               </>
             ) : null}
           </div>
