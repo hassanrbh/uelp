@@ -3,6 +3,7 @@ import AnimatedBar from "./AnimatedBar";
 import DeliveryInfo from "./DeliveryInfo";
 import { TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import FeeInfo from "./FeeInfo";
 
 const OrderFood = () => {
   const navigate = useNavigate();
@@ -33,6 +34,7 @@ const OrderFood = () => {
       "/order", {
         replace: true,
         state: {
+          type: "delivery",
           captureAddress
         }
       }
@@ -106,7 +108,9 @@ const OrderFood = () => {
             </form>
           </div>
         ) : null}
-        {toggleForTakeout ? <div>World</div> : null}
+        {toggleForTakeout ? (
+          <FeeInfo />
+        ) : null}
       </div>
     </div>
   );
