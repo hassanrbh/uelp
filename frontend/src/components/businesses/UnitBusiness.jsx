@@ -7,6 +7,7 @@ import ActionsSegment from "./ActionsSegment";
 import Dividor from "../reusableComponents/Dividor";
 import OrderFood from "./OrderFood/OrderFood";
 import InfoAboutBiz from "./InfoAboutBiz/InfoAboutBiz";
+import Menu from "./Menu/Menu";
 
 const UnitBusiness = () => {
   const { business_name } = useParams();
@@ -23,10 +24,11 @@ const UnitBusiness = () => {
       {isSuccess ? (
         <>
           {/* <SubHeader /> */}
-          <div className="container mx-auto grid grid-cols-2">
+          <div className="container mx-auto flex justify-center mt-5">
             <div>
               <ActionsSegment />
               <Dividor />
+              <Menu />
             </div>
             <div>
               <OrderFood />

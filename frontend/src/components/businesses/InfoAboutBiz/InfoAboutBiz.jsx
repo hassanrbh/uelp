@@ -12,7 +12,7 @@ const InfoAboutBiz = () => {
   const business = client.getQueryData(["unit-business"]).profile;
 
   return (
-    <div className="border border-[#ebebeb] w-[363px] h-auto rounded-lg ml-[30px]">
+    <div className="border border-[#ebebeb] w-[363px] h-auto rounded-lg ml-[30px] mt-5">
       <div className="m-4 block">
         <div className="flex justify-between">
           <a
