@@ -6,6 +6,7 @@ import SubHeader from "./subHeader";
 import ActionsSegment from "./ActionsSegment";
 import Dividor from "../reusableComponents/Dividor";
 import OrderFood from "./OrderFood/OrderFood";
+import InfoAboutBiz from "./InfoAboutBiz/InfoAboutBiz";
 
 const UnitBusiness = () => {
   const { business_name } = useParams();
@@ -27,8 +28,9 @@ const UnitBusiness = () => {
               <ActionsSegment />
               <Dividor />
             </div>
-            <div className="">
+            <div>
               <OrderFood />
+              <InfoAboutBiz />
             </div>
           </div>
         </>
