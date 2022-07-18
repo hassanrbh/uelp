@@ -10,7 +10,6 @@ const OrderFood = () => {
   const [isActiveTakeout, setIsActiveTakeout] = useState(false);
   const [captureAddress, setCaptureAddress] = useState("");
 
-  
   const toggling = (e) => {
     if (e.target.dataset.id === "delivery") {
       setIsActiveTakeout((prev) => !prev);
@@ -27,7 +26,7 @@ const OrderFood = () => {
 
   const v2ToPayment = () => {
     console.log("hello world");
-  }
+  };
 
   return (
     <div className="border border-[#ebebeb] w-[363px] h-auto rounded-lg ml-[30px]">
@@ -80,11 +79,18 @@ const OrderFood = () => {
               variant="outlined"
               margin="normal"
               required
-              sx={{width: "100%"}}
+              sx={{ width: "100%" }}
               disableUnderline={false}
+              className="p-[10px] m-[4px]"
               autoComplete="off"
               onChange={(e) => setCaptureAddress(e.target.value)}
             />
+            <button
+              onClick={v2ToPayment}
+              className="mt-2 bg-[#e00706] px-[16px] py-[7px] rounded-md text-white font-medium text-center inline"
+            >
+              Start Order
+            </button>
           </div>
         ) : null}
         {toggleForTakeout ? <div>World</div> : null}
