@@ -6,6 +6,7 @@
 #  name        :string           not null
 #  ingredients :string           not null
 #  price       :integer          default(0), not null
+#  business_id :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #

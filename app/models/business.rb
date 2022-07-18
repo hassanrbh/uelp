@@ -71,6 +71,7 @@ class Business < ApplicationRecord
   validate :check_for_web_address, if: -> { !self.web_address.blank? }
 
   has_many_attached :images
+  has_many :menus
   has_one :price,
       class_name: "Price",
       primary_key:  :id,
