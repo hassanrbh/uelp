@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import AnimatedBar from "./AnimatedBar";
 import DeliveryInfo from "./DeliveryInfo";
-import { TextField } from "@mui/material";
+import { TextField, InputAdornment } from "@mui/material";
+
 
 const OrderFood = () => {
   const [toggleForDelivery, setIsToggleForDelivery] = useState(true);
@@ -24,7 +25,8 @@ const OrderFood = () => {
     setIsActiveTakeout((prev) => !prev);
   };
 
-  const v2ToPayment = () => {
+  const v2ToPayment = (e) => {
+    e.preventDefault();
     console.log("hello world");
   };
 
@@ -72,25 +74,28 @@ const OrderFood = () => {
         {toggleForDelivery ? (
           <div className="text-center flex flex-col">
             <DeliveryInfo />
-            <TextField
-              label="Delivery Address"
-              color="primary"
-              value={captureAddress}
-              variant="outlined"
-              margin="normal"
-              required
-              sx={{ width: "100%" }}
-              disableUnderline={false}
-              className="p-[10px] m-[4px]"
-              autoComplete="off"
-              onChange={(e) => setCaptureAddress(e.target.value)}
-            />
-            <button
-              onClick={v2ToPayment}
-              className="mt-2 bg-[#e00706] px-[16px] py-[7px] rounded-md text-white font-medium text-center inline"
-            >
-              Start Order
-            </button>
+            <form onSubmit={(e) => v2ToPayment(e)}>
+              <TextField
+                label="Delivery Address"
+                color="primary"
+                value={captureAddress}
+                variant="outlined"
+                margin="normal"
+                required
+                sx={{ width: "100%" }}
+                disableUnderline={false}
+                className="p-[10px] m-[4px]"
+                autoComplete="off"
+                
+                onChange={(e) => setCaptureAddress(e.target.value)}
+              />
+              <button
+                type="submit"
+                className="mt-2 bg-[#e00706] px-[16px] py-[7px] rounded-md text-white font-medium text-center inline w-full"
+              >
+                Start Order
+              </button>
+            </form>
           </div>
         ) : null}
         {toggleForTakeout ? <div>World</div> : null}
