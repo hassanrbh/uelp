@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import AnimatedBar from "./AnimatedBar";
 import DeliveryInfo from "./DeliveryInfo";
-import { TextField, InputAdornment } from "@mui/material";
-
+import { TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const OrderFood = () => {
+  const navigate = useNavigate();
+
   const [toggleForDelivery, setIsToggleForDelivery] = useState(true);
   const [isActiveDelivery, setIsActiveDelivery] = useState(true);
   const [toggleForTakeout, setIsToggleForTakeout] = useState(false);
@@ -27,7 +29,9 @@ const OrderFood = () => {
 
   const v2ToPayment = (e) => {
     e.preventDefault();
-    console.log("hello world");
+    return navigate(
+      
+    )
   };
 
   return (
@@ -86,7 +90,6 @@ const OrderFood = () => {
                 disableUnderline={false}
                 className="p-[10px] m-[4px]"
                 autoComplete="off"
-                
                 onChange={(e) => setCaptureAddress(e.target.value)}
               />
               <button
