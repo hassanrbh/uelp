@@ -3,7 +3,7 @@ import { PlusIcon } from '@heroicons/react/outline'
 
 const Following = () => {
   const handleFollow = () => {
-
+    console.log("hello world");
   }
   return (
     <button onClick={handleFollow}className="flex border border-[#c8c9ca] px-[16px] py-[7px] rounded text-black">
