@@ -5,6 +5,7 @@ import UserService from "../../services/auth.service";
 import SubHeader from "./subHeader";
 import ActionsSegment from "./ActionsSegment";
 import Dividor from "../reusableComponents/Dividor";
+import OrderFood from "./OrderFood/OrderFood";
 
 const UnitBusiness = () => {
   const { business_name } = useParams();
@@ -21,10 +22,13 @@ const UnitBusiness = () => {
       {isSuccess ? (
         <>
           {/* <SubHeader /> */}
-          <div className="container mx-auto">
+          <div className="container mx-auto grid grid-cols-2">
             <div>
               <ActionsSegment />
               <Dividor />
+            </div>
+            <div className="">
+              <OrderFood />
             </div>
           </div>
         </>
