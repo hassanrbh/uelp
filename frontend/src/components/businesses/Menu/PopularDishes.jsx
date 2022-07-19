@@ -2,7 +2,9 @@ import React from 'react'
 
 const PopularDishes = () => {
   return (
-    <div>PopularDishes</div>
+    <div>
+      <h1 className="font-bold">PopularDishes</h1>
+    </div>
   )
 }
 

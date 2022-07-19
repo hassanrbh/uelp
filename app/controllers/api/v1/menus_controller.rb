@@ -15,8 +15,8 @@ class Api::V1::MenusController < ApplicationController
   end
   
   def create
-    @business = Business.find_by_name(params[:menu][:business_name])
-    @menu = @business.menus.new(update_menus_params)
+    @business = Business.find_by_name(params[:business_slug])
+    @menu = @business.menus.new(menus_params)
     if (@menu.save) 
       render :create, :status => :created
       return ;
@@ -45,13 +45,13 @@ class Api::V1::MenusController < ApplicationController
   end
   
   def popular_dishes
-    
+
   end
 
   private
 
   def menus_params
-    params.require(:menu).permit(:name, :ingredients, :price, :business_name)
+    params.require(:menu).permit(:name, :ingredients, :price)
   end
 
   def update_menus_params

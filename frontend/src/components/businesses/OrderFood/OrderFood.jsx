@@ -94,7 +94,6 @@ const OrderFood = () => {
                 margin="normal"
                 required
                 sx={{ width: "100%" }}
-                disableUnderline={false}
                 className="p-[10px] m-[4px]"
                 autoComplete="off"
                 onChange={(e) => setCaptureAddress(e.target.value)}
