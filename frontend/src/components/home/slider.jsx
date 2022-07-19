@@ -9,34 +9,37 @@ import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
 import Tippy from "@tippyjs/react";
 import AddressInfo from './AddressInfo';
+import { useEffect } from 'react';
 
 SwiperCore.use([ Autoplay ]);
 
 const Slider = ({business, idx}) => {
-  const swiper = new Swiper(".swiper", {
-    // configure Swiper to use modules
-    modules: [Navigation, Pagination],  
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true,
-    },
-    // autoplay: {
-    //   delay: 100,
-    //   disableOnInteraction: false,
-    // },
-    navigation: {
-      nextEl: '.swiper-button-next_custom',
-      prevEl: '.swiper-button-prev_custom',
-      disabledClass: "hidden",
-    },
-
-    scrollbar: {
-      el: '.swiper-scrollbar',
-    },
-
-    grabCursor: true,
-  });
+  useEffect(() => {
+    const swiper = new Swiper(".swiper", {
+      // configure Swiper to use modules
+      modules: [Navigation, Pagination],  
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true,
+      },
+      // autoplay: {
+      //   delay: 100,
+      //   disableOnInteraction: false,
+      // },
+      navigation: {
+        nextEl: '.swiper-button-next_custom',
+        prevEl: '.swiper-button-prev_custom',
+        disabledClass: "hidden",
+      },
+  
+      scrollbar: {
+        el: '.swiper-scrollbar',
+      },
+  
+      grabCursor: true,
+    });
+  }, [])
   return (
     <div className="flex flex-col group" key={idx}>
       <Link to={`/biz/${business.profile.private_details.name}`}>

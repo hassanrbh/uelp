@@ -3,7 +3,7 @@ import authHeader from "./auth_header";
 
 const API_URL = "http://localhost:3000/api/v1/businesses/";
 
-class Menu {
+class menuService {
   async getAllMenus(business_slug) {
     const { data } = await axios.get(API_URL + `${business_slug}/menus`, {
       headers: authHeader(),
@@ -54,5 +54,5 @@ class Menu {
   }
 }
 
-export default new Menu();
+export default new menuService();
 

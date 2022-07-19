@@ -3,14 +3,14 @@ class Api::V1::MenusController < ApplicationController
   respond_to :json
 
   def index
-    @business = Business.find_by_name(params[:business_slug]);
-    @menus = Menu.all.where(:business_id => @business.id)
+    @business = Business.find_by_name(params[:business_slug])
+    @menus = Menu.all.where(:business_id => @business.id).with_attached_images
     render :index, :status => :ok
   end
 
   def show
     @business = Business.find_by_name(params[:business_slug])
-    @menu = Menu.where(:business_id => @business.id, :name => params[:menu_name]).first
+    @menu = Menu.with_attached_images.where(:business_id => @business.id, :name => params[:menu_name]).first
     render :show, :status => :ok
   end
   
