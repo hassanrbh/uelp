@@ -34,6 +34,7 @@ const BizUserPhotos = lazy(() =>
   import("./components/businesses/BusinessesPhotos/BizUserPhotos")
 );
 const Order = lazy(() => import("./components/order/Order"));
+const Menu = lazy(() => import("./components/Menu/Menu"));
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -71,6 +72,14 @@ const App = () => {
           element={
             <ProtectedRoute>
               <SuspenseLazy element={<UserPhotos />}></SuspenseLazy>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/menu/:menu_name"
+          element={
+            <ProtectedRoute>
+              <SuspenseLazy element={<Menu />} />
             </ProtectedRoute>
           }
         />

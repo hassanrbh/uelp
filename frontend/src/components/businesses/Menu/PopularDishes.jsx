@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Swiper, Navigation, Pagination } from "swiper";
 import Modal from "../../reusableComponents/Modal";
+import PopularDishesSkeleton from "./popularDishesSkeleton";
 
 const PopularDishes = () => {
   const [switcher, setSwitcher] = useState(false);
@@ -48,13 +49,13 @@ const PopularDishes = () => {
     });
   }, [data]);
 
-  if (isLoading) return <div>loading ...</div>;
+  if (isLoading) return <PopularDishesSkeleton cards={4} />
 
   if (isError) return <div>{error} 🧨</div>;
 
 
   return (
-    <div className="mt-4">
+    <div className="mt-5">
       <div className="flex justify-between">
         <h1 className="font-bold">PopularDishes</h1>
         <div className="flex">

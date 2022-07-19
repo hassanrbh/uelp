@@ -8,10 +8,11 @@ import Dividor from "../reusableComponents/Dividor";
 import OrderFood from "./OrderFood/OrderFood";
 import InfoAboutBiz from "./InfoAboutBiz/InfoAboutBiz";
 import Menu from "./Menu/Menu";
+import MenuInfo from "./Menu/MenuInfo";
 
 const UnitBusiness = () => {
   const { business_name } = useParams();
-  const { data, isSuccess, isLoading, isError, error } = useQuery(
+  const { isSuccess, isLoading, isError, error } = useQuery(
     ["unit-business"],
     () => UserService.getBusiness(business_name)
   );
@@ -29,6 +30,8 @@ const UnitBusiness = () => {
               <ActionsSegment />
               <Dividor />
               <Menu />
+              <MenuInfo />
+              <Dividor />
             </div>
             <div>
               <OrderFood />
