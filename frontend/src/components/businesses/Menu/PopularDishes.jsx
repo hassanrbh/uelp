@@ -85,7 +85,7 @@ const PopularDishes = () => {
                 ))
               : null}
           </div>
-          {switcher ? <Modal /> : null}
+          {switcher ? <Modal setSwitcher={setSwitcher}/> : null}
           <button type="button" className="swiper-button-prev_custom group">
               <span className="inline-flex text-black justify-center items-center w-7 h-7 rounded-full sm:w-[2rem] sm:h-[2rem] bg-white/20 dark:bg-[beige] group-hover:bg-white/50 dark:group-hover:bg-[beige] group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none  transition-all ease-in-out">
                   <svg className="w-4 h-4 text-white sm:w-6 sm:h-6 dark:text-gray-400  transition-all ease-in-out" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path></svg>
