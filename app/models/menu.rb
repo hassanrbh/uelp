@@ -11,9 +11,10 @@
 #  updated_at  :datetime         not null
 #
 class Menu < ApplicationRecord
-  validates :name, presence: true
+  validates :name, presence: true,uniqueness: true
   validates :price, presence: true
   validates :ingredients, presence: true
 
   belongs_to :business
+  has_many_attached :images
 end
