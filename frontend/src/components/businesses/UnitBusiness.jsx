@@ -9,6 +9,7 @@ import OrderFood from "./OrderFood/OrderFood";
 import InfoAboutBiz from "./InfoAboutBiz/InfoAboutBiz";
 import Menu from "./Menu/Menu";
 import MenuInfo from "./Menu/MenuInfo";
+import Map from "./Map/Map";
 
 const UnitBusiness = () => {
   const { business_name } = useParams();
@@ -32,6 +33,7 @@ const UnitBusiness = () => {
               <Menu />
               <MenuInfo />
               <Dividor />
+              <Map />
             </div>
             <div>
               <OrderFood />

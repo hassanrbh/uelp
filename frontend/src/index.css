@@ -12,3 +12,24 @@
     @apply flex absolute top-0 right-0 z-30 justify-center items-center px-4 h-full cursor-pointer focus:outline-none
   }
 }
+
+.markercluster-map { height: 20vh; width: 30vh; border: 2px solid black; border-radius: 8px; }
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 10px solid #f3f3f3; /* Light grey */
+  border-top: 10px solid #383636; /* Black */
+  border-radius: 50%;
+  animation: spinner 1.5s linear infinite;
+  position: absolute;
+  left: 25%;
+}

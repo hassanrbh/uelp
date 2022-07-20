@@ -12,5 +12,3 @@ class IpTracker {
 }
 
 export default new IpTracker();
-
-window.IpTracker = new IpTracker();
