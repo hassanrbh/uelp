@@ -4,6 +4,7 @@ import { useQuery } from "react-query";
 import Loading from "../../reusableComponents/Loading";
 import IpTracker from "../../../api/ip_info";
 import client from "../../../services/react-query";
+import MapSkeleton from "./MapSkeleton";
 require("react-leaflet-markercluster/dist/styles.min.css");
 
 const Map = () => {
@@ -15,14 +16,20 @@ const Map = () => {
     () => IpTracker.getPositionStack(address),
     {
       onSuccess: (data) => {
-        const longitude = data?.data[0]?.longitude;
-        const latitude = data?.data[0]?.latitude;
-        setCombLongLit([latitude, longitude]);
+        if (data) {
+          const longitude = data?.data[0]?.longitude;
+          const latitude = data?.data[0]?.latitude;
+          setCombLongLit([latitude, longitude]);
+        } else {
+          const longitude = Math.random(200)
+          const latitude = Math.random(200)
+          setCombLongLit([latitude, longitude]);
+        }
       },
     }
   );
 
-  if (isLoading) return <Loading />;
+  if (isLoading) return <MapSkeleton />;
   if (isError) return <div>{error}</div>;
 
   return (isSuccess && combLongLit.length === 2) ? (
