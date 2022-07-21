@@ -29,8 +29,9 @@ const Map = () => {
     <MapContainer
       className="markercluster-map"
       center={combLongLit}
-      zoom={12}
+      zoom={13}
       maxZoom={18}
+      
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
