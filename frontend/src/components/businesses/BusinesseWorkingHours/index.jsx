@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 import Map from "../Map/Map";
-import Directions from './Directions';
-import HoursOfWorking from './HoursOfWorking';
-import EditBusinessInfoB from './EditBusinessInfoB';
-import Divider from "../../reusableComponents/Dividor"
+import Directions from "./Directions";
+import HoursOfWorking from "./HoursOfWorking";
+import EditBusinessInfoB from "./EditBusinessInfoB";
+import Divider from "../../reusableComponents/Dividor";
 
 const Index = () => {
   return (
@@ -20,8 +20,11 @@ const Index = () => {
         </div>
       </div>
       <Divider />
+      <div className="mt-7">
+        <Divider />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;
