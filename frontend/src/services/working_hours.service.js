@@ -8,7 +8,7 @@ class WorkingHours {
     const { data } = await axios.get(API_URL + `${business_slug}/working_hours`, {
       headers: authHeader(),
     });
-    console.log(data)
+    
     return data;
   }
 }

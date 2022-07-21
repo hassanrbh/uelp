@@ -10,7 +10,20 @@ const HoursOfWorking = () => {
 
   if (isLoading) return <Loading />
 
-  return isSuccess ? console.log(data) : null
+  return isSuccess ? (
+    <div>
+      {data?.working_hours.map((item, _) => (
+        <div className="flex" key={_}>
+          <div>
+
+          </div>
+          <div>
+            
+          </div>
+        </div>
+      ))}
+    </div>
+  ) : null
 };
 
 export default HoursOfWorking;
