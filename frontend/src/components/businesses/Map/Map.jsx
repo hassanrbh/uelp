@@ -15,8 +15,8 @@ const Map = () => {
     () => IpTracker.getPositionStack(address),
     {
       onSuccess: (data) => {
-        const longitude = data.data[0].longitude;
-        const latitude = data.data[0].latitude;
+        const longitude = data?.data[0]?.longitude;
+        const latitude = data?.data[0]?.latitude;
         setCombLongLit([latitude, longitude]);
       },
     }
