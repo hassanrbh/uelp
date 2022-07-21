@@ -15,7 +15,7 @@ class Users::SessionsController < Devise::SessionsController
       @errors.push("email or password are incorrect");
       render json: { 
         errors: @errors,
-      }, :status => :unauthorized
+      }, :status => :ok
     end
   end
 

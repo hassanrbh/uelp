@@ -6,17 +6,17 @@ const API_URL = "http://localhost:3000/api/v1";
 class UserService {
   async getUser() {
     try {
-      const resp = await fetch(API_URL + "/current_user", {
+      const { data } = await axios.get(API_URL + "/current_user", {
         headers: authHeader(),
       });
-      
-      return resp.json();
+  
+      return data
     } catch (err) {
-      console.log(err)
-    }  
+      console.log()
+    }
   }
   async getAnonymousUser(username) {
-    const { data } = await axios.get(API_URL + `/yelper/${username}`)
+    const { data } = await axios.get(API_URL + `/yelper/${username}`);
     return data;
   }
   getBusinesses(limit) {
@@ -25,7 +25,7 @@ class UserService {
     });
   }
   async getBusiness(slug) {
-    const {data} = await axios.get(API_URL + `/businesses/${slug}`, {
+    const { data } = await axios.get(API_URL + `/businesses/${slug}`, {
       headers: authHeader(),
     });
     return data;

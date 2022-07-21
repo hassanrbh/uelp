@@ -1,9 +1,11 @@
 import { React } from 'react';
 import { Navigate } from "react-router-dom";
+import client from "../services/react-query";
 
-const ProtectedRoute = ({ path,children }) => {
-  const isLoggedIn = Boolean(window.localStorage.getItem('token'));
-  if (!isLoggedIn) {
+const ProtectedRoute = ({ path,children}) => {
+  const isError = client.getQueryData(["currentUser"])?.errors;
+
+  if (isError) {
     return <Navigate to={path ? "/" + path : "/login" } />;
   }
   return children;
