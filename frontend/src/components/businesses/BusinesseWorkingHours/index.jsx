@@ -13,7 +13,7 @@ const Index = () => {
           <Map />
           <Directions />
         </div>
-        <div>
+        <div className="ml-5">
           <HoursOfWorking />
           <EditBusinessInfoB />
         </div>

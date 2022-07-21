@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 // import { useQuery } from "react-query";
 // import IpTracker from "../../../api/ip_info";
