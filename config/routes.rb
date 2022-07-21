@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       resources :businesses, only: [:show, :index, :edit], param: :slug do
         resources :menus, only: [:show, :index, :create, :update,:destroy], param: :menu_name
         get "/popular_dishes", to: "menu#popular_dishes"
+        resources :working_hours, only: [:index]
       end
       resources :yelper, only: [:show], param: :slug
       get "/latest", to: "businesses#latest";

@@ -72,6 +72,7 @@ class Business < ApplicationRecord
 
   has_many_attached :images
   has_many :menus
+  has_one :working_hour
   has_one :price,
       class_name: "Price",
       primary_key:  :id,

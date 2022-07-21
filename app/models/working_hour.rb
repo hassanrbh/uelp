@@ -10,4 +10,5 @@
 #
 class WorkingHour < ApplicationRecord
   validates :working_hours, presence: true
+  belongs_to :business
 end

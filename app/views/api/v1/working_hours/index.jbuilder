@@ -1,0 +1,1 @@
+json.extract!(@working_hours, :working_hours)
