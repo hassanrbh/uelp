@@ -27,6 +27,7 @@ const HoursOfWorking = () => {
                 <div className="font-[600] text-[16px]">{working_hours?.working_hours[item][0]} AM</div>
                 <div className="min-w-[20px] ml-3">-</div>
                 <div className="font-[600] text-[16px]">{working_hours?.working_hours[item][1]} PM</div>
+                {working_hours?.working_hours[item]}
               </div>
             </>
           </div>
