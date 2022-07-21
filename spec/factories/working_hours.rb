@@ -7,6 +7,7 @@
 #  working_hours :json             not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  status        :string
 #
 FactoryBot.define do
   factory :working_hour do
