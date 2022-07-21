@@ -33,6 +33,7 @@
 #  latitude               :decimal(, )
 #  longitude              :decimal(, )
 #  categorie_name         :string
+#  amenties               :text
 #
 class Business < ApplicationRecord
   # Include default devise modules. Others available are:
@@ -40,6 +41,38 @@ class Business < ApplicationRecord
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :validatable, :trackable, :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
   geocoded_by :full_address
+
+  store :amenties, accessors: [
+    :offers_delivery,
+    :offers_takeout,
+    :vegan_options,
+    :accept_credit_cards,
+    :casual,
+    :offers_catering,
+    :private_lot_parking,
+    :wheelchar_accessible,
+    :gendar_neutral_rooms,
+    :many_vegeterian_options,
+    :moderate_noise,
+    :good_for_groups,
+    :good_for_lunch_and_dinner,
+    :good_for_lunch,
+    :free_wifi,
+    :tv
+  ], coder: JSON
+
+  store :additional_amenties, accessors: [
+    :reservations,
+    :accept_apple_payment,
+    :outdoor_seating,
+    :happy_hour,
+    :drive_thru,
+    :bike_parking,
+    :waiting_service,
+    :alcohol,
+    :dogs_not_allowed
+  ], coder: JSON, prefix: :no
+
   after_validation :geocode
   after_save :perform_caching_job
   validates :name, :presence => true, :length => { in: 6..50 }, :uniqueness => true, :format => {
