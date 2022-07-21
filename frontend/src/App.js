@@ -12,6 +12,9 @@ import SuspenseLazy from "./utils/suspense_lazy";
 import NonExistError from "./components/profile/NonExistError";
 import Header from "./components/header/header";
 
+// Map Components
+import Map from "./components/Map/Map";
+
 // Auth Components
 // const Register = lazy(() => import("./components/register/Register"));
 const Login = lazy(() => import("./components/login/Login"));
@@ -106,6 +109,9 @@ const App = () => {
         <Route path="/biz" element={<SuspenseLazy element={<BusinessHome />} />}/>
         <Route path="/biz/:business_name" element={<SuspenseLazy element={<UnitBusiness />} />}/>
         <Route path="/writereview" element={<SuspenseLazy element={<WriteReview />} />}/>
+
+        {/* Map Components */}
+        <Route path="/map/directions/:business_address" element={<ProtectedRoute><SuspenseLazy element={<Map />} /></ProtectedRoute>} />
 
         {/* Error Components */}
         <Route path="*" element={<SuspenseLazy element={<Error />} />} />

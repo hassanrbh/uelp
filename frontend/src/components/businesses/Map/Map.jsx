@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
 import { useQuery } from "react-query";
-import Loading from "../../reusableComponents/Loading";
 import IpTracker from "../../../api/ip_info";
 import client from "../../../services/react-query";
 import MapSkeleton from "./MapSkeleton";
@@ -9,8 +8,7 @@ require("react-leaflet-markercluster/dist/styles.min.css");
 
 const Map = () => {
   const [combLongLit, setCombLongLit] = useState([]);
-  const address = client.getQueryData(["unit-business"]).profile
-    .business_details.address;
+  const address = client.getQueryData(["unit-business"]).profile?.business_details?.address;
   const { isLoading, isSuccess, error, isError } = useQuery(
     "map-api-tracker-for-businesses",
     () => IpTracker.getPositionStack(address),
@@ -26,6 +24,11 @@ const Map = () => {
           setCombLongLit([latitude, longitude]);
         }
       },
+      refetchOnWindowFocus: false,
+      refetchOnmount: true,
+      refetchOnReconnect: true,
+      retry: false,
+      staleTime: Infinity,
     }
   );
 

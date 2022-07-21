@@ -6,8 +6,8 @@ import Loading from '../../reusableComponents/Loading';
 const MapSkeleton = () => {
   return (
     <div className="relative">
-      <Skeleton width={"30vh"} height={"20vh"} enableAnimation={true}/>
-      <Loading className="relative bottom-[135px] left-[55px] z-20"/>
+      <Skeleton width={315} height={150} enableAnimation={true}/>
+      <Loading className="relative bottom-[107px] left-[55px] z-20"/>
     </div>
   )
 }
