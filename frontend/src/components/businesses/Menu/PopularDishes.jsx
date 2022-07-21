@@ -9,6 +9,8 @@ import "swiper/css/pagination";
 import { Swiper, Navigation, Pagination } from "swiper";
 import Modal from "../../reusableComponents/Modal";
 import PopularDishesSkeleton from "./popularDishesSkeleton";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const PopularDishes = () => {
   const [switcher, setSwitcher] = useState(false);
