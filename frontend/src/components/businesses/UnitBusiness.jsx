@@ -2,7 +2,6 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import UserService from "../../services/auth.service";
-import SubHeader from "./subHeader";
 import ActionsSegment from "./ActionsSegment";
 import Dividor from "../reusableComponents/Dividor";
 import OrderFood from "./OrderFood/OrderFood";
@@ -35,7 +34,7 @@ const UnitBusiness = () => {
               <Dividor />
               <Index />
             </div>
-            <div>
+            <div className="top-0 sticky">
               <OrderFood />
               <InfoAboutBiz />
             </div>

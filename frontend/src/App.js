@@ -49,6 +49,7 @@ const BizUserPhotos = lazy(() =>
   import("./components/businesses/BusinessesPhotos/BizUserPhotos")
 );
 const Order = lazy(() => import("./components/order/Order"));
+const BizAttributes = lazy(() => import("./components/businesses/BizAttributes/BizAttributes"));
 
 // Menu Components
 const Menu = lazy(() => import("./components/Menu/Menu"));
@@ -109,6 +110,7 @@ const App = () => {
         <Route path="/biz" element={<SuspenseLazy element={<BusinessHome />} />}/>
         <Route path="/biz/:business_name" element={<SuspenseLazy element={<UnitBusiness />} />}/>
         <Route path="/writereview" element={<SuspenseLazy element={<WriteReview />} />}/>
+        <Route path="/biz_attributes" element={<ProtectedRoute><SuspenseLazy element={<BizAttributes />} /></ProtectedRoute>}/>
 
         {/* Map Components */}
         <Route path="/map/directions/:business_address" element={<ProtectedRoute><SuspenseLazy element={<Map />} /></ProtectedRoute>} />
