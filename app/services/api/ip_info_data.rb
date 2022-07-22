@@ -1,0 +1,3 @@
+class IpInfo
+  
+end

@@ -29,6 +29,8 @@ gem "kredis"
 gem "redis-rack-cache"
 gem 'redis-objects', '>= 2.0.0.alpha'
 
+# utils
+gem 'execution_time'
 
 gem 'api-pagination' 
 gem 'will_paginate', '~> 3.3'

@@ -11,7 +11,7 @@ class Api::V1::WorkingHoursController < ApplicationController
 
   def index_cache
     Rails.cache.fetch([self.class.name, :index], expires_in: 24.hours) do
+      
     end
   end
-  
 end

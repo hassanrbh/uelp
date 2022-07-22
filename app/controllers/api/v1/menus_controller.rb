@@ -4,8 +4,13 @@ class Api::V1::MenusController < ApplicationController
 
   def index
     @business = Business.includes(:menus).find_by_name(params[:business_slug])
-    @menus = Menu.all.where(:business_id => @business.id).with_attached_images
+    @menus = Menu.cached_menu(@business)
     render :index, :status => :ok
+  end
+
+  def index_cache
+    Rails.cache.fetch(["v1", self.class.name.to_s, :index], expires_in: 60.minutes ) do
+    end
   end
 
   def show
