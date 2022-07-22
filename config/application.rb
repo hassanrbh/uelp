@@ -23,7 +23,7 @@ module Api
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
-    config.active_job.queue_adapter = :sidekiq
+    config.active_job.queue_adapter = :resque
     config.active_job.queue_name_prefix = Rails.env
 
     # for our testing generators

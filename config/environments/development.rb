@@ -22,7 +22,7 @@ Rails.application.configure do
   # Run rails dev:cache to toggle caching.
   if Rails.root.join("tmp/caching-dev.txt").exist?
     config.cache_store = :redis_cache_store, {url: ENV["REDIS_URL"]}
-    config.active_job.queue_adapter = :sidekiq
+    config.active_job.queue_adapter = :resque
     config.public_file_server.headers = {
       "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }

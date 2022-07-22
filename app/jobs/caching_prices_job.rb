@@ -1,6 +1,5 @@
 class CachingPricesJob < ApplicationJob
   queue_as :default
-  self.queue_adapter = :sidekiq
 
   def perform(*args)
     prices = Price.includes(:business)

@@ -1,3 +1,5 @@
+require "resque/server"
+
 Rails.application.routes.draw do
   devise_for :businesses, controllers: {
     sessions: "businesses/sessions",
@@ -15,6 +17,8 @@ Rails.application.routes.draw do
     sign_in: 'login',
     sign_out: "logout",
   }
+  
+  mount Resque::Server.new , at: "/jobs"
 
   namespace :api do
     namespace :v1 do

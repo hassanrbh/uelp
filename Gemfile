@@ -18,7 +18,7 @@ gem "annotate"
 gem "jwt"
 gem "geocoder"
 gem "bcrypt"
-gem 'sidekiq'
+gem 'resque'
 
 gem 'redis-rails'
 gem "redis", "~> 4.0"
