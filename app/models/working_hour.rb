@@ -27,4 +27,10 @@ class WorkingHour < ApplicationRecord
       end
     end
   end
+
+  def self.cached_working_hours(business_slug)
+    Rails.cache.fetch(["v1", self.class.name], expires_in: 24.hours) do
+      Business.includes(:working_hour).find_by_name(business_slug);
+    end
+  end
 end

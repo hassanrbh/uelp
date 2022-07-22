@@ -27,6 +27,8 @@ gem "redis", "~> 4.0", :require => ['redis', 'redis/connection/hiredis']
 gem "redis-namespace"
 gem "kredis"
 gem "redis-rack-cache"
+gem 'redis-objects', '>= 2.0.0.alpha'
+
 
 gem 'api-pagination' 
 gem 'will_paginate', '~> 3.3'
