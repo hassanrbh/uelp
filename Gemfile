@@ -18,12 +18,15 @@ gem "annotate"
 gem "jwt"
 gem "geocoder"
 gem "bcrypt"
-gem 'resque'
+gem "resque"
+gem "resque-scheduler"
 
 gem 'redis-rails'
-gem "redis", "~> 4.0"
+gem "hiredis"
+gem "redis", "~> 4.0", :require => ['redis', 'redis/connection/hiredis']
 gem "redis-namespace"
 gem "kredis"
+gem "redis-rack-cache"
 
 gem 'api-pagination' 
 gem 'will_paginate', '~> 3.3'

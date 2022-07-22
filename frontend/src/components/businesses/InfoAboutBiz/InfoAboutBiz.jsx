@@ -43,7 +43,7 @@ const InfoAboutBiz = () => {
         <Dividor />
         <div className="flex justify-between">
           <div className="block">
-            <Link to={`/map/${business.business_details.address}`} className="font-bold text-[#017a97] text-base hover:underline">
+            <Link to={`/map/directions/${business.business_details.address}#biz`} className="font-bold text-[#017a97] text-base hover:underline">
               Get Directions
             </Link>
             <p className="font-bold text-sm">{business.business_details.address}</p>

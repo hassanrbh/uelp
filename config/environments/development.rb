@@ -21,13 +21,20 @@ Rails.application.configure do
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
   if Rails.root.join("tmp/caching-dev.txt").exist?
-    config.cache_store = :redis_cache_store, {url: ENV["REDIS_URL"]}
+    # redis_servers = %w[ 
+    #   redis://localhost:6379/0
+    #   redis://localhost:6380/0
+    #   redis://localhost:6381/0
+    # ] 
+    
+    config.cache_store = :redis_cache_store, {driver: :hiredis, url: "redis://localhost:6379/0"}
+    config.action_controller.perform_caching = true;
     config.active_job.queue_adapter = :resque
     config.public_file_server.headers = {
       "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }
   else
-    config.action_controller.perform_caching = false;
+    config.action_controller.perform_caching = true;
 
     config.cache_store = :null_store
   end

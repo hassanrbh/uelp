@@ -183,11 +183,15 @@ class Business < ApplicationRecord
     self
   end
 
+  def self.count_businesses_job
+    CountBusinessesJob.perform_now
+  end
+
   def self.filter_by_latest
     where("created_at > ?", 7.days.ago ).where("web_address != ?", "").limit(15).includes(:price).with_attached_images
   end
 
   def perform_caching_job
-    CachingCategoriesJob.perform_later
+    CachingCategoriesJob.perform_now
   end
 end
