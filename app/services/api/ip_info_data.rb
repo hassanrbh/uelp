@@ -1,3 +1,3 @@
-class IpInfo
+class Api::IpInfoData
   
 end

@@ -51,9 +51,8 @@
 # end
 
 1.times do
-  business = Business.find(81)
-
-  business.update(
+  amenty = Amenty.new(
+    :business_id => 81,
     offers_delivery: true,
     offers_takeout: true,
     vegan_options: true,
@@ -81,5 +80,5 @@
     :dogs_not_allowed => false,
   )
 
-  business.save!
+  amenty.save!
 end

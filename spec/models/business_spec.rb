@@ -33,7 +33,6 @@
 #  latitude               :decimal(, )
 #  longitude              :decimal(, )
 #  categorie_name         :string
-#  amenties               :text
 #
 require 'rails_helper'
 
