@@ -19,7 +19,7 @@ class Menu < ApplicationRecord
   has_many_attached :images
 
   def self.cached_menu(business)
-    Rails.cache.fetch(["v1", self.class.name.to_s, :cached_menu], expires_in: 30.minutes) do
+    Rails.cache.fetch(["v1", self.class.name.to_s, :cached_menu, business.name], expires_in: 30.minutes) do
       Menu.includes(:business).all.where(:business_id => business.id).with_attached_images
     end
   end

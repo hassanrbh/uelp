@@ -37,6 +37,11 @@ class Api::V1::BusinessesController < ApplicationController
     end
   end
 
+  def latest_cache
+    Rails.fetch(["v1", self.class.name.to_s, :latest], expires_in: 40.minutes) do
+    end
+  end
+
   def search(search_category, country, state)
     if !(country.nil?)
       @businesses = Business.search_by_category_and_country(search_category, country)
