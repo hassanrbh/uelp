@@ -1,4 +1,5 @@
 class Api::V1::AmentysController < ApplicationController
+  before_action :authenticate_user!
   def index
     @business = Business.includes(:amenty).find_by_name(params[:business_slug])
     @amenty = Amenty.cache_amentys(@business)
