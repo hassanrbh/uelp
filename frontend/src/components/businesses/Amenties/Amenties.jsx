@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import client from "../../../services/react-query";
 import amentyService from "../../../services/amenty.service";
@@ -15,7 +15,7 @@ import {
   GiftIcon,
   ScaleIcon,
   XIcon,
-  CreditCardIcon
+  CreditCardIcon,
 } from "@heroicons/react/outline";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -35,6 +35,7 @@ const Amenties = () => {
     ["amentys_for", business_slug],
     () => amentyService.getIndex(business_slug)
   );
+  const [toggle, setToggle] = useState(false);
 
   if (isLoading) return <Loading />;
   if (isError) return <div>{error}</div>;
@@ -47,7 +48,20 @@ const Amenties = () => {
         .map((item, _) => (
           <div>{item}</div>
         ))}
-      <MoreAmenties data={Object.keys(data.amenties).slice(4, -1)} />
+      {toggle ? (
+        <>
+          {Object.keys(data.amenties)
+            .slice(4, -1)
+            .map((item, _) => (
+              <div>{item}</div>
+            ))}
+        </>
+      ) : null}
+      <MoreAmenties
+        count={Object.keys(data.amenties).slice(4, -1).length}
+        setToggle={setToggle}
+        toggle={toggle}
+      />
     </div>
   ) : null;
 };
