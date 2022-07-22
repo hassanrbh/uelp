@@ -58,10 +58,7 @@ class Business < ApplicationRecord
     :good_for_lunch_and_dinner,
     :good_for_lunch,
     :free_wifi,
-    :tv
-  ], coder: JSON
-
-  store :additional_amenties, accessors: [
+    :tv,
     :reservations,
     :accept_apple_payment,
     :outdoor_seating,
@@ -71,7 +68,7 @@ class Business < ApplicationRecord
     :waiting_service,
     :alcohol,
     :dogs_not_allowed
-  ], coder: JSON, prefix: :no
+  ], coder: JSON
 
   after_validation :geocode
   after_save :perform_caching_job
