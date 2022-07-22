@@ -15,6 +15,6 @@ class Menu < ApplicationRecord
   validates :price, presence: true
   validates :ingredients, presence: true
 
-  belongs_to :business
+  belongs_to :business, touch: true
   has_many_attached :images
 end

@@ -8,7 +8,7 @@ import Divider from "../../reusableComponents/Dividor";
 const Index = () => {
   return (
     <div className="mt-3 mb-4">
-      <h1 className="font-bold text-lg mb-4">Location & Hours</h1>
+      <h1 className="font-bold text-lg mb-[1.25rem]">Location & Hours</h1>
       <div className="flex">
         <div>
           <Map />

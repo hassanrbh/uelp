@@ -11,7 +11,7 @@
 #
 class WorkingHour < ApplicationRecord
   validates :working_hours, presence: true
-  belongs_to :business
+  belongs_to :business, touch: true
 
   def check_if_business_open
     today_date = Date.today.strftime("%a");
