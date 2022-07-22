@@ -34,18 +34,52 @@
 #   menu.save!
 # end
 
+# 1.times do
+#   working_hour = WorkingHour.new(
+#     :business_id => 81,
+#     :working_hours => {
+#       "Mon"=>["10.00", "11.00"], 
+#       "Tue"=>["10.00", "11.00"], 
+#       "Wed"=>["10.00", "11.00"], 
+#       "Thu"=>["10.00", "11.00"], 
+#       "Fri"=>["12.00", "11.00"], 
+#       "Sat"=>["11.00", "10.00"], 
+#       "Sun"=>["11.00", "12.00"]}
+#   )
+
+#   working_hour.save!
+# end
+
 1.times do
-  working_hour = WorkingHour.new(
-    :business_id => 81,
-    :working_hours => {
-      "Mon"=>["10.00", "11.00"], 
-      "Tue"=>["10.00", "11.00"], 
-      "Wed"=>["10.00", "11.00"], 
-      "Thu"=>["10.00", "11.00"], 
-      "Fri"=>["12.00", "11.00"], 
-      "Sat"=>["11.00", "10.00"], 
-      "Sun"=>["11.00", "12.00"]}
+  business = Business.find(81)
+
+  business.update(
+    offers_delivery: true,
+    offers_takeout: true,
+    vegan_options: true,
+    accept_credit_cards: true,
+    casual: true,
+    offers_catering: true,
+    tv: true,
+    private_lot_parking: true,
+    good_for_lunch: true,
+    free_wifi: true,
+    wheelchar_accessible: true,
+    gendar_neutral_rooms: true,
+    good_for_lunch_and_dinner: true,
+    many_vegeterian_options: true,
+    good_for_groups: true,
+    moderate_noise: true,
+    :no_reservations => false,
+    :no_accept_apple_payment => false,
+    :no_outdoor_seating => false,
+    :no_happy_hour => false,
+    :no_drive_thru => false,
+    :no_bike_parking => false,
+    :no_waiting_service => false,
+    :no_alcohol => false,
+    :no_dogs_not_allowed => false,
   )
 
-  working_hour.save!
+  business.save!
 end

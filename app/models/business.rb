@@ -101,7 +101,7 @@ class Business < ApplicationRecord
   validates :hours_of_opening, numericality: true, presence: true
   validates :min_price, presence: true, numericality: true
   validates :max_price, presence: true, numericality: true
-  validate :check_for_web_address, if: -> { !self.web_address.blank? }
+  
 
   has_many_attached :images
   has_many :menus
