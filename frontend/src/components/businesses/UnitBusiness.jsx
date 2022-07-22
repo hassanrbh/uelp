@@ -36,7 +36,7 @@ const UnitBusiness = () => {
               <Index />
               <Amenties />
             </div>
-            <div className="top-0 sticky">
+            <div className="sticky top-0 h-full">
               <OrderFood />
               <InfoAboutBiz />
             </div>
