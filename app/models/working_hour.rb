@@ -12,6 +12,8 @@
 class WorkingHour < ApplicationRecord
   validates :working_hours, presence: true
   belongs_to :business, touch: true
+  
+  before_validation :check_if_business_open
 
   def check_if_business_open
     today_date = Date.today.strftime("%a");
@@ -20,6 +22,7 @@ class WorkingHour < ApplicationRecord
       if (today_date == key)
         if Time.now.strftime('%H').between?(value[0], value[1])
           self.working_hours[key].push("Opened Now")
+          self.save!
         else 
           self.working_hours[key].push("Closed Now")
           self.save!

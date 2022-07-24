@@ -61,10 +61,10 @@ class Business < ApplicationRecord
   #   message: "not valid",
   #   :multiline => true
   # }
-  validates :web_address, :uniqueness => true, :format => {
-    with: URI::DEFAULT_PARSER.make_regexp(%w[http https]),
-    message: "are not accessible"
-  }, if: -> { !self.web_address.blank? }
+  # validates :web_address, :uniqueness => true, :format => {
+  #   with: URI::DEFAULT_PARSER.make_regexp(%w[http https]),
+  #   message: "are not accessible"
+  # }, if: -> { !self.web_address.blank? }
   validates :hours_of_opening, numericality: true, presence: true
   validates :min_price, presence: true, numericality: true
   validates :max_price, presence: true, numericality: true
@@ -80,6 +80,7 @@ class Business < ApplicationRecord
       foreign_key: :businesses_id,
       touch: true
   has_one :categorie, touch: true
+  
   after_create :create_price_point
   after_create :create_categorie_point
   

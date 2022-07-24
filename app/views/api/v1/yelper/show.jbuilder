@@ -4,6 +4,6 @@ json.activities do
   json.sign_in_count @yelper.sign_in_count
 end
 if (@yelper.avatar.attached?)
-  json.avatar rails_blob_url(@yelper.avatar)
+  json.avatar cloudinary_url(@yelper.avatar)
 end
 json.address @yelper.full_address
