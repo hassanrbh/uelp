@@ -9,7 +9,7 @@ const MenuImages = ({item, setSwitcher, switcher, mykey}) => {
       style={{ backgroundImage: `url(${item.images.first})` }}
       key={mykey}
     >
-      <span className="font-bold relative text-white opacity-100 top-[51px] right-[60px] ">
+      <span className="font-bold relative text-gray-300 opacity-100 top-[51px] right-[60px] ">
         ${item.price}.00
       </span>
     </div>

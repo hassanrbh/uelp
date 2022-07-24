@@ -35,7 +35,7 @@ const Amenties = () => {
         {Object.keys(data.amenties)
           .slice(0, 4)
           .map((item, _) => (
-            <div className={`text-[17px] font-medium flex ${data.amenties[item] === false ? "text-[rgba(110,112,114,1)]" : null}`}>
+            <div key={_} className={`text-[17px] font-medium flex ${data.amenties[item] === false ? "text-[rgba(110,112,114,1)]" : null}`}>
               <SetEmogies item={item} data={data.amenties} className="h-6 w-6 mr-3" classNameNo="h-6 w-6 mr-3 text-[rgba(110,112,114,1)]"/>
               {CapitalizeWords(item.replace(/[|&;$_%@"<>()+,]/g, " "))}
             </div>
@@ -45,7 +45,7 @@ const Amenties = () => {
             {Object.keys(data.amenties)
               .slice(4, -1)
               .map((item, _) => (
-                <div className={`text-[16px] font-[600] flex ${data.amenties[item] === false ? "text-[rgba(110,112,114,1)]" : null}`}>
+                <div key={_} className={`text-[16px] font-[600] flex ${data.amenties[item] === false ? "text-[rgba(110,112,114,1)]" : null}`}>
                   <SetEmogies item={item} data={data.amenties}  className="h-6 w-6 mr-3" classNameNo="h-6 w-6 mr-3 text-[rgba(110,112,114,1)]"/>
                   {CapitalizeWords(item.replace(/[|&;$_%@"<>()+,]/g, " "))}
                 </div>

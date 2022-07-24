@@ -153,7 +153,7 @@ const Search = () => {
           ) : null}
           {isSuccess && fetchedBusinesses?.all_businesses?.length >= 1
             ? fetchedBusinesses.all_businesses.map((business,_) => (
-              <Link to={`/biz/${business.profile.private_details.name}`} key={_} className="flex m-1 hover:bg-white rounded">
+              <Link to={`/biz/${business.profile.private_details.name}`}  key={_} className="flex m-1 hover:bg-white rounded">
                 <Tippy content={<img src={business.profile.images.thumbnail} alt={business.profile.private_details.name} className="rounded"/>} interactive={true} animation="scale" arrow={false} placement="bottom">
                   <img src={business.profile.images.thumbnail} alt={business.profile.private_details.name} width={50} height={50} className="rounded"/>
                 </Tippy>

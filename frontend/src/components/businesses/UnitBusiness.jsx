@@ -15,7 +15,7 @@ const UnitBusiness = () => {
   const { business_name } = useParams();
   const { isSuccess, isLoading, isError, error } = useQuery(
     ["unit-business"],
-    () => UserService.getBusiness(business_name)
+    () => UserService.getBusiness(business_name),
   );
 
   if (isLoading) return <div>loading ...</div>;
