@@ -122,7 +122,7 @@ const App = () => {
         <Route path="/menu/:menu_name" element={<ProtectedRoute><SuspenseLazy element={<Menu />} /></ProtectedRoute>}/>
 
         {/* Home Components */}
-        <Route path="/" element={<SuspenseLazy element={<Home />} />} />
+        <Route path="/" element={<SuspenseLazy element={<ProtectedRoute><SuspenseLazy element={<Home />} /></ProtectedRoute>} />} />
       </Routes>
     </div>
   );

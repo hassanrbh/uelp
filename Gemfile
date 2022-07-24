@@ -32,6 +32,9 @@ gem 'redis-objects', '>= 2.0.0.alpha'
 # utils
 gem 'execution_time'
 
+# active storage 
+gem 'cloudinary'
+
 gem 'api-pagination' 
 gem 'will_paginate', '~> 3.3'
 

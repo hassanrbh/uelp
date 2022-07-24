@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dkynumceo
+  api_key: '357641493842834'
+  api_secret: UcG1Zpw98yJcOM1Na8FfTFg6wik
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: dkynumceo
+  api_key: '357641493842834'
+  api_secret: UcG1Zpw98yJcOM1Na8FfTFg6wik
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: dkynumceo
+  api_key: '357641493842834'
+  api_secret: UcG1Zpw98yJcOM1Na8FfTFg6wik
+  enhance_image_tag: true
+  static_file_support: false

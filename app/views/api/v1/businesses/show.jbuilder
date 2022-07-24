@@ -31,6 +31,6 @@ json.profile do
     json.category @business.categorie_name
   end
   json.images do
-    json.images @business.images.map{|img| (rails_blob_url(img) )}
+    json.images @business.images.map{|img| (cloudinary_url(img.key) )}
   end
 end

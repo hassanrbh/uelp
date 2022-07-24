@@ -32,7 +32,7 @@ json.all_businesses(@latest_businesses) do |business|
         json.category business.categorie_name
       end
       json.images do
-        json.thumbnail rails_blob_url(business.images[0])
+        json.thumbnail cloudinary_url(business.images[0].key)
       end
     end
 end

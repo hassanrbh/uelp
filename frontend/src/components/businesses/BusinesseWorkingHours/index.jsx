@@ -20,7 +20,7 @@ const Index = () => {
         </div>
       </div>
       <Divider />
-      <div className="mt-7">
+      <div className="mt-5">
         <Divider />
       </div>
     </div>
