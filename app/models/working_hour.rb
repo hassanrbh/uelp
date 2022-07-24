@@ -12,7 +12,7 @@
 class WorkingHour < ApplicationRecord
   validates :working_hours, presence: true
   belongs_to :business, touch: true
-  
+
   before_validation :check_if_business_open
 
   def check_if_business_open

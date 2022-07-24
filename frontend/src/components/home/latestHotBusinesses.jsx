@@ -7,7 +7,7 @@ import SliderSkeleton from './SliderSkeleton';
 const LatestHotBusinesses = () => {
   const { data, error, isSuccess , isError, isLoading} = useQuery("latest_businesses", userService.getLatestBusinesses);
 
-  if (isLoading) return <SliderSkeleton cards={15}/>
+  if (isLoading) return <SliderSkeleton cards={10}/>
 
   if (isError) return <div>{error}</div>
 
