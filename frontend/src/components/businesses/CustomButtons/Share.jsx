@@ -1,10 +1,7 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { ShareIcon } from "@heroicons/react/outline";
 import Modal from "../../reusableComponents/Modal";
-import ShareContent from "../Share/ShareContent"
-
-// todo: Adding Opening Modal LOGIC
-// todo: Adding closing modal LOGIC
+import ShareContent from "../Share/ShareContent";
 
 const Share = () => {
   const [switcher, setSwitcher] = useState(false);
@@ -18,7 +15,13 @@ const Share = () => {
         <ShareIcon className="h-6 w-6 mr-[6px]" />
         <p className="font-medium">Share</p>
       </button>
-      {switcher ? <Modal setSwitcher={setSwitcher} component={<ShareContent />} /> : null}
+      {switcher ? (
+        <Modal
+          setSwitcher={setSwitcher}
+          component={<ShareContent />}
+          component_name={<span className="font-bold text-xl">Share Business</span>}
+        />
+      ) : null}
     </div>
   );
 };

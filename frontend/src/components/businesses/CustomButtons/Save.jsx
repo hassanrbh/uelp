@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { SaveIcon } from "@heroicons/react/outline";
 import Modal from "../../reusableComponents/Modal";
-import SaveContent from "../Save/SaveContent"
+import SaveContent from "../Save/SaveContent";
 
 const Save = () => {
   const [switcher, setSwitcher] = useState(false);
@@ -15,7 +15,15 @@ const Save = () => {
         <SaveIcon className="h-6 w-6 mr-[6px]" />
         <p className="font-medium">Save</p>
       </button>
-      {switcher ? <Modal setSwitcher={setSwitcher} component={<SaveContent />}/> : null}
+      {switcher ? (
+        <Modal
+          setSwitcher={setSwitcher}
+          component={<SaveContent />}
+          component_name={
+            <span className="font-bold text-lg">Save to Collection</span>
+          }
+        />
+      ) : null}
     </div>
   );
 };
