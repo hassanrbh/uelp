@@ -5,7 +5,7 @@ import {
   TwitterIcon,
 } from "react-share";
 import Alert from '@mui/material/Alert';
-
+import OrLineUp from "../../login/OrLineUp"
 import { ClipboardIcon } from "@heroicons/react/outline";
 
 
@@ -14,14 +14,17 @@ const ShareContent = () => {
   const handleClick = () => {
     navigator.clipboard.writeText(window.location.href)
     isSaved(prev => !prev)
+    setTimeout(() => {
+      isSaved(prev => !prev)
+    },1000)
   }
   return (
     <>
     {saved ? <Alert severity="success" className="top-0 right-0 px-0 py-0 absolute rounded-[10px] ease-in-out transition-all duration-700 " color="info">
       <p className="font-bold">Saved To clickboard</p>
     </Alert> : null}
-      <div className="flex justify-between">
-        <div className="bg-[#1a77f2] hover:bg-[#4896fc] transition-colors pt-[5px] pb-[4px] pl-[20px] pr-[29px] rounded ease-in-out duration-700">
+      <div className="flex justify-between mb-7">
+        <div className="bg-[#1a77f2] hover:bg-[#4896fc] transition-colors pt-[5px] pb-[4px] pl-[14px] pr-[30px] rounded ease-in-out duration-700">
           <FacebookShareButton url={"google.com"} className="flex">
             <svg
               viewBox="0 0 64 64"
@@ -40,7 +43,7 @@ const ShareContent = () => {
             <p className="font-medium text-white mt-[3px]">Share On Facebook</p>
           </FacebookShareButton>
         </div>
-        <div className="pt-[5px] pb-[4px] px-[29px] rounded bg-[#05abed] group hover:bg-[#56c6f3] transition-colors ease-in-out duration-700">
+        <div className="pt-[5px] pb-[4px] px-[30px] rounded bg-[#05abed] group hover:bg-[#56c6f3] transition-colors ease-in-out duration-700">
           <TwitterShareButton url={"twitter.com"} className="flex ">
             <TwitterIcon
               size={32}
@@ -50,12 +53,13 @@ const ShareContent = () => {
           </TwitterShareButton>
         </div>
       </div>
-      <div className="flex justify-center mt-3">
-        <button className="flex border border-[#c8c9ca] text-black hover:bg-gray-200 py-[5px] relative left-[3px] px-[14px] rounded ease-in-out duration-700" onClick={handleClick}>
+      {/* <div className="flex justify-center mt-3 mb-7">
+        <button className="flex border border-[#c8c9ca] text-black hover:bg-gray-200 py-[5px] relative  px-[14px] left-[9px] rounded ease-in-out duration-700" onClick={handleClick}>
           <ClipboardIcon  className="h-6 w-6 mr-[3px]" />
           <p className="font-medium">Copie</p>
         </button>
-      </div>
+      </div> */}
+      <OrLineUp />
     </>
   );
 };
