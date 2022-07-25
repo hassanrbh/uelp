@@ -8,7 +8,7 @@ import {
 const ShareContent = () => {
   return (
     <div className="flex justify-between">
-      <div className="bg-[#1a77f2] hover:bg-[#4896fc] transition-colors pt-[5px] pb-[4px] px-[29px] rounded ease-in-out duration-700">
+      <div className="bg-[#1a77f2] hover:bg-[#4896fc] transition-colors pt-[5px] pb-[4px] pl-[20px] pr-[29px] rounded ease-in-out duration-700">
         <FacebookShareButton url={"google.com"} className="flex">
           <svg
             viewBox="0 0 64 64"
@@ -29,7 +29,7 @@ const ShareContent = () => {
       </div>
       <div className="pt-[5px] pb-[4px] px-[29px] rounded bg-[#05abed] group hover:bg-[#56c6f3] transition-colors ease-in-out duration-700">
         <TwitterShareButton url={"twitter.com"} className="flex ">
-          <TwitterIcon size={32} className="group-hover:bg-[#05abed]" />
+          <TwitterIcon size={32} className="group-hover:bg-[#05abed] mr-[3px]" />
           <p className="font-medium text-white mt-[3px]">Share On Twitter</p>
         </TwitterShareButton>
       </div>
