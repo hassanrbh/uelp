@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   
   mount Resque::Server.new , at: "/jobs"
 
-  namespace :api do
+  namespace :api, defaults: { format: :json }, constraints: { subdomain: "api" }, path: "/" do
     namespace :v1 do
       resources :current_user, only: [:index]
       resources :current_biz, only: [:index]

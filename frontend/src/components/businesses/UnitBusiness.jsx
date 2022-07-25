@@ -10,12 +10,13 @@ import Menu from "./Menu/Menu";
 import MenuInfo from "./Menu/MenuInfo";
 import Index from "./BusinesseWorkingHours";
 import Amenties from "./Amenties/Amenties";
+import HelpYelp from "./HelpYelp/HelpYelp";
 
 const UnitBusiness = () => {
   const { business_name } = useParams();
   const { isSuccess, isLoading, isError, error } = useQuery(
     ["unit-business"],
-    () => UserService.getBusiness(business_name),
+    () => UserService.getBusiness(business_name)
   );
 
   if (isLoading) return <div>loading ...</div>;
@@ -35,6 +36,7 @@ const UnitBusiness = () => {
               <Dividor />
               <Index />
               <Amenties />
+              <HelpYelp />
             </div>
             <div className="sticky top-[19px] h-full">
               <OrderFood />
