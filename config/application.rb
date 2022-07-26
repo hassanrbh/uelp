@@ -37,6 +37,20 @@ module Api
         :request_specs => true
     end
 
+    Rails.application.configure do
+      config.action_mailer.raise_delivery_errors = true
+      config.action_mailer.perform_deliveries = true
+      config.action_mailer.delivery_method = :smtp
+      config.action_mailer.smtp_settings = {
+        :address => "smtp-relay.sendinblue.com",
+        :port => 587,
+        :user_name => "hassantarif31@gmail.com",
+        :password => "sfvaZCQ2Mkt4mNUn",
+        :authentication => "login",
+        :enable_starttls_auto => true
+      }
+    end
+
     config.session_store :cookie_store, key: "_interslice_session"
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use config.session_store, config.session_options

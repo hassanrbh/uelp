@@ -29,7 +29,7 @@ Rails.application.routes.draw do
         get "/popular_dishes", to: "menu#popular_dishes"
         resources :working_hours, only: [:index]
         resources :amentys, only: [:index]
-        resources :share, only: [:index, :create]
+        resources :share, only: [:create]
       end
       resources :yelper, only: [:show], param: :slug
       get "/latest", to: "businesses#latest";
