@@ -13,7 +13,6 @@ import shareService from "../../../services/share.service";
 import client from "../../../services/react-query";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Loading from "../../reusableComponents/Loading";
 
 const ShareContent = () => {
   // const [saved, isSaved] = useState(false);
