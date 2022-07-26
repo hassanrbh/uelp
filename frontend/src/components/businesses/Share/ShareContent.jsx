@@ -1,29 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   FacebookShareButton,
   TwitterShareButton,
   TwitterIcon,
 } from "react-share";
-import Alert from "@mui/material/Alert";
+// import Alert from "@mui/material/Alert";
 import OrLineUp from "../../login/OrLineUp";
-import { ClipboardIcon } from "@heroicons/react/outline";
+// import { ClipboardIcon } from "@heroicons/react/outline";
 import { TextField } from "@mui/material";
-import { useMutation} from "react-query";
+import { useMutation } from "react-query";
 
 const ShareContent = () => {
-  const [saved, isSaved] = useState(false);
-  const handleClick = () => {
-    navigator.clipboard.writeText(window.location.href);
-    isSaved((prev) => !prev);
-    setTimeout(() => {
-      isSaved((prev) => !prev);
-    }, 1000);
-  };
-
+  // const [saved, isSaved] = useState(false);
+  // const handleClick = () => {
+  //   navigator.clipboard.writeText(window.location.href);
+  //   isSaved((prev) => !prev);
+  //   setTimeout(() => {
+  //     isSaved((prev) => !prev);
+  //   }, 1000);
+  // };
 
   return (
     <>
-      {saved ? (
+      {/* {saved ? (
         <Alert
           severity="success"
           className="top-0 right-0 px-0 py-0 absolute rounded-[10px] ease-in-out transition-all duration-700 "
@@ -31,7 +30,7 @@ const ShareContent = () => {
         >
           <p className="font-bold">Saved To clickboard</p>
         </Alert>
-      ) : null}
+      ) : null} */}
       <div className="flex justify-between mb-7 cursor-pointer">
         <div className="bg-[#1a77f2] hover:bg-[#4896fc] transition-colors pt-[5px] pb-[4px] pl-[14px] pr-[30px] rounded ease-in-out duration-700">
           <FacebookShareButton url={"google.com"} className="flex">
