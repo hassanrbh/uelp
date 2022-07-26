@@ -14,8 +14,10 @@ import MenuImages from "./MenuImages";
 const PopularDishes = () => {
   const [switcher, setSwitcher] = useState(false);
 
-  const url = client.getQueryData(["unit-business"]).profile?.additional_info?.web_address;
-  const name = client.getQueryData(["unit-business"]).profile?.private_details?.name;
+  const url = client.getQueryData(["unit-business"]).profile?.additional_info
+    ?.web_address;
+  const name = client.getQueryData(["unit-business"]).profile?.private_details
+    ?.name;
   const { data, isSuccess, isError, isLoading, error } = useQuery(
     ["menus_for", name],
     () => menuService.getAllMenus(name)
@@ -77,6 +79,7 @@ const PopularDishes = () => {
                     mykey={key}
                     key={key}
                   />
+                
                 ))
               : null}
           </div>

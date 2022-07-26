@@ -1,11 +1,11 @@
 import React from "react";
 
-const MenuImages = ({item, setSwitcher, switcher, mykey}) => {
-
+const MenuImages = ({ item, setSwitcher, switcher, mykey }) => {
   return (
+    <>
     <div
       onClick={() => setSwitcher(!switcher)}
-      className="swiper-slide flex justify-center cursor-pointer opacity-90 items-center font-extrabold rounded bg-no-repeat bg-center	bg-cover"
+      className="swiper-slide flex justify-center !w-[219.5px] !mr-[11px] cursor-pointer opacity-90 items-center font-extrabold rounded bg-no-repeat bg-center	bg-cover"
       style={{ backgroundImage: `url(${item.images.first})` }}
       key={mykey}
     >
@@ -13,6 +13,7 @@ const MenuImages = ({item, setSwitcher, switcher, mykey}) => {
         ${item.price}.00
       </span>
     </div>
+    </>
   );
 };
 
