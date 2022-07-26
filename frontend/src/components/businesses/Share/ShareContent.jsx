@@ -11,6 +11,8 @@ import { TextField } from "@mui/material";
 import { useMutation } from "react-query";
 import shareService from "../../../services/share.service";
 import client from "../../../services/react-query";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ShareContent = () => {
   // const [saved, isSaved] = useState(false);
@@ -25,14 +27,20 @@ const ShareContent = () => {
   const [note, setNote] = useState("");
 
   const business_slug = client.getQueryData(["unit-business"]).profile?.private_details?.name;
-  const { mutate } = useMutation((params) => shareService.share(business_slug, params), {
+  const { mutate, isLoading } = useMutation((params) => shareService.share(business_slug, params), {
     onSuccess: (data) => {
-      console.log(data)
+      notify_success(data.send)
     },
     onError: (error) => {
-      console.log(error)
+      if (error.response.data.error) {
+        notify_error(error.response.data.error[0])
+      } else if (error.response.data.to) {
+        notify_error(error.response.data.to[0])
+      }
     }
   })
+  const notify_success = (msg) => toast.success(msg);
+  const notify_error = (msg) => toast.error(msg);
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -120,8 +128,8 @@ const ShareContent = () => {
           onChange={(e) => setNote(e.currentTarget.value)}
           autoComplete="off"
           multiline
-          rows={2}
-          maxRows={4}
+          minRows={3}
+          maxRows={10}
           InputProps={{
             className: "p-0 h-[100px]",
           }}

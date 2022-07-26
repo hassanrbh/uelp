@@ -2,6 +2,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import { useState, lazy } from "react";
 import { switchHeaders } from "./utils/switchHeader";
 import { useQuery } from "react-query";
+import { ToastContainer } from 'react-toastify';
 
 // Services 
 import UserService from "./services/auth.service";
@@ -83,6 +84,7 @@ const App = () => {
         currentUser,
         logout
       )}
+      <ToastContainer />
 
       <Routes>
 
