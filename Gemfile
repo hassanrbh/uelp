@@ -20,6 +20,7 @@ gem "geocoder"
 gem "bcrypt"
 gem "resque"
 gem "resque-scheduler"
+gem "sendinblue"
 
 gem 'redis-rails'
 gem "hiredis"

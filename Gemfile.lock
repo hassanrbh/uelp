@@ -160,6 +160,9 @@ GEM
     http-accept (1.7.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
+    httparty (0.20.0)
+      mime-types (~> 3.0)
+      multi_xml (>= 0.5.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -171,6 +174,7 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    json (2.6.2)
     jwt (2.4.1)
     kredis (1.2.0)
       activesupport (>= 6.0.0)
@@ -198,6 +202,7 @@ GEM
     mono_logger (1.1.1)
     msgpack (1.5.2)
     multi_json (1.15.0)
+    multi_xml (0.6.0)
     mustermann (1.1.2)
       ruby2_keywords (~> 0.0.1)
     nenv (0.3.0)
@@ -346,6 +351,9 @@ GEM
     ruby2_keywords (0.0.5)
     rufus-scheduler (3.6.0)
       fugit (~> 1.1, >= 1.1.6)
+    sendinblue (2.4)
+      httparty
+      json
     shellany (0.0.1)
     shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)
@@ -417,6 +425,7 @@ DEPENDENCIES
   resque
   resque-scheduler
   rspec-rails
+  sendinblue
   shoulda-matchers
   spring
   tzinfo-data
