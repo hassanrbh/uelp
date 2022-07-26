@@ -5,4 +5,7 @@ class UserMailer < ApplicationMailer
     @message = message
     mail(to: user, subject: "#{from.username} shared a note to you")
   end
+
+  def notify_latest_sign_in
+  end
 end
