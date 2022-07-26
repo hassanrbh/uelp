@@ -11,7 +11,7 @@
 #  updated_at  :datetime         not null
 #
 class Share < ApplicationRecord
-  validates :to, presence: true, uniqueness: true
+  validates :to, presence: true
   validates :note, presence: true
 
   belongs_to :user

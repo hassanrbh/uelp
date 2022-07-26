@@ -22,12 +22,12 @@ class Api::V1::ShareController < ApplicationController
           }, :status => :ok
         end
       else
-        render json: @share.errors.full_messages, :status => 401
+        render json: @share.errors.full_messages, :status => :not_found
       end
     else 
       render :json => {
         :to => ["yelper username not existed try sending with an email"]
-      }, :status => 401
+      }, :status => :not_found
     end
   end
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -9,6 +9,8 @@ import OrLineUp from "../../login/OrLineUp";
 // import { ClipboardIcon } from "@heroicons/react/outline";
 import { TextField } from "@mui/material";
 import { useMutation } from "react-query";
+import shareService from "../../../services/share.service";
+import client from "../../../services/react-query";
 
 const ShareContent = () => {
   // const [saved, isSaved] = useState(false);
@@ -19,6 +21,29 @@ const ShareContent = () => {
   //     isSaved((prev) => !prev);
   //   }, 1000);
   // };
+  const [to, setTo] = useState("");
+  const [note, setNote] = useState("");
+
+  const business_slug = client.getQueryData(["unit-business"]).profile?.private_details?.name;
+  const { mutate } = useMutation((params) => shareService.share(business_slug, params), {
+    onSuccess: (data) => {
+      console.log(data)
+    },
+    onError: (error) => {
+      console.log(error)
+    }
+  })
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    mutate({
+      share: {
+        to,
+        note,
+      }
+    })
+  }
 
   return (
     <>
@@ -68,7 +93,7 @@ const ShareContent = () => {
       </button>
     </div> */}
       <OrLineUp />
-      <form>
+      <form onSubmit={(e) => sendEmail(e)}>
         <TextField
           label="To"
           color="primary"
@@ -76,6 +101,8 @@ const ShareContent = () => {
           margin={"normal"}
           sx={{ width: "100%" }}
           autoComplete="off"
+          value={to}
+          onChange={(e) => setTo(e.currentTarget.value)}
           InputProps={{
             className: "p-0 h-[48px]",
           }}
@@ -89,6 +116,8 @@ const ShareContent = () => {
           variant={"outlined"}
           margin={"normal"}
           sx={{ width: "100%" }}
+          value={note}
+          onChange={(e) => setNote(e.currentTarget.value)}
           autoComplete="off"
           multiline
           rows={2}
