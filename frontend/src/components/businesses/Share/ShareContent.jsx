@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -11,8 +11,9 @@ import { TextField } from "@mui/material";
 import { useMutation } from "react-query";
 import shareService from "../../../services/share.service";
 import client from "../../../services/react-query";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Loading from "../../reusableComponents/Loading";
 
 const ShareContent = () => {
   // const [saved, isSaved] = useState(false);
@@ -26,19 +27,23 @@ const ShareContent = () => {
   const [to, setTo] = useState("");
   const [note, setNote] = useState("");
 
-  const business_slug = client.getQueryData(["unit-business"]).profile?.private_details?.name;
-  const { mutate, isLoading } = useMutation((params) => shareService.share(business_slug, params), {
-    onSuccess: (data) => {
-      notify_success(data.send)
-    },
-    onError: (error) => {
-      if (error.response.data.error) {
-        notify_error(error.response.data.error[0])
-      } else if (error.response.data.to) {
-        notify_error(error.response.data.to[0])
-      }
+  const business_slug = client.getQueryData(["unit-business"]).profile
+    ?.private_details?.name;
+  const { mutate, isLoading } = useMutation(
+    (params) => shareService.share(business_slug, params),
+    {
+      onSuccess: (data) => {
+        notify_success(data.send);
+      },
+      onError: (error) => {
+        if (error.response.data.error) {
+          notify_error(error.response.data.error[0]);
+        } else if (error.response.data.to) {
+          notify_error(error.response.data.to[0]);
+        }
+      },
     }
-  })
+  );
   const notify_success = (msg) => toast.success(msg);
   const notify_error = (msg) => toast.error(msg);
 
@@ -49,9 +54,9 @@ const ShareContent = () => {
       share: {
         to,
         note,
-      }
-    })
-  }
+      },
+    });
+  };
 
   return (
     <>
@@ -134,12 +139,81 @@ const ShareContent = () => {
             className: "p-0 h-[100px]",
           }}
         />
-        <button
-          type="submit"
-          className="mt-2 bg-[#e00706] px-[16px] py-[7px] rounded-md ease-in-out w-[117px] hover:bg-[#e86464] transition-colors duration-700  text-white font-medium text-center inline"
-        >
-          Share
-        </button>
+        {isLoading ? (
+          <button
+            type="submit"
+            className="mt-2 bg-[#e00706] px-[16px] py-[7px] rounded-md ease-in-out w-[70px] hover:bg-[#e86464] transition-colors duration-700  text-white font-medium text-center inline"
+          >
+            <svg
+              version="1.1"
+              id="L2"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              x="0px"
+              y="0px"
+              viewBox="0 0 100 100"
+              enable-background="new 0 0 100 100"
+              xmlSpace="preserve"
+            >
+              <circle
+                fill="none"
+                stroke="#fff"
+                stroke-width="4"
+                stroke-miterlimit="10"
+                cx="50"
+                cy="50"
+                r="48"
+              />
+              <line
+                fill="none"
+                stroke-linecap="round"
+                stroke="#fff"
+                stroke-width="4"
+                stroke-miterlimit="10"
+                x1="50"
+                y1="50"
+                x2="85"
+                y2="50.5"
+              >
+                <animateTransform
+                  attributeName="transform"
+                  dur="2s"
+                  type="rotate"
+                  from="0 50 50"
+                  to="360 50 50"
+                  repeatCount="indefinite"
+                />
+              </line>
+              <line
+                fill="none"
+                strokeLinecap="round"
+                stroke="#fff"
+                strokeWidth="4"
+                strokeMiterlimit="10"
+                x1="50"
+                y1="50"
+                x2="49.5"
+                y2="74"
+              >
+                <animateTransform
+                  attributeName="transform"
+                  dur="15s"
+                  type="rotate"
+                  from="0 50 50"
+                  to="360 50 50"
+                  repeatCount="indefinite"
+                />
+              </line>
+            </svg>
+          </button>
+        ) : (
+          <button
+            type="submit"
+            className="mt-2 bg-[#e00706] px-[16px] py-[7px] rounded-md ease-in-out w-[117px] hover:bg-[#e86464] transition-colors duration-700  text-white font-medium text-center inline"
+          >
+            Share
+          </button>
+        )}
       </form>
     </>
   );
