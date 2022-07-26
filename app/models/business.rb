@@ -72,6 +72,7 @@ class Business < ApplicationRecord
 
   has_many_attached :images
   has_many :menus
+  has_many :shares
   has_one :working_hour
   has_one :amenty
   has_one :price,
