@@ -1,29 +1,35 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import {
   FacebookShareButton,
   TwitterShareButton,
   TwitterIcon,
 } from "react-share";
-import Alert from '@mui/material/Alert';
-import OrLineUp from "../../login/OrLineUp"
+import Alert from "@mui/material/Alert";
+import OrLineUp from "../../login/OrLineUp";
 import { ClipboardIcon } from "@heroicons/react/outline";
-
+import { TextField } from "@mui/material";
 
 const ShareContent = () => {
   const [saved, isSaved] = useState(false);
   const handleClick = () => {
-    navigator.clipboard.writeText(window.location.href)
-    isSaved(prev => !prev)
+    navigator.clipboard.writeText(window.location.href);
+    isSaved((prev) => !prev);
     setTimeout(() => {
-      isSaved(prev => !prev)
-    },1000)
-  }
+      isSaved((prev) => !prev);
+    }, 1000);
+  };
   return (
     <>
-    {saved ? <Alert severity="success" className="top-0 right-0 px-0 py-0 absolute rounded-[10px] ease-in-out transition-all duration-700 " color="info">
-      <p className="font-bold">Saved To clickboard</p>
-    </Alert> : null}
-      <div className="flex justify-between mb-7">
+      {saved ? (
+        <Alert
+          severity="success"
+          className="top-0 right-0 px-0 py-0 absolute rounded-[10px] ease-in-out transition-all duration-700 "
+          color="info"
+        >
+          <p className="font-bold">Saved To clickboard</p>
+        </Alert>
+      ) : null}
+      <div className="flex justify-between mb-7 cursor-pointer">
         <div className="bg-[#1a77f2] hover:bg-[#4896fc] transition-colors pt-[5px] pb-[4px] pl-[14px] pr-[30px] rounded ease-in-out duration-700">
           <FacebookShareButton url={"google.com"} className="flex">
             <svg
@@ -43,7 +49,7 @@ const ShareContent = () => {
             <p className="font-medium text-white mt-[3px]">Share On Facebook</p>
           </FacebookShareButton>
         </div>
-        <div className="pt-[5px] pb-[4px] px-[30px] rounded bg-[#05abed] group hover:bg-[#56c6f3] transition-colors ease-in-out duration-700">
+        <div className="pt-[5px] pb-[4px] cursor-pointer px-[30px] rounded bg-[#05abed] group hover:bg-[#56c6f3] transition-colors ease-in-out duration-700">
           <TwitterShareButton url={"twitter.com"} className="flex ">
             <TwitterIcon
               size={32}
@@ -54,12 +60,48 @@ const ShareContent = () => {
         </div>
       </div>
       {/* <div className="flex justify-center mt-3 mb-7">
-        <button className="flex border border-[#c8c9ca] text-black hover:bg-gray-200 py-[5px] relative  px-[14px] left-[9px] rounded ease-in-out duration-700" onClick={handleClick}>
-          <ClipboardIcon  className="h-6 w-6 mr-[3px]" />
-          <p className="font-medium">Copie</p>
-        </button>
-      </div> */}
+      <button className="flex border border-[#c8c9ca] text-black hover:bg-gray-200 py-[5px] relative  px-[14px] left-[9px] rounded ease-in-out duration-700" onClick={handleClick}>
+        <ClipboardIcon  className="h-6 w-6 mr-[3px]" />
+        <p className="font-medium">Copie</p>
+      </button>
+    </div> */}
       <OrLineUp />
+      <form>
+        <TextField
+          label="To"
+          color="primary"
+          variant={"outlined"}
+          margin={"normal"}
+          sx={{ width: "100%" }}
+          autoComplete="off"
+          InputProps={{
+            className: "p-0 h-[48px]",
+          }}
+        />
+        <p className="font-light text-xs text-gray-500 text-left ml-2">
+          Yelper names or email addresses
+        </p>
+        <TextField
+          label="Add a note (optional)"
+          color="primary"
+          variant={"outlined"}
+          margin={"normal"}
+          sx={{ width: "100%" }}
+          autoComplete="off"
+          multiline
+          rows={2}
+          maxRows={4}
+          InputProps={{
+            className: "p-0 h-[100px]",
+          }}
+        />
+        <button
+          type="submit"
+          className="mt-2 bg-[#e00706] px-[16px] py-[7px] rounded-md ease-in-out w-[117px] hover:bg-[#e86464] transition-colors duration-700  text-white font-medium text-center inline"
+        >
+          Share
+        </button>
+      </form>
     </>
   );
 };

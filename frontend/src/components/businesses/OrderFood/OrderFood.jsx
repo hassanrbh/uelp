@@ -97,10 +97,13 @@ const OrderFood = () => {
                 className="p-[10px] m-[4px]"
                 autoComplete="off"
                 onChange={(e) => setCaptureAddress(e.target.value)}
+                InputProps={{
+                  className: "p-0 h-[48px]"
+                }}
               />
               <button
                 type="submit"
-                className="mt-2 bg-[#e00706] px-[16px] py-[7px] rounded-md text-white font-medium text-center inline w-full"
+                className="mt-2 bg-[#e00706] px-[16px] py-[7px] rounded-md ease-in-out hover:bg-[#e86464] transition-colors duration-700  text-white font-medium text-center inline w-full"
               >
                 Start Order
               </button>
