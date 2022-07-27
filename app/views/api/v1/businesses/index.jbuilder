@@ -5,6 +5,7 @@ json.all_businesses(@businesses) do |business|
         json.name business.name
         json.description business.description
         json.phone_number business.phone_number
+        json.owner business.owner
       end
       json.business_details do
         json.address business.address
@@ -29,6 +30,7 @@ json.all_businesses(@businesses) do |business|
       end
       json.categories do
         json.category business.categorie_name
+        json.avatar cloudinary_url(@business.avatar.key)
       end
     end
 end

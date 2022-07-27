@@ -5,6 +5,7 @@ json.profile do
     json.name @business.name
     json.description @business.description
     json.phone_number @business.phone_number
+    json.owner @business.owner
   end
   json.business_details do
     json.address @business.address
@@ -32,5 +33,6 @@ json.profile do
   end
   json.images do
     json.images @business.images.map{|img| (cloudinary_url(img.key) )}
+    json.avatar cloudinary_url(@business.avatar.key)
   end
 end

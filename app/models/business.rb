@@ -71,7 +71,7 @@ class Business < ApplicationRecord
   
 
   has_many_attached :images
-  has_one_attached :logo
+  has_one_attached :avatar
   has_many :menus
   has_many :shares
   has_one :working_hour
