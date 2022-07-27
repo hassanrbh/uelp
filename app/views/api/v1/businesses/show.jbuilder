@@ -5,7 +5,11 @@ json.profile do
     json.name @business.name
     json.description @business.description
     json.phone_number @business.phone_number
+  end
+  json.owner do
     json.owner @business.owner
+    json.avatar cloudinary_url(@business.avatar.key)
+    json.about_me @business.about_me
   end
   json.business_details do
     json.address @business.address
@@ -19,6 +23,8 @@ json.profile do
     json.web_address @business.web_address
     json.hours_of_opening @business.hours_of_opening
     json.menu_web_address @business.menu_web_address
+    json.specialties @business.specialties
+    json.history @business.history
   end
   json.price_info do
     json.average @business.get_average_amout_by_dollar_sign
@@ -33,6 +39,5 @@ json.profile do
   end
   json.images do
     json.images @business.images.map{|img| (cloudinary_url(img.key) )}
-    json.avatar cloudinary_url(@business.avatar.key)
   end
 end

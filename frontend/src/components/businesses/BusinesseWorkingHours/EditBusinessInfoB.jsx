@@ -8,7 +8,7 @@ import {
 const EditBusinessInfoB = () => {
   const name = client.getQueryData(["unit-business"]).profile.private_details.name;
 
-  return <Link to={`/biz_attributes?biz_id=${name}`} className="flex flex-row-reverse mt-1 pr-[190px]">
+  return <Link to={`/biz_attributes?biz_id=${name}`} className="flex flex-row-reverse mt-2 pr-[190px]">
     <p className="text-teal-500 font-bold">Edit Business Info</p>
     <PencilIcon width={18}
             height={18}

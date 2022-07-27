@@ -7,6 +7,11 @@ json.all_businesses(@businesses) do |business|
         json.phone_number business.phone_number
         json.owner business.owner
       end
+      json.owner do
+        json.owner @business.owner
+        json.avatar cloudinary_url(@business.avatar.key)
+        json.about_me @business.about_me
+      end
       json.business_details do
         json.address business.address
         json.address_1 business.address_1
@@ -19,6 +24,8 @@ json.all_businesses(@businesses) do |business|
         json.web_address business.web_address
         json.hours_of_opening business.hours_of_opening
         json.menu_web_address business.menu_web_address
+        json.specialties business.specialties
+        json.history business.history
       end
       json.price_info do
         json.average business.get_average_amout_by_dollar_sign
