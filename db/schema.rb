@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_27_065942) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_27_080523) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -100,6 +100,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_065942) do
     t.index ["name"], name: "index_categories_on_name"
   end
 
+  create_table "communities", force: :cascade do |t|
+    t.bigint "business_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_id"], name: "index_communities_on_business_id"
+  end
+
   create_table "jwt_denylist", force: :cascade do |t|
     t.string "jti", null: false
     t.datetime "exp", null: false
@@ -126,6 +133,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_065942) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["businesses_id"], name: "index_prices_on_businesses_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.bigint "community_id"
+    t.string "question", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["community_id"], name: "index_questions_on_community_id"
   end
 
   create_table "shares", force: :cascade do |t|
