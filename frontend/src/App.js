@@ -110,7 +110,7 @@ const App = () => {
         <Route path="/biz_user_photos" element={<ProtectedRoute><SuspenseLazy element={<BizUserPhotos />} /></ProtectedRoute>}/>
         <Route path="/search" element={<SuspenseLazy element={<Search />} />} />
         <Route path="/biz" element={<SuspenseLazy element={<BusinessHome />} />}/>
-        <Route path="/biz/:business_name" element={<SuspenseLazy element={<UnitBusiness />} />}/>
+        <Route path="/biz/:business_name" element={<ProtectedRoute><SuspenseLazy element={<UnitBusiness />} /></ProtectedRoute> }/>
         <Route path="/writereview" element={<SuspenseLazy element={<WriteReview />} />}/>
         <Route path="/biz_attributes" element={<ProtectedRoute><SuspenseLazy element={<BizAttributes />} /></ProtectedRoute>}/>
 

@@ -41,7 +41,7 @@ const Map = () => {
     (longitude && latitude) ? <MapContainer
       className="markercluster-map"
       center={[latitude, longitude]}
-      zoom={13}
+      zoom={10}
       maxZoom={18}
       
     >

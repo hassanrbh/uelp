@@ -11,6 +11,7 @@ import MenuInfo from "./Menu/MenuInfo";
 import Index from "./BusinesseWorkingHours";
 import Amenties from "./Amenties/Amenties";
 import HelpYelp from "./HelpYelp/HelpYelp";
+import AboutBusiness from "./AboutBusiness/AboutBusiness";
 
 const UnitBusiness = () => {
   const { business_name } = useParams();
@@ -37,6 +38,8 @@ const UnitBusiness = () => {
               <Index />
               <Amenties />
               <HelpYelp />
+              <Dividor />
+              <AboutBusiness />
             </div>
             <div className="sticky top-[19px] h-full">
               <OrderFood />

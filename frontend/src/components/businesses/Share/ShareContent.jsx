@@ -33,12 +33,18 @@ const ShareContent = () => {
     {
       onSuccess: (data) => {
         notify_success(data.send);
+        setTo("")
+        setNote("")
       },
       onError: (error) => {
         if (error.response.data.error) {
           notify_error(error.response.data.error[0]);
+          setTo("")
+          setNote("")
         } else if (error.response.data.to) {
           notify_error(error.response.data.to[0]);
+          setTo("")
+          setNote("")
         }
       },
     }
@@ -157,8 +163,8 @@ const ShareContent = () => {
               <circle
                 fill="none"
                 stroke="#fff"
-                stroke-width="4"
-                stroke-miterlimit="10"
+                strokeWidth="4"
+                strokeMiterlimit="10"
                 cx="50"
                 cy="50"
                 r="48"
@@ -167,8 +173,8 @@ const ShareContent = () => {
                 fill="none"
                 stroke-linecap="round"
                 stroke="#fff"
-                stroke-width="4"
-                stroke-miterlimit="10"
+                strokeWidth="4"
+                strokeMiterlimit="10"
                 x1="50"
                 y1="50"
                 x2="85"

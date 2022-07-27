@@ -60,10 +60,11 @@ class Api::V1::BusinessesController < ApplicationController
         render :show, :status => :ok
         return ;
       end
+    else
+      render :json => {
+        :errors => ["There is no business associated"]
+      }
     end
-    render :json => {
-      :errors => ["There is no business associated"]
-    }
   end
 
   def edit

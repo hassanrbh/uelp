@@ -1,6 +1,5 @@
 class Api::V1::ShareController < ApplicationController
   before_action :authenticate_user!
-  
   def create
     expected_user = check_if_receiver_exists_as_yelper
     if (expected_user)
