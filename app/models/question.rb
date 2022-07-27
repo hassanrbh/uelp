@@ -9,4 +9,8 @@
 #  updated_at   :datetime         not null
 #
 class Question < ApplicationRecord
+  validates :question, presence: true
+
+  belongs_to :community
+  has_one :business, through: :community, source: :business
 end

@@ -8,4 +8,6 @@
 #  updated_at  :datetime         not null
 #
 class Community < ApplicationRecord
+  belongs_to :business, dependent: :destroy
+  has_many :questions, dependent: :destroy
 end

@@ -73,9 +73,10 @@ class Business < ApplicationRecord
   validates :min_price, presence: true, numericality: true
   validates :max_price, presence: true, numericality: true
   
-
   has_many_attached :images
   has_one_attached :avatar
+  has_one :community
+  has_many :questions, through: :community, source: :questions
   has_many :menus
   has_many :shares
   has_one :working_hour
