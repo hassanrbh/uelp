@@ -33,6 +33,10 @@
 #  latitude               :decimal(, )
 #  longitude              :decimal(, )
 #  categorie_name         :string
+#  owner                  :string
+#  specialties            :string
+#  history                :string
+#  about_me               :string
 #
 class Business < ApplicationRecord
   # Include default devise modules. Others available are:

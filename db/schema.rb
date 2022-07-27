@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_27_054849) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_27_065942) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -82,6 +82,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_054849) do
     t.decimal "longitude"
     t.string "categorie_name"
     t.string "owner"
+    t.string "specialties"
+    t.string "history"
+    t.string "about_me"
     t.index ["email"], name: "index_businesses_on_email", unique: true
     t.index ["name"], name: "index_businesses_on_name"
     t.index ["owner"], name: "index_businesses_on_owner"

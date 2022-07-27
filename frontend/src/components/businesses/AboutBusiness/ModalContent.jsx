@@ -5,6 +5,9 @@ const ModalContent = () => {
     <div className="h-[398px] overflow-auto text-left">
       <div className="">
         <h1 className="font-bold">Specialties</h1>
+        <p>
+          
+        </p>
       </div>
     </div>
   )
