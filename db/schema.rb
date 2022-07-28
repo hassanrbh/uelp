@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_27_084855) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_28_114638) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -116,6 +116,29 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_084855) do
     t.index ["jti"], name: "index_jwt_denylist_on_jti"
   end
 
+  create_table "login_activities", force: :cascade do |t|
+    t.string "scope"
+    t.string "strategy"
+    t.string "identity"
+    t.boolean "success"
+    t.string "failure_reason"
+    t.string "user_type"
+    t.bigint "user_id"
+    t.string "context"
+    t.string "ip"
+    t.text "user_agent"
+    t.text "referrer"
+    t.string "city"
+    t.string "region"
+    t.string "country"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at"
+    t.index ["identity"], name: "index_login_activities_on_identity"
+    t.index ["ip"], name: "index_login_activities_on_ip"
+    t.index ["user_type", "user_id"], name: "index_login_activities_on_user"
+  end
+
   create_table "menus", force: :cascade do |t|
     t.string "name", null: false
     t.string "ingredients", null: false
@@ -185,6 +208,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_084855) do
     t.integer "gender", null: false
     t.string "phone_number", null: false
     t.string "full_address"
+    t.boolean "account_active", default: true
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

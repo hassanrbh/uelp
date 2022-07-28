@@ -7,7 +7,6 @@ class Api::V1::ShareController < ApplicationController
       @share = Share.new(share_params)
       @share.user = current_user
       @share.business = business
-      
       begin 
         if (@share.save)
           if !(@share.to.match(Devise.email_regexp))

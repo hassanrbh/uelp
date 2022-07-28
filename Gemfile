@@ -12,12 +12,16 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 gem "image_processing", "~> 1.2"
 gem "rack-cors"
+
+# auth
 gem "devise"
 gem "devise-jwt"
-gem "annotate"
+gem "authtrail"
 gem "jwt"
-gem "geocoder"
 gem "bcrypt"
+
+gem "annotate"
+gem "geocoder"
 gem "resque"
 gem "resque-scheduler"
 gem "sendinblue"

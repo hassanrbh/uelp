@@ -99,19 +99,19 @@ const App = () => {
         <Route path="/profile/notifications" element={<ProtectedRoute><SuspenseLazy element={<Notifications />} /></ProtectedRoute>}/>
         <Route path="/profile" element={<ProtectedRoute><SuspenseLazy element={<Profile />} /></ProtectedRoute>}/>
         <Route path="/profile/account_settings" element={<ProtectedRoute><SuspenseLazy element={<Settings />} /></ProtectedRoute>}/>
-        <Route path="/profile/logout" element={<SuspenseLazy element={<Logout />} />}/>
+        <Route path="/profile/logout" element={<ProtectedRoute><SuspenseLazy element={<Logout />} /></ProtectedRoute>}/>
         <Route path="/profile/friends" element={<ProtectedRoute><SuspenseLazy element={<Friends />} /></ProtectedRoute>}/>
-        <Route path="/contacts/:contact_id" element={<SuspenseLazy element={<Contact />} />}/>
-        <Route path="/profile/nonexisted" element={<NonExistError />} />
-        <Route path="/user_details" element={<SuspenseLazy element={<Yelper />} />}/>
+        <Route path="/contacts/:contact_id" element={<ProtectedRoute><SuspenseLazy element={<Contact />}/></ProtectedRoute>}/>
+        <Route path="/profile/nonexisted" element={<ProtectedRoute><NonExistError /></ProtectedRoute>} />
+        <Route path="/user_details" element={<ProtectedRoute><SuspenseLazy element={<Yelper />} /></ProtectedRoute>}/>
 
         {/* Business Components */}
         <Route path="/order" element={<ProtectedRoute><SuspenseLazy element={<Order />} /></ProtectedRoute>}/>
         <Route path="/biz_user_photos" element={<ProtectedRoute><SuspenseLazy element={<BizUserPhotos />} /></ProtectedRoute>}/>
-        <Route path="/search" element={<SuspenseLazy element={<Search />} />} />
-        <Route path="/biz" element={<SuspenseLazy element={<BusinessHome />} />}/>
+        <Route path="/search" element={<ProtectedRoute><SuspenseLazy element={<Search />} /></ProtectedRoute>} />
+        <Route path="/biz" element={<ProtectedRoute><SuspenseLazy element={<BusinessHome />} /></ProtectedRoute>}/>
         <Route path="/biz/:business_name" element={<ProtectedRoute><SuspenseLazy element={<UnitBusiness />} /></ProtectedRoute> }/>
-        <Route path="/writereview" element={<SuspenseLazy element={<WriteReview />} />}/>
+        <Route path="/writereview" element={<ProtectedRoute><SuspenseLazy element={<WriteReview />} /></ProtectedRoute>}/>
         <Route path="/biz_attributes" element={<ProtectedRoute><SuspenseLazy element={<BizAttributes />} /></ProtectedRoute>}/>
 
         {/* Map Components */}

@@ -36,6 +36,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
         :recoverable, :rememberable, :validatable,
         :lockable, :timeoutable, :trackable ,:jwt_authenticatable ,jwt_revocation_strategy: JwtDenylist
+  has_many :login_activities, as: :user
   before_validation :merge_username
   before_validation :check_if_password_confirmation?
   has_one_attached :avatar
@@ -59,6 +60,7 @@ class User < ApplicationRecord
     non_binary: 2,
     other_types: 3,
   }
+
   
   private
   def merge_username
