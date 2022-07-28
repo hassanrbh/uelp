@@ -30,6 +30,7 @@
 #  gender                 :integer          not null
 #  phone_number           :string           not null
 #  full_address           :string
+#  account_active         :boolean          default(TRUE)
 #
 FactoryBot.define do
   factory :user do

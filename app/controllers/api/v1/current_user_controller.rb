@@ -4,4 +4,5 @@ class Api::V1::CurrentUserController < ApplicationController
   def index
     render :index, :status => :ok
   end
+  
 end

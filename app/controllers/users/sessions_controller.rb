@@ -5,10 +5,12 @@ class Users::SessionsController < Devise::SessionsController
 
   def respond_with(resource, _opts = {})
     @errors = []
+
     if (params[:user].present?) 
       params[:user][:email].present? ? "" : check_providation("email")
       params[:user][:password].present? ?  "" : check_providation("password")
     end
+
     if resource.persisted?
       # User.notify_latest_sign_in(resource).deliver_now
       render :create, :status => :ok
@@ -25,7 +27,9 @@ class Users::SessionsController < Devise::SessionsController
           errors: @errors,
         }, :status => :ok
       end
+
     end
+    
   end
 
   def check_providation(checker_provider)
