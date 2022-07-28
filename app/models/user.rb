@@ -48,14 +48,6 @@ class User < ApplicationRecord
   primary_key:  :id,
   foreign_key: :user_id
 
-  def calcul_total_images
-    total_sum = 0
-    self.business_images.each do |image|
-      total_sum = image.images.count
-    end
-    total_sum + self.business_images.count
-  end
-
   validates :email, presence: true, :uniqueness => {:case_sensitive => true}
   validates :username, presence: true, uniqueness: true, :format => { with: /^[a-z0-9_-]{3,15}$/, message: "not real ", :multiline => true}
   validates :first_name, presence: true
@@ -76,7 +68,20 @@ class User < ApplicationRecord
     other_types: 3,
   }
 
-  
+  def find_out_total_images
+    total_sum = 0
+    self.business_images.each do |image|
+      total_sum = image.images.count
+    end
+    total_sum + self.business_images.count
+  end
+
+  def cache_find_out_total_images
+    Rails.cache.fetch(["v1", self.class.name.to_s, :cache_find_out_total_images], expires_in: 1.hour) do
+      self.find_out_total_images
+    end
+  end
+
   private
   def merge_username
     self.username = "#{self.first_name}#{self.last_name}" 
@@ -85,4 +90,5 @@ class User < ApplicationRecord
   def check_if_password_confirmation?
     !(self.password === self.password_confirmation) ? self.errors[:password_confirmation].push("Invalid password confirmation") : true
   end
+
 end
