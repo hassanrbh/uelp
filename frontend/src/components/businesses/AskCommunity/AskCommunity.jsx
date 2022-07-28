@@ -8,7 +8,8 @@ import Dividor from "../../reusableComponents/Dividor";
 const AskCommunity = () => {
   const business_slug = client.getQueryData(["unit-business"]).profile
     .private_details.name;
-  const questions_count = client.getQueryData(["questions_for",business_slug])?.questions?.length;
+  const questions_count = client.getQueryData(["questions_for", business_slug])
+    ?.questions?.length;
 
   return (
     <>
@@ -30,11 +31,16 @@ const AskCommunity = () => {
         <div>
           <Questions business_slug={business_slug} />
         </div>
-        <div className="mt-7">
-          <button className="border font-medium border-[#c8c9ca] px-[16px] py-[7px] rounded text-black hover:bg-gray-200 ease-in-out duration-700">
-            See all {questions_count} questions
-          </button>
-        </div>
+        {questions_count !== 0 ? (
+          <div className="mt-7">
+            <Link
+              to={`/questions`}
+              className="border font-medium border-[#c8c9ca] px-[16px] py-[7px] rounded text-black hover:bg-gray-200 ease-in-out duration-700"
+            >
+              See all {questions_count} questions
+            </Link>
+          </div>
+        ) : null}
       </div>
       <Dividor />
     </>

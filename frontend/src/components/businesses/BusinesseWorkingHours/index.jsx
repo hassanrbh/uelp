@@ -21,7 +21,7 @@ const Index = () => {
       </div>
       <Divider />
       <div className="mt-5">
-        <Divider />
+        
       </div>
     </div>
   );
