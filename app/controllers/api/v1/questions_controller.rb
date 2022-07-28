@@ -2,17 +2,24 @@ class Api::V1::QuestionsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    limit = params[:limit]
     @business = Business.find_by_name(params[:business_slug])
     @questions = @business.community_questions
+
+    if (limit.present? && Integer(limit) <= 2)
+      @questions = @questions.limit(2)
+      return render :index, :status => :ok
+    elsif limit.present?
+      return render :json => { :limit => ["too many requests"]}
+    end
 
     if (@questions.count >= 1)
       return render :index, :status => :ok
     end
 
-    render :json => {
-      :messg => "Yelp users haven’t asked any questions yet about #{@business.name}."
+    return render :json => {
+      :mesg => "Yelp users haven’t asked any questions yet about #{@business.name}."
     }
-
   end
 
   def create
