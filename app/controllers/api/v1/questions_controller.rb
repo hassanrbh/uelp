@@ -26,17 +26,24 @@ class Api::V1::QuestionsController < ApplicationController
     @business = Business.find_by_name(params[:business_slug])
     @question = @business.community.questions.new(questions_params)
     @question.user = current_user
+    @question.business = @business
 
-    if (@question.save)
-      BusinessMailer.notify_business_owner(@business).deliver_now
-      BusinessMailer.notify_user_questioner(current_user).deliver_now
+    begin
+      if (@question.save)
+        BusinessMailer.notify_business_owner(@business).deliver_now
+        BusinessMailer.notify_user_questioner(current_user).deliver_now
 
+        return render :json => {
+          :success => "Question Save, Community Is Happy"
+        }, :status => :ok
+      end
+    rescue ActiveRecord::RecordNotUnique
+      question = Question.where(:question => params[:question][:question])
       return render :json => {
-        :success => "Question Save, Community Is Happy"
-      }, :status => :ok
-
+        :error => ["Question Already Exists"],
+        :question => question
+      }
     end
-
     return render :error, :status => :not_found
   end
 

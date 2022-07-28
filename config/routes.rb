@@ -30,7 +30,9 @@ Rails.application.routes.draw do
         resources :working_hours, only: [:index]
         resources :amentys, only: [:index]
         resources :share, only: [:create]
-        resources :questions, only: [:create, :index]
+        resources :questions, only: [:create, :index] do
+          resources :answers, only: [:show, :index, :create]
+        end
       end
       resources :yelper, only: [:show], param: :slug
       get "/latest", to: "businesses#latest";
