@@ -18,7 +18,7 @@ import Map from "./components/Map/Map";
 
 // Questions Components
 const Questions = lazy(() => import("./components/questions/Questions"))
-
+const AnswersQuestions = lazy(() => import("./components/questions/AnswersQuestions"))
 // Auth Components
 // const Register = lazy(() => import("./components/register/Register"));
 const Login = lazy(() => import("./components/login/Login"));
@@ -127,7 +127,8 @@ const App = () => {
         <Route path="/menu/:menu_name" element={<ProtectedRoute><SuspenseLazy element={<Menu />} /></ProtectedRoute>}/>
 
         {/* Questions Components */}
-        <Route path="/questions/:question" element={<ProtectedRoute><SuspenseLazy element={<Questions />} /></ProtectedRoute>}/>
+        <Route path="/questions" element={<ProtectedRoute><SuspenseLazy element={<Questions />} /></ProtectedRoute>}/>
+        <Route path="/questions/:question" element={<ProtectedRoute><SuspenseLazy element={<AnswersQuestions />} /></ProtectedRoute>}/>
 
         {/* Home Components */}
         <Route path="/" element={<SuspenseLazy element={<ProtectedRoute><SuspenseLazy element={<Home />} /></ProtectedRoute>} />} />

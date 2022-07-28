@@ -4,8 +4,8 @@ import authHeader from "./auth_header";
 const API_URL = "http://localhost:3000/api/v1/businesses/";
 
 class questionService {
-  async getAll(business_slug) {
-    const { data } = await axios.get(API_URL + `${business_slug}/questions`, {
+  async getAll(business_slug, limit) {
+    const { data } = await axios.get(API_URL + `${business_slug}/questions?limit=${limit}`, {
       headers: authHeader(),
     });
     return data;

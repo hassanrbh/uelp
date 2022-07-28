@@ -42,7 +42,7 @@ class User < ApplicationRecord
   before_validation :check_if_password_confirmation?
 
   has_one_attached :avatar
-  has_many :login_activities, as: :user
+  # has_many :login_activities, as: :user
   has_many :shares
   has_many :answers
   has_many :business_images, class_name: "Image",
