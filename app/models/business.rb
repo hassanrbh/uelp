@@ -74,11 +74,12 @@ class Business < ApplicationRecord
   validates :max_price, presence: true, numericality: true
   
   has_many_attached :images
+  has_many :images_uploaded_by_user, class_name: "Image",
+  primary_key:  :id,
+  foreign_key: :business_id
   has_one_attached :avatar
-
   has_one :community
   has_many :community_questions, through: :community, source: :questions
-
   has_many :menus
   has_many :shares
   has_one :working_hour
