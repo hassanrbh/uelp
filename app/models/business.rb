@@ -75,8 +75,10 @@ class Business < ApplicationRecord
   
   has_many_attached :images
   has_one_attached :avatar
+
   has_one :community
-  has_many :questions, through: :community, source: :questions
+  has_many :community_questions, through: :community, source: :questions
+
   has_many :menus
   has_many :shares
   has_one :working_hour
@@ -90,6 +92,7 @@ class Business < ApplicationRecord
   
   after_create :create_price_point
   after_create :create_categorie_point
+  after_create :create_community
   
   scope :filter_by_category, -> (category) { where("lower(categorie_name) LIKE ?", "%#{category}%") }
   scope :filter_by_country, -> (country) { where("lower(country) LIKE ?", country) }
@@ -140,6 +143,12 @@ class Business < ApplicationRecord
     Business.filter_by_category(category).filter_by_country(country)
   end
   private 
+
+  def create_community
+    Community.create(
+      :business => self
+    )
+  end
   
   def create_price_point
     if (min_price != nil && max_price != nil) && (min_price != 0 && max_price != 0)

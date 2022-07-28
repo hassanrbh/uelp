@@ -1,4 +1,4 @@
-10.times do |i|
+1.times do |i|
   business = Business.new(
     :email => Faker::Internet.email,
     :name => Faker::Company.name,
