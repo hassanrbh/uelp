@@ -2,6 +2,16 @@ class Api::V1::QuestionsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @business = Business.find_by_name(params[:business_slug])
+    @questions = @business.community_questions
+
+    if (@questions.count >= 1)
+      return render :index, :status => :ok
+    end
+
+    render :json => {
+      :messg => "Yelp users haven’t asked any questions yet about #{@business.name}."
+    }
 
   end
 
@@ -15,14 +25,12 @@ class Api::V1::QuestionsController < ApplicationController
       BusinessMailer.notify_user_questioner(current_user).deliver_now
 
       return render :json => {
-        :question => @question.question,
         :success => "Question Save, Community Is Happy"
-      }
+      }, :status => :ok
+
     end
 
-    return render :json => {
-      :errors => @question.errors.full_messages
-    }
+    return render :error, :status => :not_found
   end
 
   def questions_params

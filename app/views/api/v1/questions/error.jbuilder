@@ -1,0 +1,1 @@
+json.errors @question.errors.full_messages
