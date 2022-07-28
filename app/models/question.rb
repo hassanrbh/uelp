@@ -16,6 +16,7 @@ class Question < ApplicationRecord
   belongs_to :community
   belongs_to :user
   has_one :business, through: :community, source: :business
+  has_many :answers, dependent: :destroy
 
   private
 

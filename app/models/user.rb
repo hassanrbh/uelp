@@ -44,6 +44,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many :login_activities, as: :user
   has_many :shares
+  has_many :answers
   has_many :business_images, class_name: "Image",
   primary_key:  :id,
   foreign_key: :user_id
