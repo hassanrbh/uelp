@@ -31,7 +31,7 @@ const AskCommunity = () => {
         <div>
           <Questions business_slug={business_slug} />
         </div>
-        {questions_count !== 0 ? (
+        {questions_count >= 1 ? (
           <div className="mt-7">
             <Link
               to={`/questions`}

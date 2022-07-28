@@ -97,7 +97,7 @@ const RightNav = ({ username, logout, avatar }) => {
               xmlnsXlink="http://www.w3.org/1999/xlink"
               enableBackground="new 0 0 214.6279 199.8223"
               xmlns="http://www.w3.org/2000/svg"
-              className="cursor-pointer absolute right-[6.8rem] top-2"
+              className="cursor-pointer absolute right-[6.8rem] top-2 "
             >
               <path
                 fillRule="evenodd"
@@ -114,22 +114,17 @@ const RightNav = ({ username, logout, avatar }) => {
         </Link>
         <Link to="/profile/writereview" className="h-0">
           <Button
-            svgElement={<VisibilityIcon className="mr-1" />}
-            element="Write Review"
-            css="flex items-center rounded-lg bg-black px-4 py-2 opacity-100
-            text-white right-3 mr-[64px] hover:opacity-70
-            mt-[2px] hover:bg-gray-500 transition ease-in-out
+            element="Write a review"
+            css="rounded text-black px-2 py-2 right-3 mr-[64px]
+            mt-[2px] hover:bg-gray-200 transition ease-in-out duration-700
             lg:hidden smm:hidden sm:hidden 2xl:block xl:block"
           />
         </Link>
         <Link to="/biz" className="h-0">
           <Button
-            svgElement={<AddBusinessIcon className="mr-1" />}
-            element="Businesses"
-            css="flex items-center rounded-lg bg-rose-600 px-4 py-2 opacity-100
-            text-white right-3  hover:opacity-70
-            mt-[2px] hover:bg-rose-300 transition-all smm:hidden
-            ease-in-out 2xl:block lg:hidden sm:hidden 2xl:block"
+            element="For Businesses"
+            css="items-center rounded px-2 py-2 text-black right-3
+            mt-[2px] hover:bg-gray-200 transition-all smm:hidden ease-in-out duration-700 2xl:block lg:hidden sm:hidden 2xl:block"
           />
         </Link>
       </Stack>

@@ -7,7 +7,7 @@ const Button = ({svgElement, element, css}) => {
       className={css}
         >
           {svgElement}
-          <span className="font-bold subpixel-antialiased">{element}</span>
+          <span className="font-medium subpixel-antialiased">{element}</span>
     </button>
   );
 };

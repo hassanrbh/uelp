@@ -12,20 +12,26 @@ class Users::SessionsController < Devise::SessionsController
     end
 
     if resource.persisted?
-      # User.notify_latest_sign_in(resource).deliver_now
       render :create, :status => :ok
     else
-      user = User.find_by_email(params[:user][:email])
-      if (user.active_for_authentication?)
-        @errors.push("email or password are incorrect");
-        render json: { 
-          errors: @errors,
-        }, :status => :ok
-      else
-        @errors.push("account has been locked");
-        render json: { 
-          errors: @errors,
-        }, :status => :ok
+      begin 
+        user = User.find_by_email(params[:user][:email])
+        if (user.active_for_authentication?)
+          @errors.push("email or password are incorrect");
+          render json: { 
+            errors: @errors,
+          }, :status => :ok
+        else
+          @errors.push("account has been locked");
+          render json: { 
+            errors: @errors,
+          }, :status => :ok
+        end
+      rescue NoMethodError
+        @errors.push("email or password are not provided");
+          render json: { 
+            errors: @errors,
+          }, :status => :ok
       end
 
     end

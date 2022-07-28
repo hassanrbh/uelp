@@ -28,6 +28,7 @@ Rails.application.routes.draw do
         resources :menus, only: [:show, :index, :create, :update,:destroy], param: :menu_name
         get "/popular_dishes", to: "menu#popular_dishes"
         resources :working_hours, only: [:index]
+        resources :images, only: [:create, :show, :index]
         resources :amentys, only: [:index]
         resources :share, only: [:create]
         resources :questions, only: [:create, :index] do
