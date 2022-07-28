@@ -48,6 +48,14 @@ class User < ApplicationRecord
   primary_key:  :id,
   foreign_key: :user_id
 
+  def calcul_total_images
+    total_sum = 0
+    self.business_images.each do |image|
+      total_sum = image.images.count
+    end
+    total_sum + self.business_images.count
+  end
+
   validates :email, presence: true, :uniqueness => {:case_sensitive => true}
   validates :username, presence: true, uniqueness: true, :format => { with: /^[a-z0-9_-]{3,15}$/, message: "not real ", :multiline => true}
   validates :first_name, presence: true
