@@ -79,8 +79,12 @@ class Business < ApplicationRecord
   foreign_key: :business_id
   has_one_attached :avatar
   has_one :community
-  has_many :community_questions, through: :community, source: :questions
-  has_many :answers, through: :community, source: :answers
+  has_many :community_questions, class_name: "Question",
+      primary_key: :id,
+      foreign_key: :business_id
+  has_many :answers, class_name: "Answer",
+      primary_key: :id,
+      foreign_key: :business_id
   has_many :menus
   has_many :shares
   has_one :working_hour

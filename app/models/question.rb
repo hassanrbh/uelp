@@ -8,6 +8,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  user_id      :integer
+#  business_id  :integer
 #
 class Question < ApplicationRecord
   validates :question, presence: true
@@ -15,7 +16,7 @@ class Question < ApplicationRecord
 
   belongs_to :community
   belongs_to :user
-  has_one :business, through: :community, source: :business
+  belongs_to :business
   has_many :answers, dependent: :destroy
 
   private

@@ -9,6 +9,7 @@
 #  community_id :bigint
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  business_id  :integer
 #
 require 'rails_helper'
 
