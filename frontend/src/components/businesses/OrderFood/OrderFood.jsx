@@ -1,18 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import AnimatedBar from "./AnimatedBar";
 import DeliveryInfo from "./DeliveryInfo";
 import { TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import FeeInfo from "./FeeInfo";
+import { useQuery } from "react-query";
+import geoPifyAutoCompletion from "../../../api/geoapify-auto";
+import useDebounce from "../../../hooks/useDebounce";
+import useOnClickOutside from "../../../hooks/useOnClickOutside";
 
 const OrderFood = () => {
   const navigate = useNavigate();
-
+  const ref = useRef()
   const [toggleForDelivery, setIsToggleForDelivery] = useState(true);
   const [isActiveDelivery, setIsActiveDelivery] = useState(true);
   const [toggleForTakeout, setIsToggleForTakeout] = useState(false);
   const [isActiveTakeout, setIsActiveTakeout] = useState(false);
   const [captureAddress, setCaptureAddress] = useState("");
+  const [address, setAddress] = useState("");
+  const [closePanel, setClosePanel] = useState("");
+
+  const debouncedaddress = useDebounce(captureAddress, 500);
+
+  useOnClickOutside(ref, () => setClosePanel((prev) => !prev));
+
+  const {
+    data: addresses,
+    isLoading,
+    isSuccess,
+  } = useQuery(
+    ["geoApify"],
+    () => geoPifyAutoCompletion.getData(debouncedaddress),
+    {
+      enabled: captureAddress.length >= 1 ? Boolean(debouncedaddress) : false,
+    }
+  );
 
   const toggling = (e) => {
     if (e.target.dataset.id === "delivery") {
@@ -30,15 +52,17 @@ const OrderFood = () => {
 
   const v2ToPayment = (e) => {
     e.preventDefault();
-    return navigate(
-      "/order", {
-        replace: true,
-        state: {
-          type: "delivery",
-          captureAddress
-        }
-      }
-    )
+    return navigate("/order", {
+      replace: true,
+      state: {
+        type: "delivery",
+        captureAddress,
+      },
+    });
+  };
+
+  const updateCaptureAddress = (e) => {
+    setCaptureAddress(e.target.value);
   };
 
   return (
@@ -86,21 +110,42 @@ const OrderFood = () => {
           <div className="text-center flex flex-col">
             <DeliveryInfo />
             <form onSubmit={(e) => v2ToPayment(e)}>
-              <TextField
-                label="Delivery Address"
-                color="primary"
-                value={captureAddress}
-                variant="outlined"
-                margin="normal"
-                required
-                sx={{ width: "100%" }}
-                className="p-[10px] m-[4px]"
-                autoComplete="off"
-                onChange={(e) => setCaptureAddress(e.target.value)}
-                InputProps={{
-                  className: "p-0 h-[48px]"
-                }}
-              />
+              <div>
+                <div className="relative">
+                  <TextField
+                    label="Delivery Address"
+                    color="primary"
+                    value={captureAddress}
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    sx={{ width: "100%" }}
+                    className="p-[10px] m-[4px]"
+                    autoComplete="off"
+                    onChange={(e) => updateCaptureAddress(e)}
+                    InputProps={{
+                      className: "p-0 h-[48px]",
+                    }}
+                    onClick={() => setClosePanel((prev) => false)}
+                  />
+                  {!isLoading && isSuccess && !closePanel ? (
+                    <div ref={ref} className={`bg-gray min-w-[329px]  absolute p-3 h-fit bottom-[-35px] top-[64px] z-50 overflow-y-auto shadow padding-[16px] bg-[#fff] rounded-[4px]`}>
+                    {addresses?.features?.map((address, __idx__) => (
+                        <p
+                          key={__idx__}
+                          className="font-light hover:bg-gray-100 text-left mt-1 cursor-pointer rounded-md"
+                          onClick={(e) => {
+                            setCaptureAddress(e.target.textContent)
+                            setClosePanel((prev) => !prev)
+                          }}
+                        >
+                          {address?.properties?.address_line2}
+                        </p>
+                    ))}
+                  </div>                    
+                  ) : null}
+                </div>
+              </div>
               <button
                 type="submit"
                 className="mt-2 bg-[#e00706] px-[16px] py-[7px] rounded-md ease-in-out hover:bg-[#e86464] transition-colors duration-700  text-white font-medium text-center inline w-full"
@@ -110,9 +155,7 @@ const OrderFood = () => {
             </form>
           </div>
         ) : null}
-        {toggleForTakeout ? (
-          <FeeInfo />
-        ) : null}
+        {toggleForTakeout ? <FeeInfo /> : null}
       </div>
     </div>
   );
