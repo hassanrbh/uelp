@@ -1,12 +1,14 @@
 import React from "react";
 import client from "../../../services/react-query";
 import Divider from "../../reusableComponents/Dividor";
-import { Link } from "react-router-dom";
+import { Link, useParams} from "react-router-dom";
 import {FlagIcon} from "@heroicons/react/outline";
 
 const ModalContent = ({setSwitcher}) => {
-  const owner = client.getQueryData(["unit-business"]).profile?.owner;
-  const additional_info = client.getQueryData(["unit-business"]).profile
+  const {business_name} = useParams()
+  const owner = client.getQueryData(["unit-business",business_name]).profile?.owner;
+
+  const additional_info = client.getQueryData(["unit-business",business_name]).profile
     ?.additional_info;
 
   return (

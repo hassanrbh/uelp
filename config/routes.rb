@@ -32,6 +32,9 @@ Rails.application.routes.draw do
         resources :amentys, only: [:index]
         resources :share, only: [:create]
         resources :questions, only: [:create, :index] , param: :slug do
+          collection do
+            get "/random_questions", to: "questions#random_questions_to_answer"
+          end
           resources :answers, only: [ :index, :create]
         end
       end

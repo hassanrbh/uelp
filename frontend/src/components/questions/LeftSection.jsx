@@ -1,7 +1,10 @@
 import React from 'react'
 import Divider from "../reusableComponents/Dividor";
+import {useParams} from "react-router-dom"
 
 const LeftSection = () => {
+  const {business_name} = useParams()
+  
   return (
     <div className="font-bold text-lg">
       <h1>Can you answer these questions?</h1>

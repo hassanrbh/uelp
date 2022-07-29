@@ -35,6 +35,13 @@ class Api::V1::QuestionsController < ApplicationController
 
   end
 
+  def random_questions_to_answer
+    @business = Business.find_by_name(params[:business_slug])
+    @questions = Question.random_questions_unanswered(@business)
+    
+    render :index, status: :ok
+  end
+
   def sort_by_popular(page)
     @business = Business.find_by_name(params[:business_slug])
     @questions = Question.sort_by_popular(@business).paginate(page: page, per_page: 5)

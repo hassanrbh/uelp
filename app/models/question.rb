@@ -20,9 +20,13 @@ class Question < ApplicationRecord
   has_many :answers, dependent: :destroy
 
   scope :sort_by_most_answered_question, -> (business) {
-    where("community_id = ?", business.community.id).includes(:answers)
+    where("community_id = ?", business.community.id).includes(:question).includes(:answers)
       all
         .each { |question| question.cache_count_answers >= 1 }
+  }
+
+  scope :random_questions_unanswered, -> (business) {
+    where("community_id = ?", business.community.id).limit(3).offset(2)
   }
   
   scope :sort_by_newest_questions, -> (business) { 
