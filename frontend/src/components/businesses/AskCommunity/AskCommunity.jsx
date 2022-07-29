@@ -34,13 +34,22 @@ const AskCommunity = () => {
         {questions_count >= 1 ? (
           <div className="mt-7">
             <Link
-              to={`/questions`}
+              to={`/questions/${business_slug}/`}
               className="border font-medium border-[#c8c9ca] px-[16px] py-[7px] rounded text-black hover:bg-gray-200 ease-in-out duration-700"
             >
               See all {questions_count} questions
             </Link>
           </div>
-        ) : null}
+        ) : (
+          <div className="mt-7">
+            <Link
+              to={`/questions/${business_slug}/`}
+              className="border font-medium border-[#c8c9ca] px-[16px] py-[7px] rounded text-black hover:bg-gray-200 ease-in-out duration-700"
+            >
+              See all questions
+            </Link>
+          </div>
+        )}
       </div>
       <Dividor />
     </>
