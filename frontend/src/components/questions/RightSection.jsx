@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
-import DynamicQuestions from "./DynamicQuestions";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 import { Transition } from '@headlessui/react'
 

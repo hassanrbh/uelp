@@ -2,6 +2,7 @@ import React, { useState} from "react";
 import { ShareIcon } from "@heroicons/react/outline";
 import Modal from "../../reusableComponents/Modal";
 import ShareContent from "../Share/ShareContent";
+import { Transition } from '@headlessui/react'
 
 const Share = () => {
   const [switcher, setSwitcher] = useState(false);
@@ -16,11 +17,20 @@ const Share = () => {
         <p className="font-medium">Share</p>
       </button>
       {switcher ? (
-        <Modal
-          setSwitcher={setSwitcher}
-          component={<ShareContent />}
-          component_name={<span className="font-bold text-xl">Share Business</span>}
-        />
+        <Transition
+        show={switcher}
+        enter="transition-opacity duration-50"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+        leave="transition-opacity duration-150"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0">
+          <Modal
+            setSwitcher={setSwitcher}
+            component={<ShareContent />}
+            component_name={<span className="font-bold text-xl">Share Business</span>}
+          />
+        </Transition>
       ) : null}
     </div>
   );
