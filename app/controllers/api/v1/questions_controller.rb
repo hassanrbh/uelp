@@ -23,6 +23,11 @@ class Api::V1::QuestionsController < ApplicationController
 
   end
 
+  def sorty_by
+    sort_by = params[:sort_by]
+
+  end
+
   def create
     @business = Business.find_by_name(params[:business_slug])
     @question = @business.community.questions.new(questions_params)
@@ -31,7 +36,7 @@ class Api::V1::QuestionsController < ApplicationController
 
     begin
       if (@question.save)
-        BusinessMailer.notify_business_owner(@business, @question).deliver_now
+        BusinessMailer.notify_business_owner(current_user,@business, @question).deliver_now
         BusinessMailer.notify_user_questioner(current_user, @business).deliver_now
 
         return render :json => {

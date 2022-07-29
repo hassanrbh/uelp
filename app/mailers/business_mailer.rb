@@ -1,8 +1,9 @@
 class BusinessMailer < ApplicationMailer
 
-  def notify_business_owner(business, question)
+  def notify_business_owner(current_user,business, question)
     @question = question
     @business = business
+    @current_user = current_user
     mail(to: business.email, subject: "#{current_user.username} ask a question in the community")
   end
   

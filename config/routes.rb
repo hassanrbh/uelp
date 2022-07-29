@@ -31,9 +31,10 @@ Rails.application.routes.draw do
         resources :images, only: [:create, :show, :index]
         resources :amentys, only: [:index]
         resources :share, only: [:create]
-        resources :questions, only: [:create, :index] do
-          resources :answers, only: [:show, :index, :create]
+        resources :questions, only: [:create, :index] , param: :slug do
+          resources :answers, only: [ :index, :create]
         end
+        get "/sort_by", to: "questions#sort_by"
       end
       resources :yelper, only: [:show], param: :slug
       get "/latest", to: "businesses#latest";
