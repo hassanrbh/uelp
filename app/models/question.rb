@@ -19,6 +19,27 @@ class Question < ApplicationRecord
   belongs_to :business
   has_many :answers, dependent: :destroy
 
+  scope :sort_by_most_answered_question, -> (business) {
+    where("community_id = ?", business.community.id).includes(:answers)
+      all
+        .each { |question| question.cache_count_answers >= 1 }
+  }
+  
+  scope :sort_by_newest_questions, -> (business) { 
+    where("community_id = ?", business.community.id)
+      .order("created_at DESC")
+  }
+
+  scope :sort_by_popular, -> (business) {
+    where("community_id = ?", business.community.id)
+  }
+
+  def cache_count_answers
+    Rails.cache.fetch(["v1", self.class.name,:cache_count_answers, self.question], expires_in: 4.hours) do
+      self.answers.count
+    end
+  end
+
   private
 
   def check_question

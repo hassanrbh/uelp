@@ -2,9 +2,21 @@ class Api::V1::QuestionsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    sort_by = params[:sort_by]
     limit = params[:limit]
     @business = Business.find_by_name(params[:business_slug])
     @questions = @business.community_questions
+
+
+    if ((sort_by.present?) && !!(sort_by =~ /.*(popular|Popular|most_answered|newest_questions).*/))
+      if !!(sort_by =~ /.*(popular|Popular).*/)
+        return sort_by_popular
+      elsif !!(sort_by =~ /.*(most_answered).*/)
+        return sort_by_most_answered_question
+      else
+        return sort_by_newest_questions
+      end
+    end
 
     if (limit.present? && Integer(limit) <= 2)
       @questions = @questions.limit(2)
@@ -23,9 +35,25 @@ class Api::V1::QuestionsController < ApplicationController
 
   end
 
-  def sorty_by
-    sort_by = params[:sort_by]
+  def sort_by_popular
+    @business = Business.find_by_name(params[:business_slug])
+    @questions = Question.sort_by_popular(@business)
 
+    render :index, status: :ok
+  end
+
+  def sort_by_newest_questions
+    @business = Business.find_by_name(params[:business_slug])
+    @questions = Question.sort_by_newest_questions(@business)
+
+    render :index, status: :ok
+  end
+
+  def sort_by_most_answered_question
+    @business = Business.find_by_name(params[:business_slug])
+    @questions = Question.sort_by_most_answered_question(@business)
+    
+    render :index, status: :ok
   end
 
   def create
