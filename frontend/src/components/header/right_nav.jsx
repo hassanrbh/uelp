@@ -14,7 +14,6 @@ import "tippy.js/animations/scale.css";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import AddBusinessIcon from "@mui/icons-material/AddBusiness";
 
-
 const RightNav = ({ username, logout, avatar }) => {
   const [isHover, setIsHover] = useState(false);
   const addColors = (e) => {
@@ -89,25 +88,19 @@ const RightNav = ({ username, logout, avatar }) => {
             interactive={true}
           >
             <svg
-              width="30px"
-              height="30px"
-              x="0px"
-              y="0px"
-              viewBox="0 0 20 20"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-              enableBackground="new 0 0 214.6279 199.8223"
               xmlns="http://www.w3.org/2000/svg"
-              className="cursor-pointer absolute right-[6.8rem] top-2 "
+              className="cursor-pointer absolute right-[6.8rem] top-2"
+              width="26px"
+              height="29px"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
             >
               <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M1.68542 6.65868C0.758716 6.96758 0.779177 8.28543 1.71502 8.56541L9.20844 10.8072L11.6551 18.5165C11.948 19.4394 13.2507 19.4488 13.5569 18.5302L18.8602 2.62029C19.1208 1.83853 18.3771 1.09479 17.5953 1.35538L1.68542 6.65868ZM5.31842 7.55586L16.3304 3.8852L12.6316 14.9817L10.9548 9.69826C10.8547 9.38295 10.6052 9.13754 10.2883 9.04272L5.31842 7.55586Z"
-                fill="currentColor"
-              />
-              <path
-                d="M17.7674 1.43951L18.8105 2.51742L9.98262 11.0605L8.93948 9.98265L17.7674 1.43951Z"
-                fill="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
               />
             </svg>
           </Tippy>

@@ -13,23 +13,22 @@ import shareService from "../../../services/share.service";
 import client from "../../../services/react-query";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useParams } from "react-router-dom";
 
 const ShareContent = () => {
-  // const [saved, isSaved] = useState(false);
-  // const handleClick = () => {
-  //   navigator.clipboard.writeText(window.location.href);
-  //   isSaved((prev) => !prev);
-  //   setTimeout(() => {
-  //     isSaved((prev) => !prev);
-  //   }, 1000);
-  // };
+  const [saved, isSaved] = useState(false);
+  const handleClick = () => {
+    navigator.clipboard.writeText(window.location.href);
+    isSaved((prev) => !prev);
+    setTimeout(() => {
+      isSaved((prev) => !prev);
+    }, 1000);
+  };
   const [to, setTo] = useState("");
   const [note, setNote] = useState("");
-
-  const business_slug = client.getQueryData(["unit-business"]).profile
-    ?.private_details?.name;
+  const {business_name} = useParams()
   const { mutate, isLoading } = useMutation(
-    (params) => shareService.share(business_slug, params),
+    (params) => shareService.share(business_name, params),
     {
       onSuccess: (data) => {
         notify_success(data.send);

@@ -28,7 +28,7 @@ const Questions = (props) => {
         <div className="flex justify-between mt-5">
           <div>
             <RightSection />
-            <Divider />
+            <Divider className="w-[800px]"/>
             <DynamicQuestions />
           </div>
           <div>

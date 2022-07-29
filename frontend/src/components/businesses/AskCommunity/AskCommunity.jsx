@@ -1,7 +1,6 @@
 import React from "react";
 import { PlusIcon } from "@heroicons/react/outline";
 import { Link } from "react-router-dom";
-import client from "../../../services/react-query";
 import Questions from "./questions";
 import Dividor from "../../reusableComponents/Dividor";
 import {useParams} from "react-router-dom"
