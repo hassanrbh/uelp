@@ -2,7 +2,7 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import Divider from "../reusableComponents/Dividor";
 import { ChevronRightIcon } from "@heroicons/react/solid";
-import RightSection from "./RightSection"
+import RightSection from "./RightSection";
 import LeftSection from "./LeftSection";
 
 const Questions = (props) => {
@@ -24,9 +24,14 @@ const Questions = (props) => {
             Ask the Community
           </p>
         </div>
-        <div className="flex justify-between">
-          <RightSection />
-          <LeftSection />
+        <div className="flex justify-between mt-5">
+          <div>
+            <RightSection />
+            <Divider />
+          </div>
+          <div>
+            <LeftSection />
+          </div>
         </div>
       </div>
     </>
