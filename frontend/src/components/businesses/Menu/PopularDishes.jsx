@@ -10,18 +10,21 @@ import { Swiper, Navigation, Pagination } from "swiper";
 import Modal from "../../reusableComponents/Modal";
 import PopularDishesSkeleton from "./popularDishesSkeleton";
 import MenuImages from "./MenuImages";
+import { useParams} from "react-router-dom";
 
 const PopularDishes = () => {
   const [switcher, setSwitcher] = useState(false);
+  const { business_name } = useParams();
 
-  const url = client.getQueryData(["unit-business"]).profile?.additional_info
+  const url = client.getQueryData(["unit-business", business_name]).profile?.additional_info
     ?.web_address;
-  const name = client.getQueryData(["unit-business"]).profile?.private_details
+  const name = client.getQueryData(["unit-business", business_name]).profile?.private_details
     ?.name;
   const { data, isSuccess, isError, isLoading, error } = useQuery(
     ["menus_for", name],
     () => menuService.getAllMenus(name)
   );
+
   useEffect(() => {
     const swiper = new Swiper(".swiper", {
       // configure Swiper to use modules

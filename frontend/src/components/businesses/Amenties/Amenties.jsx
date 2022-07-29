@@ -6,13 +6,14 @@ import Loading from "../../reusableComponents/Loading";
 import SetEmogies from "./setEmogies";
 import MoreAmenties from "./MoreAmenties";
 import Divider from "../../reusableComponents/Dividor"
+import {useParams} from "react-router-dom"
+
 
 const Amenties = () => {
-  const business_slug = client.getQueryData(["unit-business"]).profile
-    .private_details.name;
+  const { business_name } = useParams();
   const { data, isLoading, isSuccess, error, isError } = useQuery(
-    ["amentys_for", business_slug],
-    () => amentyService.getIndex(business_slug)
+    ["amentys_for", business_name],
+    () => amentyService.getIndex(business_name)
   );
   const [toggle, setToggle] = useState(false);
 

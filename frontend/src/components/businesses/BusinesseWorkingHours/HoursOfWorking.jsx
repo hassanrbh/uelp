@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { useQuery } from "react-query";
-import client from "../../../services/react-query";
 import WorkingHours from "../../../services/working_hours.service";
 import Loading from "../../reusableComponents/Loading";
+import {useParams} from "react-router-dom"
 
 const HoursOfWorking = () => {
-  const name = client.getQueryData(["unit-business"]).profile.private_details
-    .name;
+  const { business_name } = useParams();
+
   const {
     data: working_hours,
     isLoading,
     isSuccess,
-  } = useQuery(["working_hours_for", name], () =>
-    WorkingHours.getWorkingHours(name)
+  } = useQuery(["working_hours_for", business_name], () =>
+    WorkingHours.getWorkingHours(business_name)
   );
 
   if (isLoading) return <Loading />;

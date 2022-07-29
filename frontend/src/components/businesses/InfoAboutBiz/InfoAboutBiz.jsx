@@ -7,9 +7,11 @@ import {
 import client from "../../../services/react-query";
 import Dividor from "../../reusableComponents/Dividor";
 import { Link } from "react-router-dom";
+import {useParams} from "react-router-dom"
 
 const InfoAboutBiz = () => {
-  const business = client.getQueryData(["unit-business"]).profile;
+  const { business_name } = useParams();
+  const business = client.getQueryData(["unit-business",business_name]).profile;
 
   return (
     <div className="border border-[#ebebeb] w-[363px] h-auto rounded-lg ml-[30px] mt-5">

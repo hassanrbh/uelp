@@ -2,10 +2,12 @@ import React, {useState} from "react";
 import client from "../../../services/react-query";
 import Modal from "../../reusableComponents/Modal";
 import ModalContent from "./ModalContent";
+import {useParams} from "react-router-dom"
 
 const AboutBusiness = () => {
-  const owner = client.getQueryData(["unit-business"]).profile?.owner;
-  const description = client.getQueryData(["unit-business"]).profile?.private_details?.description;
+  const { business_name } = useParams();
+  const owner = client.getQueryData(["unit-business",business_name]).profile?.owner;
+  const description = client.getQueryData(["unit-business",business_name]).profile?.private_details?.description;
 
   const [switcher, setSwitcher] = useState(false);
 

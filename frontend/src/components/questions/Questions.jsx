@@ -4,6 +4,7 @@ import Divider from "../reusableComponents/Dividor";
 import { ChevronRightIcon } from "@heroicons/react/solid";
 import RightSection from "./RightSection";
 import LeftSection from "./LeftSection";
+import DynamicQuestions from "./DynamicQuestions";
 
 const Questions = (props) => {
   const { business } = useParams();
@@ -28,6 +29,7 @@ const Questions = (props) => {
           <div>
             <RightSection />
             <Divider />
+            <DynamicQuestions />
           </div>
           <div>
             <LeftSection />

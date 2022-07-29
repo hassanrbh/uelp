@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { BeakerIcon } from '@heroicons/react/outline'
-import client from '../../../services/react-query'
+import {useParams} from "react-router-dom"
 
 const FullMenu = () => {
-  const business_name = client.getQueryData(["unit-business"]).profile.private_details.name;
+  const { business_name } = useParams();
   return (
     <Link
       to={`/menu/${business_name}`}

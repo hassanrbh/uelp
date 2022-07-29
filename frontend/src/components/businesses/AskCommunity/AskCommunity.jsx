@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import client from "../../../services/react-query";
 import Questions from "./questions";
 import Dividor from "../../reusableComponents/Dividor";
+import {useParams} from "react-router-dom"
 
 const AskCommunity = () => {
-  const business_slug = client.getQueryData(["unit-business"]).profile
-    .private_details.name;
+  const { business_name } = useParams();
 
   return (
     <>
@@ -27,7 +27,7 @@ const AskCommunity = () => {
           </Link>
         </div>
         <div>
-          <Questions business_slug={business_slug} />
+          <Questions business_slug={business_name} />
         </div>
       </div>
       <Dividor />

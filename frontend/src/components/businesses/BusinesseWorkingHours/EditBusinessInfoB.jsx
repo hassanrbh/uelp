@@ -1,14 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link,useParams } from "react-router-dom";
 import client from "../../../services/react-query"
 import {
   PencilIcon,
 } from "@heroicons/react/outline";
 
-const EditBusinessInfoB = () => {
-  const name = client.getQueryData(["unit-business"]).profile.private_details.name;
 
-  return <Link to={`/biz_attributes?biz_id=${name}`} className="flex flex-row-reverse mt-2 pr-[190px]">
+const EditBusinessInfoB = () => {
+  const { business_name } = useParams();
+
+  return <Link to={`/biz_attributes?biz_id=${business_name}`} className="flex flex-row-reverse mt-2 pr-[190px]">
     <p className="text-teal-500 font-bold">Edit Business Info</p>
     <PencilIcon width={18}
             height={18}

@@ -4,11 +4,14 @@ import { MapContainer, TileLayer, Marker } from "react-leaflet";
 // import IpTracker from "../../../api/ip_info";
 import client from "../../../services/react-query";
 import MapSkeleton from "./MapSkeleton";
+import { useParams } from "react-router-dom";
 require("react-leaflet-markercluster/dist/styles.min.css");
 
 const Map = () => {
-  const latitude = client.getQueryData(["unit-business"]).profile?.coords_details?.latitude;
-  const longitude = client.getQueryData(["unit-business"]).profile?.coords_details?.longitude;
+  const { business_name } = useParams();
+
+  const latitude = client.getQueryData(["unit-business",business_name]).profile?.coords_details?.latitude;
+  const longitude = client.getQueryData(["unit-business",business_name]).profile?.coords_details?.longitude;
   // const [combLongLit, setCombLongLit] = useState([]);
   // const address = client.getQueryData(["unit-business"]).profile?.business_details?.address;
   // const { isLoading, isSuccess, error, isError } = useQuery(

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import UserService from "../../services/auth.service";
@@ -16,10 +16,20 @@ import AskCommunity from "./AskCommunity/AskCommunity";
 
 const UnitBusiness = () => {
   const { business_name } = useParams();
+  const [isHere, setISHERE] = useState(false);
   const { isSuccess, isLoading, isError, error } = useQuery(
-    ["unit-business"],
-    () => UserService.getBusiness(business_name)
+    ["unit-business",business_name],
+    () => UserService.getBusiness(business_name), 
+    {
+      isSuccess: (data) => {
+        console.log(data)
+      }
+    }
   );
+
+  useEffect(() => {
+    setISHERE(true)
+  }, [business_name]);
 
   if (isLoading) return <div>loading ...</div>;
   if (isError) return <div>{error}</div>;

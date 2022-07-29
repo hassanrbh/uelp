@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import client from "../../../services/react-query";
+import {useParams} from "react-router-dom"
+
 
 const GetDirection = () => {
-  const address = client.getQueryData(["unit-business"]).profile?.business_details?.address;
+  const { business_name } = useParams();
+  const address = client.getQueryData(["unit-business", business_name]).profile?.business_details?.address;
 
   return (
     <Link

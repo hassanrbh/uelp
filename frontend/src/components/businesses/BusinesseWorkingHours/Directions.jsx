@@ -1,9 +1,11 @@
 import React from 'react'
 import client from "../../../services/react-query";
 import GetDirection from "../CustomButtons/GetDirection"
+import {useParams} from "react-router-dom"
 
 const Directions = () => {
-  const business_details = client.getQueryData(["unit-business"]).profile.business_details;
+  const { business_name } = useParams();
+  const business_details = client.getQueryData(["unit-business",business_name]).profile.business_details;
 
   return (
     <div className="flex mt-3 justify-between">
