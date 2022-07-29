@@ -1,6 +1,5 @@
 import React from "react";
 import { Link,useParams } from "react-router-dom";
-import client from "../../../services/react-query"
 import {
   PencilIcon,
 } from "@heroicons/react/outline";

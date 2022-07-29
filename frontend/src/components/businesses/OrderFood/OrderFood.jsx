@@ -16,8 +16,8 @@ const OrderFood = () => {
   const [isActiveDelivery, setIsActiveDelivery] = useState(true);
   const [toggleForTakeout, setIsToggleForTakeout] = useState(false);
   const [isActiveTakeout, setIsActiveTakeout] = useState(false);
+  const [addresses, setAddresses] = useState([])
   const [captureAddress, setCaptureAddress] = useState("");
-  const [address, setAddress] = useState("");
   const [closePanel, setClosePanel] = useState("");
 
   const debouncedaddress = useDebounce(captureAddress, 500);
@@ -25,7 +25,6 @@ const OrderFood = () => {
   useOnClickOutside(ref, () => setClosePanel((prev) => !prev));
 
   const {
-    data: addresses,
     isLoading,
     isSuccess,
   } = useQuery(
@@ -33,6 +32,10 @@ const OrderFood = () => {
     () => geoPifyAutoCompletion.getData(debouncedaddress),
     {
       enabled: captureAddress.length >= 1 ? Boolean(debouncedaddress) : false,
+      onSuccess: (data) => {
+        setAddresses(data)
+        setCaptureAddress("");
+      }
     }
   );
 
@@ -52,6 +55,9 @@ const OrderFood = () => {
 
   const v2ToPayment = (e) => {
     e.preventDefault();
+
+    setCaptureAddress("");
+    
     return navigate("/order", {
       replace: true,
       state: {
