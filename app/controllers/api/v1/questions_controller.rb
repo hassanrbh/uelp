@@ -18,8 +18,9 @@ class Api::V1::QuestionsController < ApplicationController
     end
 
     return render :json => {
-      :mesg => "Yelp users haven’t asked any questions yet about #{@business.name}."
+      :mesg => "Yelp users haven't asked any questions yet about #{@business.name}."
     }
+
   end
 
   def create
@@ -30,8 +31,8 @@ class Api::V1::QuestionsController < ApplicationController
 
     begin
       if (@question.save)
-        BusinessMailer.notify_business_owner(@business).deliver_now
-        BusinessMailer.notify_user_questioner(current_user).deliver_now
+        BusinessMailer.notify_business_owner(@business, @question).deliver_now
+        BusinessMailer.notify_user_questioner(current_user, @business).deliver_now
 
         return render :json => {
           :success => "Question Save, Community Is Happy"
