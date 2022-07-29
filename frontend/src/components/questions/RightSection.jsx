@@ -2,11 +2,13 @@ import React, { useState, useRef } from "react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import DynamicQuestions from "./DynamicQuestions";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
+import { Transition } from '@headlessui/react'
+
 
 const RightSection = () => {
   const ref = useRef();
 
-  useOnClickOutside(ref, () => setIsOpen((prev) => !prev));
+  useOnClickOutside(ref, () => setIsOpen((prev) => false));
 
   const [Items] = useState(["Popular", "Most Answered", "Newest First"]);
   const [activeMenuItem, SetActiveMenuItem] = useState("Popular");
@@ -16,7 +18,7 @@ const RightSection = () => {
     <>
       <div className="mt-2">
         <h1 className="font-bold text-2xl">Ask the Community</h1>
-        <div className="font-light text-sm mt-1 flex ml-1 ">
+        <div className="font-light text-sm mt-1 flex ml-1 " ref={ref}>
           Sort by{" "}
           <span
             className="ml-1 text-[rgba(2,122,151,1)] font-bold flex cursor-pointer"
@@ -26,11 +28,19 @@ const RightSection = () => {
             <ChevronDownIcon className="h-4 w-4 relative mt-[2px] ml-1" />
           </span>
         </div>
-        {isOpen ? (
+        <Transition
+        show={isOpen}
+        enter="transition-opacity duration-100"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+        leave="transition-opacity duration-200"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0"
+        >
+          {isOpen ? (
           <>
             <div
               className="shadow bg-[#fff] p-[15px] rounded-md max-w-fit absolute z-[100]"
-              ref={ref}
               onClick={() => setIsOpen((prev) => !prev)}
             >
               {Items.map((item, __idx__) => (
@@ -51,6 +61,8 @@ const RightSection = () => {
             </div>
           </>
         ) : null}
+
+        </Transition>
       </div>
     </>
   );
