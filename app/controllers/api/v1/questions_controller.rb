@@ -3,18 +3,18 @@ class Api::V1::QuestionsController < ApplicationController
 
   def index
     sort_by = params[:sort_by]
+    page = params[:page]
     limit = params[:limit]
     @business = Business.find_by_name(params[:business_slug])
     @questions = @business.community_questions
 
-
     if ((sort_by.present?) && !!(sort_by =~ /.*(popular|Popular|most_answered|newest_questions).*/))
       if !!(sort_by =~ /.*(popular|Popular).*/)
-        return sort_by_popular
+        return sort_by_popular(page)
       elsif !!(sort_by =~ /.*(most_answered).*/)
-        return sort_by_most_answered_question
+        return sort_by_most_answered_question(page)
       else
-        return sort_by_newest_questions
+        return sort_by_newest_questions(page)
       end
     end
 
@@ -35,23 +35,23 @@ class Api::V1::QuestionsController < ApplicationController
 
   end
 
-  def sort_by_popular
+  def sort_by_popular(page)
     @business = Business.find_by_name(params[:business_slug])
-    @questions = Question.sort_by_popular(@business)
+    @questions = Question.sort_by_popular(@business).paginate(page: page, per_page: 5)
 
     render :index, status: :ok
   end
 
-  def sort_by_newest_questions
+  def sort_by_newest_questions(page)
     @business = Business.find_by_name(params[:business_slug])
-    @questions = Question.sort_by_newest_questions(@business)
+    @questions = Question.sort_by_newest_questions(@business).paginate(page: page, per_page: 5)
 
     render :index, status: :ok
   end
 
-  def sort_by_most_answered_question
+  def sort_by_most_answered_question(page)
     @business = Business.find_by_name(params[:business_slug])
-    @questions = Question.sort_by_most_answered_question(@business)
+    @questions = Question.sort_by_most_answered_question(@business).paginate(page: page, per_page: 5)
     
     render :index, status: :ok
   end
