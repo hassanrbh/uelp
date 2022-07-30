@@ -14,8 +14,8 @@ const RightSection = () => {
 
   return <>
     <div className="mt-2" ref={ref}>
-      <h1 className="font-bold text-2xl">Ask the Community</h1>
-      <div className="font-light text-sm mt-1 flex ml-1">
+      <h1 className="font-bold text-3xl">Ask the Community</h1>
+      <div className="text-sm font-normal flex mt-2">
         Sort by{" "}
         <span
           className="ml-1 text-[rgba(2,122,151,1)] font-bold flex cursor-pointer"

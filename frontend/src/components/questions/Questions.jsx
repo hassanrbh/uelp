@@ -21,7 +21,7 @@ const Questions = (props) => {
             {business}
           </Link>
           <ChevronRightIcon className="h-4 relative bottom-[5px] mr-1 ml-1 w-5 font-bold text-gray-600" />
-          <p className="font-semibold text-sm text-gray-600 relative bottom-2">
+          <p className="font-semibold text-sm text-gray-600 relative bottom-2 ">
             Ask the Community
           </p>
         </div>
