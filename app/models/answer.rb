@@ -16,5 +16,4 @@ class Answer < ApplicationRecord
   belongs_to :community
   belongs_to :question
   belongs_to :business
-
 end

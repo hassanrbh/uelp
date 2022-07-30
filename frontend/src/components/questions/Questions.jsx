@@ -1,10 +1,9 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import Divider from "../reusableComponents/Dividor";
 import { ChevronRightIcon } from "@heroicons/react/solid";
 import RightSection from "./RightSection";
 import LeftSection from "./LeftSection";
-import DynamicQuestions from "./DynamicQuestions";
+import Divider from "../reusableComponents/Dividor";
 
 const Questions = (props) => {
   const { business } = useParams();
@@ -28,8 +27,6 @@ const Questions = (props) => {
         <div className="flex justify-between mt-5">
           <div>
             <RightSection />
-            <Divider className="w-[800px]"/>
-            <DynamicQuestions />
           </div>
           <div>
             <LeftSection business={business}/>

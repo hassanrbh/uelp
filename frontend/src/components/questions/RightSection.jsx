@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 import { Transition } from '@headlessui/react'
+import DynamicQuestions from "./DynamicQuestions";
+import Dividor from "../reusableComponents/Dividor";
 
 const RightSection = () => {
   const ref = useRef();
@@ -62,6 +64,8 @@ const RightSection = () => {
       ) : null}
 
       </Transition>
+      <Dividor className="w-[800px]"/>
+      <DynamicQuestions currentItem={activeMenuItem === "Most Answered" ? "most_answered" : activeMenuItem}/>
     </div>
   </>;
 };
