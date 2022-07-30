@@ -9,7 +9,6 @@
 #  updated_at   :datetime         not null
 #  user_id      :integer
 #  business_id  :integer
-#  answer_id    :integer
 #
 class Question < ApplicationRecord
   validates :question, presence: true
@@ -22,7 +21,9 @@ class Question < ApplicationRecord
 
   scope :sort_by_most_answered_question,
         ->(business) {
-          where("community_id = ?", business.community.id)
+          where("community_id = ?", business.community.id).includes(
+            :answers
+          ).order("answers.id ASC")
         }
 
   scope :random_questions_unanswered,
@@ -55,9 +56,9 @@ class Question < ApplicationRecord
 
   def check_question
     if !!(
-        self.question =~
-          /.*(Why|who|why|Who|Is|is|I|what|What|Do|do|did|Did).*/
-      ) && self.question.include?("?")
+         self.question =~
+           /.*(Why|who|why|Who|Is|is|I|what|What|Do|do|did|Did).*/
+       ) && self.question.include?("?")
       return true
     end
     return(
