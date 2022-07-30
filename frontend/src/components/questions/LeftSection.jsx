@@ -15,7 +15,7 @@ const LeftSection = ({ business }) => {
 
 
   return (
-    <div className="font-bold text-xl">
+    <div className="font-bold text-xl sticky top-[10px]">
       <h1>Can you answer these questions?</h1>
       <Divider />
       {!isLoading && questions?.questions?.length >= 1 ? (

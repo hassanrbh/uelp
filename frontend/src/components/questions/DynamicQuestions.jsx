@@ -36,9 +36,7 @@ const DynamicQuestions = ({ currentItem }) => {
         <Question
           question={question?.question}
           writer={question?.questioner?.username}
-          answer={question?.answers}
-          answerer={question?.answers?.answerer?.username}
-          avatar={question?.answers?.answerer?.avatar}
+          answers={question?.answers}
         />
       ))}
       <Pagination count={questions?.total_pages} 

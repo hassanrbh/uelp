@@ -28,7 +28,7 @@ const Questions = ({ business_slug }) => {
               <div>
                 {question?.answers?.length >= 1 ? (
                   <div>
-                    {question?.answers?.map((answer, __idxans__) => (
+                    {question?.answers.slice(0,1)?.map((answer, __idxans__) => (
                       <Answers
                         key={__idxans__}
                         question={question}
