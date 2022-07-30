@@ -39,9 +39,9 @@ const Questions = ({ business_slug }) => {
                   <div className="m-2 relative left-[22px] font-normal mt-1 text-sm text-[rgba(110,112,114,1)]">
                     <p>
                       Asked by{" "}
-                      <span className="text-[rgba(2,122,151,1)] font-semibold">
+                      <Link to={`/user_details?username=${question?.questioner?.username}`} className="text-[rgba(2,122,151,1)] font-semibold  hover:underline">
                         {question?.questioner?.username}
-                      </span>
+                      </Link>
                     </p>
                     <span className="relative top-[10px] text-gray-700">
                       No answers yet.

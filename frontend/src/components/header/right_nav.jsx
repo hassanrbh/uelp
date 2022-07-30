@@ -31,53 +31,24 @@ const RightNav = ({ username, logout, avatar }) => {
           content={<span className="font-bold">Notifications</span>}
           interactive={true}
           animation="scale"
-          className="mr-[9px]"
+          className="relative mr-1 bottom-1"
         >
-          <Link to="/profile/notifications" className="2xl:block xl:block">
+          <Link to="/profile/notifications" className="2xl:block xl:block mr-[18px]">
             <svg
-              onMouseEnter={addColors}
-              onMouseLeave={clearColors}
               xmlns="http://www.w3.org/2000/svg"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-              version="1.1"
-              id="webnotification"
-              x="0px"
-              y="0px"
-              viewBox="0 0 214.6279 199.8223"
-              enableBackground="new 0 0 214.6279 199.8223"
-              width="30"
-              height="30"
               className="cursor-pointer absolute right-12 top-2 mr-2"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+              width="28px"
+              height="30px"
             >
-              <g>
-                <path
-                  fill="#5CB0FF"
-                  d="M110.4863,184h82.5234l-41.2617-75.6484L110.4863,184z M155.748,168h-8v-44h8V168z"
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
                 />
-                <path
-                  fill="#1C71DA"
-                  d="M91.748,160V84h42.989c0.0146,0.7878,0.0696,1.5579,0.0696,2.3516c0,2.2109,1.7891,4,4,4s4-1.7891,4-4   c0-0.7937-0.0603-1.5632-0.0745-2.3516h25.0159h5.6484h2.3516c0-46.3164-37.6836-84-84-84h-8v0.4053   C41.1726,4.45,7.748,40.3838,7.748,84c0,46.3164,37.6836,84,84,84c2.2109,0,4-1.7891,4-4S93.959,160,91.748,160z M83.748,158.6755   c-19.9287-6.438-35.0586-36.3945-35.0586-72.324c0-0.7937,0.0549-1.5637,0.0696-2.3516h34.989V158.6755z M49.1655,76   C51.75,44.7942,65.7729,19.8376,83.748,14.0312V76H49.1655z M91.748,76V12.707c21.6829,0,39.6248,27.5808,42.5825,63.293H91.748z    M167.3181,76h-24.9685c-2.3884-29.9812-14.96-54.8911-31.9993-65.6013C140.7681,18.0952,163.9641,44.0977,167.3181,76z    M73.1458,10.3987C56.1064,21.1089,43.5349,46.0188,41.1465,76H16.178C19.532,44.0977,42.728,18.0952,73.1458,10.3987z M15.748,84   h25.0159c-0.0142,0.7883-0.0745,1.5579-0.0745,2.3516c0,28.5327,9.217,53.6572,23.1233,68.2603   C35.7031,143.4497,15.748,116.0374,15.748,84z"
-                />
-                <path
-                  fill="#1C71DA"
-                  d="M203.2598,186.0859l-48-88c-1.3984-2.5703-5.625-2.5703-7.0234,0l-48,88   c-0.6758,1.2383-0.6484,2.7422,0.0703,3.957c0.7227,1.2109,2.0312,1.957,3.4414,1.957h96c1.4102,0,2.7188-0.7461,3.4414-1.957   C203.9082,188.8281,203.9355,187.3242,203.2598,186.0859z M110.4863,184l41.2617-75.6484L193.0098,184H110.4863z"
-                />
-                <rect
-                  x="147.748"
-                  y="124"
-                  fill="#FFFFFF"
-                  width="8"
-                  height="44"
-                />
-                <rect
-                  x="147.748"
-                  y="171.3333"
-                  fill="#FFFFFF"
-                  width="8"
-                  height="4.9167"
-                />
-              </g>
-              {isHover ? <SvgElementNotification /> : null}
             </svg>
           </Link>
         </Tippy>
