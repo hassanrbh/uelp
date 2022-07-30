@@ -41,6 +41,7 @@ module Api
       end
 
       def random_questions_to_answer
+        @total_entries = Question.count % 5
         @business = Business.find_by_name(params[:business_slug])
         @questions = Question.random_questions_unanswered(@business)
 
@@ -48,6 +49,7 @@ module Api
       end
 
       def sort_by_popular(page)
+        @total_entries = Question.count % 5
         @business = Business.find_by_name(params[:business_slug])
         @questions =
           Question.sort_by_popular(@business).paginate(page: page, per_page: 5)
@@ -56,6 +58,7 @@ module Api
       end
 
       def sort_by_newest_questions(page)
+        @total_entries = Question.count % 5
         @business = Business.find_by_name(params[:business_slug])
         @questions =
           Question.sort_by_newest_questions(@business).paginate(

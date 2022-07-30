@@ -26,3 +26,4 @@ json.questions(@questions) do |question|
 
   json.created_at time_ago_in_words(question.created_at)
 end
+json.total_pages @total_entries
