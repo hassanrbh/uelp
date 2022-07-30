@@ -36,9 +36,16 @@
 #
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
-         :lockable, :timeoutable, :trackable, :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
+  devise :database_authenticatable,
+         :registerable,
+         :recoverable,
+         :rememberable,
+         :validatable,
+         :lockable,
+         :timeoutable,
+         :trackable,
+         :jwt_authenticatable,
+         jwt_revocation_strategy: JwtDenylist
 
   before_validation :merge_username
   before_validation :check_if_password_confirmation?
@@ -47,43 +54,55 @@ class User < ApplicationRecord
   # has_many :login_activities, as: :user
   has_many :shares
   has_many :answers
-  has_many :business_images, class_name: 'Image',
-                             primary_key: :id,
-                             foreign_key: :user_id
+  has_many :business_images,
+           class_name: "Image",
+           primary_key: :id,
+           foreign_key: :user_id
 
   validates :email, presence: true, uniqueness: { case_sensitive: true }
-  validates :username, presence: true, uniqueness: true,
-                       format: { with: /^[a-z0-9_-]{3,15}$/, message: 'not real ', multiline: true }
+  validates :username,
+            presence: true,
+            uniqueness: true,
+            format: {
+              with: /^[a-z0-9_-]{3,15}$/,
+              message: "not real ",
+              multiline: true
+            }
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :gender, presence: true
-  validates :phone_number, presence: true, format: {
-    with: /^\+?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
-    message: 'not valid',
-    multiline: true
-  }
-  validates :zip_code, presence: true, numericality: { only_integer: true }, length: { is: 5 }
+  validates :phone_number,
+            presence: true,
+            format: {
+              with: /^\+?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
+              message: "not valid",
+              multiline: true
+            }
+  validates :zip_code,
+            presence: true,
+            numericality: {
+              only_integer: true
+            },
+            length: {
+              is: 5
+            }
   validates :birth_date, presence: true
 
-  enum gender: {
-    man: 0,
-    female: 1,
-    non_binary: 2,
-    other_types: 3
-  }
+  enum gender: { man: 0, female: 1, non_binary: 2, other_types: 3 }
 
   def find_out_total_images
     total_sum = 0
-    business_images.each do |image|
-      total_sum = image.images.count
-    end
+    business_images.each { |image| total_sum = image.images.count }
     total_sum + business_images.count
   end
 
   def cache_find_out_total_images
-    Rails.cache.fetch(['v1', self.class.name.to_s, :cache_find_out_total_images], expires_in: 1.hour) do
-      find_out_total_images
-    end
+    Rails
+      .cache
+      .fetch(
+        ["v1", self.class.name.to_s, :cache_find_out_total_images],
+        expires_in: 1.hour
+      ) { find_out_total_images }
   end
 
   private
@@ -93,6 +112,10 @@ class User < ApplicationRecord
   end
 
   def check_if_password_confirmation?
-    !(password === password_confirmation) ? errors[:password_confirmation].push('Invalid password confirmation') : true
+    if !(password === password_confirmation)
+      errors[:password_confirmation].push("Invalid password confirmation")
+    else
+      true
+    end
   end
 end

@@ -4,27 +4,27 @@ require 'resque/server'
 
 Rails.application.routes.draw do
   devise_for :businesses,
-             controllers: {
-               sessions: 'businesses/sessions',
-               registrations: 'businesses/registrations'
-             },
-             path: 'biz/',
-             path_names: {
-               sign_in: 'login',
-               sign_out: 'logout',
-               sign_up: 'register'
-             }
+            controllers: {
+          sessions: 'businesses/sessions',
+          registrations: 'businesses/registrations'
+        },
+            path: 'biz/',
+            path_names: {
+              sign_in: 'login',
+              sign_out: 'logout',
+              sign_up: 'register'
+            }
 
   devise_for :users,
-             controllers: {
-               sessions: 'users/sessions',
-               registrations: 'users/registrations'
-             },
-             path: 'user/',
-             path_names: {
-               sign_in: 'login',
-               sign_out: 'logout'
-             }
+            controllers: {
+          sessions: 'users/sessions',
+          registrations: 'users/registrations'
+        },
+            path: 'user/',
+            path_names: {
+              sign_in: 'login',
+              sign_out: 'logout'
+            }
 
   mount Resque::Server.new, at: '/jobs'
 

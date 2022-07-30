@@ -12,7 +12,10 @@ module Api
         @business = Business.find_by_name(params[:business_slug])
         @questions = @business.community_questions
 
-        if sort_by.present? && !(sort_by =~ /.*(popular|Popular|most_answered|Newest First).*/).nil?
+        if sort_by.present? &&
+            !(
+              sort_by =~ /.*(popular|Popular|most_answered|Newest First).*/
+            ).nil?
           if !(sort_by =~ /.*(popular|Popular).*/).nil?
             return sort_by_popular(page)
           elsif !(sort_by =~ /.*(most_answered).*/).nil?
@@ -26,14 +29,15 @@ module Api
           @questions = @questions.limit(2)
           return render :index, status: :ok
         elsif limit.present?
-          return render json: { limit: ['too many requests'] }
+          return render json: { limit: ["too many requests"] }
         end
 
         return render :index, status: :ok if @questions.count >= 1
 
         render json: {
-          mesg: "Yelp users haven't asked any questions yet about #{@business.name}."
-        }
+                mesg:
+                  "Yelp users haven't asked any questions yet about #{@business.name}."
+              }
       end
 
       def random_questions_to_answer
@@ -45,21 +49,30 @@ module Api
 
       def sort_by_popular(page)
         @business = Business.find_by_name(params[:business_slug])
-        @questions = Question.sort_by_popular(@business).paginate(page: page, per_page: 5)
+        @questions =
+          Question.sort_by_popular(@business).paginate(page: page, per_page: 5)
 
         render :index, status: :ok
       end
 
       def sort_by_newest_questions(page)
         @business = Business.find_by_name(params[:business_slug])
-        @questions = Question.sort_by_newest_questions(@business).paginate(page: page, per_page: 5)
+        @questions =
+          Question.sort_by_newest_questions(@business).paginate(
+            page: page,
+            per_page: 5
+          )
 
         render :index, status: :ok
       end
 
       def sort_by_most_answered_question(page)
         @business = Business.find_by_name(params[:business_slug])
-        @questions = Question.sort_by_most_answered_question(@business).paginate(page: page, per_page: 5)
+        @questions =
+          Question.sort_by_most_answered_question(@business).paginate(
+            page: page,
+            per_page: 5
+          )
 
         render :index, status: :ok
       end
@@ -72,19 +85,31 @@ module Api
 
         begin
           if @question.save
-            BusinessMailer.notify_business_owner(current_user, @business, @question).deliver_now
-            BusinessMailer.notify_user_questioner(current_user, @business).deliver_now
+            BusinessMailer.notify_business_owner(
+              current_user,
+              @business,
+              @question
+            ).deliver_now
+            BusinessMailer.notify_user_questioner(
+              current_user,
+              @business
+            ).deliver_now
 
-            return render json: {
-              success: 'Question Save, Community Is Happy'
-            }, status: :ok
+            return(
+              render json: {
+                      success: "Question Save, Community Is Happy"
+                    },
+                    status: :ok
+            )
           end
         rescue ActiveRecord::RecordNotUnique
           question = Question.where(question: params[:question][:question])
-          return render json: {
-            error: ['Question Already Exists'],
-            question: question
-          }
+          return(
+            render json: {
+                    error: ["Question Already Exists"],
+                    question: question
+                  }
+          )
         end
         render :error, status: :not_found
       end

@@ -7,19 +7,32 @@ module Api
       respond_to :json
 
       def index
-        @business = Business.includes(:menus).find_by_name(params[:business_slug])
+        @business =
+          Business.includes(:menus).find_by_name(params[:business_slug])
         @menus = Menu.cached_menu(@business)
         render :index, status: :ok
       end
 
       def index_cache
-        Rails.cache.fetch(['v1', self.class.name.to_s, :index], expires_in: 60.minutes) do
-        end
+        Rails
+          .cache
+          .fetch(
+            ["v1", self.class.name.to_s, :index],
+            expires_in: 60.minutes
+          ) {}
       end
 
       def show
-        @business = Business.includes(:menus).find_by_name(params[:business_slug]).includes(:menus)
-        @menu = Menu.with_attached_images.where(business_id: @business.id, name: params[:menu_name]).first
+        @business =
+          Business
+            .includes(:menus)
+            .find_by_name(params[:business_slug])
+            .includes(:menus)
+        @menu =
+          Menu
+            .with_attached_images
+            .where(business_id: @business.id, name: params[:menu_name])
+            .first
         render :show, status: :ok
       end
 
@@ -30,28 +43,23 @@ module Api
           render :create, status: :created
           return
         end
-        render json: {
-          error: @menu.errors.full_messages
-        }, status: :created
+        render json: { error: @menu.errors.full_messages }, status: :created
       end
 
       def update
         @menu = Menu.find_by_name(params[:menu_name])
         render :update, status: :ok if @menu.update(update_menus_params)
-        render json: {
-          error: @menu.errors.full_messsages
-        }, status: :ok
+        render json: { error: @menu.errors.full_messsages }, status: :ok
       end
 
       def destroy
         @menu = Menu.find_by_name(params[:menu_name])
         @menu.destroy!
-        render json: {
-          @menu.name => 'it been destroyed'
-        }, status: :ok
+        render json: { @menu.name => "it been destroyed" }, status: :ok
       end
 
-      def popular_dishes; end
+      def popular_dishes
+      end
 
       private
 

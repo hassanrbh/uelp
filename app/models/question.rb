@@ -26,33 +26,33 @@ class Question < ApplicationRecord
 
   scope :sort_by_most_answered_question,
         lambda { |business|
-          where('community_id = ?', business.community.id).order(
-            'answers_count DESC'
+          where("community_id = ?", business.community.id).order(
+            "answers_count DESC"
           )
         }
 
   scope :random_questions_unanswered,
         lambda { |business|
-          where('community_id = ?', business.community.id)
+          where("community_id = ?", business.community.id)
             .where.not(id: Answer.select(:question_id))
             .take(3)
         }
 
   scope :sort_by_newest_questions,
         lambda { |business|
-          where('community_id = ?', business.community.id).order(
-            'created_at DESC'
+          where("community_id = ?", business.community.id).order(
+            "created_at DESC"
           )
         }
 
   scope :sort_by_popular,
-        ->(business) { where('community_id = ?', business.community.id) }
+        ->(business) { where("community_id = ?", business.community.id) }
 
   def cache_count_answers
     Rails
       .cache
       .fetch(
-        ['v1', self.class.name, :cache_count_answers, question],
+        ["v1", self.class.name, :cache_count_answers, question],
         expires_in: 4.hours
       ) do
         self.answers_count = answers.count
@@ -64,15 +64,14 @@ class Question < ApplicationRecord
 
   def check_question
     if !(
-        question =~
-          /.*(Why|who|why|Who|Is|is|I|what|What|Do|do|did|Did).*/
-      ).nil? && question.include?('?')
+         question =~ /.*(Why|who|why|Who|Is|is|I|what|What|Do|do|did|Did).*/
+       ).nil? && question.include?("?")
       return true
     end
 
     errors.add(
       :question,
-      'Oops! Your post needs to be in the form of a question before we can publish it.'
+      "Oops! Your post needs to be in the form of a question before we can publish it."
     )
   end
 end

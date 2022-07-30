@@ -20,7 +20,7 @@ class Price < ApplicationRecord
   validates :dollar_signs, presence: true, length: { maximum: 5 }
 
   belongs_to :business,
-             class_name: 'Business',
+             class_name: "Business",
              primary_key: :id,
              foreign_key: :businesses_id,
              dependent: :destroy,
@@ -45,18 +45,19 @@ class Price < ApplicationRecord
 
   def configure_dollar_signs
     if !average.nil? && average != 0
-      self.dollar_signs = case average
-                          when (0..99)
-                            '$'
-                          when (99..200)
-                            '$$'
-                          when (200..500)
-                            '$$$'
-                          when (200..800)
-                            '$$$$'
-                          else
-                            '$$$$$'
-                          end
+      self.dollar_signs =
+        case average
+        when (0..99)
+          "$"
+        when (99..200)
+          "$$"
+        when (200..500)
+          "$$$"
+        when (200..800)
+          "$$$$"
+        else
+          "$$$$$"
+        end
     end
   end
 end
