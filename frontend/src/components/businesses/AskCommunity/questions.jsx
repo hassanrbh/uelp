@@ -5,6 +5,7 @@ import QuestionsSkeleton from "./questionsSkeleton";
 import Answers from "./Answers";
 import Question from "./Question";
 import { Link } from "react-router-dom";
+import QuestionUna from "./QuestionsUna"
 
 const Questions = ({ business_slug }) => {
   const { data: questions, isLoading } = useQuery(
@@ -36,20 +37,7 @@ const Questions = ({ business_slug }) => {
                     ))}
                   </div>
                 ) : (
-                  <div className="m-2 relative left-[22px] font-normal mt-1 text-sm text-[rgba(110,112,114,1)]">
-                    <p>
-                      Asked by{" "}
-                      <Link to={`/user_details?username=${question?.questioner?.username}`} className="text-[rgba(2,122,151,1)] font-semibold  hover:underline">
-                        {question?.questioner?.username}
-                      </Link>
-                    </p>
-                    <span className="relative top-[10px] text-gray-700">
-                      No answers yet.
-                      <Link to="/" className="ml-1 font-semibold text-[rgba(2,122,151,1)]">
-                        Answer this question
-                      </Link>
-                    </span>
-                  </div>
+                  <QuestionUna question={question} className={"relative left-[22px] m-2 "}/>
                 )}
               </div>
             </div>

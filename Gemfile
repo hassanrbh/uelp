@@ -65,3 +65,5 @@ end
 group :test do
   gem 'shoulda-matchers'
 end
+
+gem "ruby-lsp", "~> 0.2.1", :group => :development

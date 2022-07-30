@@ -32,7 +32,7 @@ const Questions = (props) => {
             <DynamicQuestions />
           </div>
           <div>
-            <LeftSection />
+            <LeftSection business={business}/>
           </div>
         </div>
       </div>

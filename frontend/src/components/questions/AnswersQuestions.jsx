@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 
 const AnswersQuestions = () => {
 
-  const { question } = useParams();
+  const { question, business } = useParams();
 
   return (
-    <div>{question}</div>
+    <div>{question}{business}</div>
   )
 }
 
