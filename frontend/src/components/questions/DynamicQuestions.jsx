@@ -15,7 +15,11 @@ const DynamicQuestions = ({ currentItem }) => {
     () => questionService.getSortedData(business, currentItem, currentPos)
   );
 
-  return <div>DynamicQuestions</div>;
+  return isSuccess ? (
+    <>
+      {JSON.stringify(data)}
+    </>
+  ) : null;
 };
 
 export default DynamicQuestions;

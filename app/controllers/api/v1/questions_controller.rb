@@ -8,12 +8,12 @@ class Api::V1::QuestionsController < ApplicationController
     @business = Business.find_by_name(params[:business_slug])
     @questions = @business.community_questions
 
-    if ((sort_by.present?) && !!(sort_by =~ /.*(popular|Popular|most_answered|newest_questions).*/))
+    if ((sort_by.present?) && !!(sort_by =~ /.*(popular|Popular|most_answered|Newest First).*/))
       if !!(sort_by =~ /.*(popular|Popular).*/)
         return sort_by_popular(page)
       elsif !!(sort_by =~ /.*(most_answered).*/)
         return sort_by_most_answered_question(page)
-      else
+      else 
         return sort_by_newest_questions(page)
       end
     end

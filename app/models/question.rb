@@ -18,7 +18,7 @@ class Question < ApplicationRecord
   belongs_to :community
   belongs_to :user
   belongs_to :business
-  has_many :answers, dependent: :destroy
+  has_many :answers
 
   scope :sort_by_most_answered_question,
         ->(business) {
