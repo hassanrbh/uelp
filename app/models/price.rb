@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: prices
@@ -12,17 +14,17 @@
 #  updated_at    :datetime         not null
 #
 class Price < ApplicationRecord
-  validates :min_price, :presence => true, numericality: true
-  validates :max_price, :presence => true, numericality: true
-  validates :average, :presence => true, numericality: true
-  validates :dollar_signs, presence: true, length: {maximum: 5}
+  validates :min_price, presence: true, numericality: true
+  validates :max_price, presence: true, numericality: true
+  validates :average, presence: true, numericality: true
+  validates :dollar_signs, presence: true, length: { maximum: 5 }
 
   belongs_to :business,
-      class_name: "Business",
-      primary_key:  :id,
-      foreign_key: :businesses_id,
-      dependent: :destroy,
-      touch: true
+             class_name: 'Business',
+             primary_key: :id,
+             foreign_key: :businesses_id,
+             dependent: :destroy,
+             touch: true
 
   before_validation :add_average_point
   before_validation :configure_dollar_signs
@@ -38,23 +40,23 @@ class Price < ApplicationRecord
   protected
 
   def add_average_point
-    self.average = ((self.min_price + self.max_price) / 2).round(0)
+    self.average = ((min_price + max_price) / 2).round(0)
   end
 
   def configure_dollar_signs
-    if (self.average != nil && self.average != 0)
-      case self.average
-      when (0..99)
-        self.dollar_signs = "$"
-      when (99..200)
-        self.dollar_signs = "$$"
-      when (200..500)
-        self.dollar_signs = "$$$"
-      when (200..800)
-        self.dollar_signs = "$$$$"
-      else 
-        self.dollar_signs = "$$$$$"
-      end
+    if !average.nil? && average != 0
+      self.dollar_signs = case average
+                          when (0..99)
+                            '$'
+                          when (99..200)
+                            '$$'
+                          when (200..500)
+                            '$$$'
+                          when (200..800)
+                            '$$$$'
+                          else
+                            '$$$$$'
+                          end
     end
   end
 end

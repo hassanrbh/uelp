@@ -1,12 +1,16 @@
-class Api::V1::YelperController < ApplicationController
-  def show
-    @yelper = User.find_by_username(params[:slug])
-    if (@yelper.present?) 
-      if stale?(etag: @yelper, last_modified: @yelper.updated_at) 
-        render :show, :status => :ok
+# frozen_string_literal: true
+
+module Api
+  module V1
+    class YelperController < ApplicationController
+      def show
+        @yelper = User.find_by_username(params[:slug])
+        if @yelper.present?
+          render :show, status: :ok if stale?(etag: @yelper, last_modified: @yelper.updated_at)
+        else
+          render :error, status: :not_found
+        end
       end
-    else 
-      render :error, :status => :not_found
     end
   end
 end

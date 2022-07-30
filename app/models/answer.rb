@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: answers
@@ -14,6 +16,6 @@
 class Answer < ApplicationRecord
   belongs_to :user
   belongs_to :community
-  belongs_to :question
+  belongs_to :question, touch: true
   belongs_to :business
 end

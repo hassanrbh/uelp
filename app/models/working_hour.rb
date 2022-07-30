@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: working_hours
@@ -16,18 +18,18 @@ class WorkingHour < ApplicationRecord
   before_validation :check_if_business_open
 
   def check_if_business_open
-    today_date = Date.today.strftime("%a");
+    today_date = Date.today.strftime('%a')
     return if working_hours[today_date].length == 3
-    working_hours.each do |key,value|
-      if (today_date == key)
-        if Time.now.strftime('%H').between?(value[0], value[1])
-          self.working_hours[key].push("Opened Now")
-          self.save!
-        else 
-          self.working_hours[key].push("Closed Now")
-          self.save!
-        end
+
+    working_hours.each do |key, value|
+      next unless today_date == key
+
+      if Time.now.strftime('%H').between?(value[0], value[1])
+        working_hours[key].push('Opened Now')
+      else
+        working_hours[key].push('Closed Now')
       end
+      save!
     end
   end
 end

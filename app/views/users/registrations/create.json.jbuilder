@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.current_user do
   json.id current_user.id
   json.email current_user.email
@@ -8,6 +10,6 @@ json.current_user do
   json.phone_number current_user.phone_number
 end
 json.message do
-  json.success "sign up sucessfully"
+  json.success 'sign up sucessfully'
   json.code 200
 end

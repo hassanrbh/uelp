@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: communities
@@ -9,6 +11,5 @@
 #
 FactoryBot.define do
   factory :community do
-    
   end
 end

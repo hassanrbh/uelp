@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 json.ignore_nil!
 json.all_businesses(@latest_businesses) do |business|
-  json.cache! ["v1", business.name], expires_in: 30.minutes do
+  json.cache! ['v1', business.name], expires_in: 30.minutes do
     json.profile do
       json.private_details do
         json.name business.name
@@ -43,5 +45,5 @@ json.all_businesses(@latest_businesses) do |business|
         json.thumbnail cloudinary_url(business.images[0].key)
       end
     end
-end
+  end
 end

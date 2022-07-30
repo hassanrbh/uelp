@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: categories
@@ -10,6 +12,5 @@
 #
 FactoryBot.define do
   factory :categorie do
-    
   end
 end

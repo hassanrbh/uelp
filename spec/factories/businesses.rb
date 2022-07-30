@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: businesses
@@ -40,6 +42,5 @@
 #
 FactoryBot.define do
   factory :business do
-    
   end
 end

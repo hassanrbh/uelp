@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: working_hours
@@ -11,6 +13,5 @@
 #
 FactoryBot.define do
   factory :working_hour do
-    
   end
 end

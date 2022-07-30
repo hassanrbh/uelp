@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: answers
@@ -13,6 +15,5 @@
 #
 FactoryBot.define do
   factory :answer do
-    
   end
 end

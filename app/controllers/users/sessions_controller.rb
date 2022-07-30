@@ -1,57 +1,58 @@
-class Users::SessionsController < Devise::SessionsController
-  respond_to :json
+# frozen_string_literal: true
 
-  private
+module Users
+  class SessionsController < Devise::SessionsController
+    respond_to :json
 
-  def respond_with(resource, _opts = {})
-    @errors = []
+    private
 
-    if (params[:user].present?) 
-      params[:user][:email].present? ? "" : check_providation("email")
-      params[:user][:password].present? ?  "" : check_providation("password")
-    end
+    def respond_with(resource, _opts = {})
+      @errors = []
 
-    if resource.persisted?
-      render :create, :status => :ok
-    else
-      begin 
-        user = User.find_by_email(params[:user][:email])
-        if (user.active_for_authentication?)
-          @errors.push("email or password are incorrect");
-          render json: { 
-            errors: @errors,
-          }, :status => :ok
-        else
-          @errors.push("account has been locked");
-          render json: { 
-            errors: @errors,
-          }, :status => :ok
-        end
-      rescue NoMethodError
-        @errors.push("email or password are not provided");
-          render json: { 
-            errors: @errors,
-          }, :status => :ok
+      if params[:user].present?
+        params[:user][:email].present? ? '' : check_providation('email')
+        params[:user][:password].present? ? '' : check_providation('password')
       end
 
+      if resource.persisted?
+        render :create, status: :ok
+      else
+        begin
+          user = User.find_by_email(params[:user][:email])
+          if user.active_for_authentication?
+            @errors.push('email or password are incorrect')
+          else
+            @errors.push('account has been locked')
+          end
+          render json: {
+            errors: @errors
+          }, status: :ok
+        rescue NoMethodError
+          @errors.push('email or password are not provided')
+          render json: {
+            errors: @errors
+          }, status: :ok
+        end
+
+      end
     end
-    
-  end
 
-  def check_providation(checker_provider)
-    @errors.push("#{checker_provider} must be provided");
-  end
+    def check_providation(checker_provider)
+      @errors.push("#{checker_provider} must be provided")
+    end
 
-  def respond_to_on_destroy
-    log_out_success && return if current_user
-    log_out_failure
-  end
+    def respond_to_on_destroy
+      log_out_success && return if current_user
 
-  def log_out_success
-    render :logout, status: :ok
-  end
+      log_out_failure
+    end
 
-  def log_out_failure
-    render :logout_failure, status: :unauthorized
+    def log_out_success
+      render :logout, status: :ok
+    end
+
+    def log_out_failure
+      render :logout_failure, status: :unauthorized
+    end
   end
 end

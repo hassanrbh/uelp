@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.ignore_nil!
 json.profile do
   json.private_details do
@@ -38,6 +40,6 @@ json.profile do
     json.category @business.categorie_name
   end
   json.images do
-    json.images @business.images.map{|img| (cloudinary_url(img.key) )}
+    json.images @business.images.map { |img| cloudinary_url(img.key) }
   end
 end
