@@ -21,7 +21,7 @@ business = Business.new(
 )
 
 business.images.attach(io: File.open(Rails.root.join('db', 'sample', 'images', "business_#{0 + 1}.jpg")),
-                       filename: business.name)
+                      filename: business.name)
 business.save!
 
 10.times do |j|

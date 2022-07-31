@@ -26,7 +26,7 @@ module Api
         end
 
         if limit.present? && Integer(limit) <= 2
-          @questions = @questions.limit(2)
+          @questions = @questions.offset(2).limit(limit)
           return render :index, status: :ok
         elsif limit.present?
           return render json: { limit: ["too many requests"] }
@@ -52,7 +52,7 @@ module Api
         @total_entries = Question.count % 5
         @business = Business.find_by_name(params[:business_slug])
         @questions =
-          Question.sort_by_popular(@business).paginate(page: page, per_page: 5)
+          Question.sort_by_popular(@business).paginate(page: page, per_page: 10)
 
         render :index, status: :ok
       end
@@ -63,7 +63,7 @@ module Api
         @questions =
           Question.sort_by_newest_questions(@business).paginate(
             page: page,
-            per_page: 5
+            per_page: 10
           )
 
         render :index, status: :ok
@@ -74,7 +74,7 @@ module Api
         @questions =
           Question.sort_by_most_answered_question(@business).paginate(
             page: page,
-            per_page: 5
+            per_page: 10
           )
 
         render :index, status: :ok

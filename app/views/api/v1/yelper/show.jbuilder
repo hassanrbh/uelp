@@ -5,5 +5,5 @@ json.activities do
   json.last_sign_in_at @yelper.last_sign_in_at
   json.sign_in_count @yelper.sign_in_count
 end
-json.avatar cloudinary_url(@yelper.avatar) if @yelper.avatar.attached?
+json.avatar cloudinary_url(@yelper.avatar.key)  if @yelper.avatar.attached?
 json.address @yelper.full_address

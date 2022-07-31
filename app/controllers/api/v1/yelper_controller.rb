@@ -6,7 +6,7 @@ module Api
       def show
         @yelper = User.find_by_username(params[:slug])
         if @yelper.present?
-          render :show, status: :ok if stale?(etag: @yelper, last_modified: @yelper.updated_at)
+          render :show, status: :ok
         else
           render :error, status: :not_found
         end
