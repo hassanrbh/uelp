@@ -1,13 +1,12 @@
 import React, { useState, useRef } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field} from "formik";
 import { useMutation, useQuery } from "react-query";
 import UserService from "../../services/auth.service";
 import { Link, useNavigate } from "react-router-dom";
 import Tippy from "@tippyjs/react";
 import "tippy.js/animations/scale.css";
-import useOnClickOutside from "../../hooks/useOnClickOutside";
 import IpTracker from "../../api/ip_info.js";
-import IPData from "ipdata";
+import useOnClickOutside from "../../hooks/useOnClickOutside";
 
 const Search = () => {
   const [fetchedBusinesses, setIsFetchedBusinesses] = useState([]);
@@ -77,22 +76,23 @@ const Search = () => {
                 Search
               </label>
               <div className="relative w-full">
-                <div className="flex">
+                <div className="flex shadow-lg ">
                   <Field
                     type="text"
                     id="voice-search"
                     name="search_input"
                     onChange={handleChange}
-                    className="rounded shadow-lg relative left-[-13px] pt-[13px] pb-[13px] pl-[16px] outline-none  text-sm !bg-white text-[#2d2e2f] block w-[466px] p-2.5  pr-[20px] font-light border-l-red-600 border-l-[14px] border-r-0"
+                    className="rounded relative h-[48px] left-[-13px] pt-[13px] pb-[13px] pl-[16px] outline-none  text-sm !bg-white text-[#2d2e2f] block w-[466px] p-2.5  pr-[20px] font-light border-l-red-600 border-l-[14px] border-r-0"
                     placeholder="tacos, cheap dinner, Max's"
                     value={input}
                   />
+                  <div className="bg-[#ebebeb] w-[2px] top-[9px] h-[25px] relative"></div>
                   <Field
                     type="text"
-                    id="voice-search"
+                    id="voice-search_hello"
                     name="search_input"
                     onChange={handleChangeInput2}
-                    className="rounded shadow-lg pt-[13px] pb-[13px] pl-[16px]  outline-none  text-sm !bg-white text-[#2d2e2f] block w-[466px] p-2.5  pr-[20px] font-light border-l-0"
+                    className="rounded pt-[13px] h-[48px] pb-[13px] pl-[16px]  outline-none  text-sm !bg-white text-[#2d2e2f] block w-[466px] p-2.5  pr-[20px] font-light border-l-0"
                     placeholder="address neighborhood, city, state or zip"
                     value={input2}
                   />
@@ -101,7 +101,7 @@ const Search = () => {
               {!isLoading || isSubmitting ? (
                 <button
                   type="submit"
-                  className="inline-flex shadow-lg items-center pt-[11px] pb-[12px] relative left-[-1px] px-[17px] text-sm text-white border bg-red-600 !rounded-b-[1px] !rounded-t-[6px] !rounded-l-[1px] !rounded-r-[6px]"
+                  className="inline-flex shadow-lg h-[50px] items-center pt-[11px] pb-[12px] relative left-[-1px] px-[17px] text-sm text-white border bg-red-600 !rounded-b-[1px] !rounded-t-[6px] !rounded-l-[1px] !rounded-r-[6px]"
                   disabled={isSubmitting}
                 >
                   <svg
@@ -122,7 +122,7 @@ const Search = () => {
               ) : (
                 <button
                   type="submit"
-                  className="inline-flex items-center pt-[11px] pb-[12px] relative left-[-1px] px-[17px] text-sm text-white border bg-red-600 !rounded-b-[1px] !rounded-t-[6px] !rounded-l-[1px] !rounded-r-[6px]"
+                  className="inline-flex h-[50px] items-center pt-[11px] pb-[12px] relative left-[-1px] px-[17px] text-sm text-white border bg-red-600 !rounded-b-[1px] !rounded-t-[6px] !rounded-l-[1px] !rounded-r-[6px]"
                   disabled={isSubmitting}
                 >
                   <svg

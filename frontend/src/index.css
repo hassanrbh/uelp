@@ -2,22 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 @layer components {
   .swiper-button-next_custom {
-    @apply flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer focus:outline-none
+    @apply flex absolute top-0 left-0 z-30 justify-center items-center px-4 h-full cursor-pointer focus:outline-none;
   }
   .swiper-button-prev_custom {
-    @apply flex absolute top-0 right-0 z-30 justify-center items-center px-4 h-full cursor-pointer focus:outline-none
+    @apply flex absolute top-0 right-0 z-30 justify-center items-center px-4 h-full cursor-pointer focus:outline-none;
   }
 }
 
-.markercluster-map { height: 203px; width: 315px; border-radius: 4px }
-.
-.leaflet-control { z-index: 0 !important}
-.leaflet-pane { z-index: 0 !important}
-.leaflet-top, .leaflet-bottom {z-index: 0 !important}
+.markercluster-map {
+  height: 203px;
+  width: 315px;
+  border-radius: 4px;
+}
+. .leaflet-control {
+  z-index: 0 !important;
+}
+.leaflet-pane {
+  z-index: 0 !important;
+}
+.leaflet-top,
+.leaflet-bottom {
+  z-index: 0 !important;
+}
 
 @keyframes spinner {
   0% {
@@ -29,12 +37,12 @@
 }
 .loading-spinner {
   width: 50px;
-  margin:auto;
-  left:0;
-  right:0;
-  top:0;
-  bottom:0;
-  position:fixed;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: fixed;
   height: 50px;
   border: 10px solid #f3f3f3; /* Light grey */
   border-top: 10px solid #383636; /* Black */
@@ -44,5 +52,21 @@
 }
 
 .leaflet-icon {
-  width: 24px; height: 32px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;
+  width: 24px;
+  height: 32px;
+  user-select: none;
+  border: 0px;
+  padding: 0px;
+  margin: 0px;
+  max-width: none;
+}
+
+#voice-search::after {
+  background-color: #ebebeb;
+  bottom: 12px;
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 12px;
+  width: 2px;
 }
