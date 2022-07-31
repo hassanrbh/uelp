@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import Pagination from "@mui/material/Pagination";
+// import Pagination from "@mui/material/Pagination";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import questionService from "../../services/questions.service.js";
 import Question from "./Question";
-import PaginationItem from '@mui/material/PaginationItem';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+// import PaginationItem from '@mui/material/PaginationItem';
+// import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+// import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const DynamicQuestions = ({ currentItem }) => {
   const { business } = useParams();
@@ -16,18 +16,18 @@ const DynamicQuestions = ({ currentItem }) => {
     () => questionService.getSortedData(business, currentItem, currentPos)
   );
 
-  const handleDirection = (e) => {
-    if (e.target.type === "button") {
-      console.log(e.target.textContent)
-      return ;
-    }
+  // const handleDirection = (e) => {
+  //   if (e.target.type === "button") {
+  //     console.log(e.target.textContent)
+  //     return ;
+  //   }
 
-    if (e.target.dataset.testid === "ArrowForwardIcon") {
-      console.log("hello arrow forware icon")
-      return ;
-    }
-    console.log("hello arrow backward icon")
-  }
+  //   if (e.target.dataset.testid === "ArrowForwardIcon") {
+  //     console.log("hello arrow forware icon")
+  //     return ;
+  //   }
+  //   console.log("hello arrow backward icon")
+  // }
 
   return !isLoading ? (
     <>
@@ -38,7 +38,7 @@ const DynamicQuestions = ({ currentItem }) => {
           answers={question?.answers}
         />
       ))}
-      <Pagination count={questions?.total_pages} 
+      {/* <Pagination count={questions?.total_pages} 
         variant="outlined"
         shape="rounded"
         renderItem={(item) => (
@@ -47,7 +47,7 @@ const DynamicQuestions = ({ currentItem }) => {
             {...item}
           />
         )}
-        onClick={(e) => handleDirection(e)}/>
+        onClick={(e) => handleDirection(e)}/> */}
     </>
   ) : null;
 };
