@@ -101,7 +101,7 @@ const Search = () => {
               {!isLoading || isSubmitting ? (
                 <button
                   type="submit"
-                  className="inline-flex items-center pt-[11px] pb-[12px] relative left-[-1px] px-[17px] text-sm text-white border bg-red-600 !rounded-b-[1px] !rounded-t-[6px] !rounded-l-[1px] !rounded-r-[6px]"
+                  className="inline-flex shadow-lg items-center pt-[11px] pb-[12px] relative left-[-1px] px-[17px] text-sm text-white border bg-red-600 !rounded-b-[1px] !rounded-t-[6px] !rounded-l-[1px] !rounded-r-[6px]"
                   disabled={isSubmitting}
                 >
                   <svg

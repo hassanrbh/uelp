@@ -2,8 +2,7 @@ import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import Tippy from "@tippyjs/react";
-import { useState } from "react";
-import SvgElementNotification from "./svgElementNotification";
+import React from "react";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
 import { Link } from "react-router-dom";
@@ -11,18 +10,8 @@ import MenuList from "./MenuList";
 import Button from "./button";
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import AddBusinessIcon from "@mui/icons-material/AddBusiness";
 
 const RightNav = ({ username, logout, avatar }) => {
-  const [isHover, setIsHover] = useState(false);
-  const addColors = (e) => {
-    setIsHover(true);
-  };
-  const clearColors = (e) => {
-    setIsHover(false);
-  };
-
   return (
     <div className="relative right-8 flex flex-row-reverse">
       <Stack direction="row-reverse" spacing={2}>

@@ -98,19 +98,19 @@ class Business < ApplicationRecord
 
   has_many_attached :images
   has_many :images_uploaded_by_user,
-           class_name: "Image",
-           primary_key: :id,
-           foreign_key: :business_id
+          class_name: "Image",
+          primary_key: :id,
+          foreign_key: :business_id
   has_one_attached :avatar
   has_one :community
   has_many :community_questions,
-           class_name: "Question",
-           primary_key: :id,
-           foreign_key: :business_id
+          class_name: "Question",
+          primary_key: :id,
+          foreign_key: :business_id
   has_many :answers,
-           class_name: "Answer",
-           primary_key: :id,
-           foreign_key: :business_id
+          class_name: "Answer",
+          primary_key: :id,
+          foreign_key: :business_id
   has_many :menus
   has_many :shares
   has_one :working_hour
@@ -136,7 +136,7 @@ class Business < ApplicationRecord
   def self.filter_by_latest_cached
     Rails
       .cache
-      .fetch([self, :filter_by_latest_cached], expires_in: 24.hours) do
+      .fetch([:v1,self, :filter_by_latest_cached], expires_in: 24.hours) do
         filter_by_latest
       end
   end
@@ -189,7 +189,7 @@ class Business < ApplicationRecord
 
   def create_price_point
     if (!min_price.nil? && !max_price.nil?) &&
-         (min_price != 0 && max_price != 0)
+        (min_price != 0 && max_price != 0)
       Price.create(
         min_price: min_price,
         max_price: max_price,
@@ -211,7 +211,7 @@ class Business < ApplicationRecord
   end
 
   def self.filter_by_latest
-    where("created_at > ?", 7.days.ago)
+    where("created_at < ?", 1.days.ago)
       .where("web_address != ?", "")
       .limit(15)
       .includes(:price)
