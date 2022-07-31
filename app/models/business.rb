@@ -113,6 +113,8 @@ class Business < ApplicationRecord
           foreign_key: :business_id
   has_many :menus
   has_many :shares
+  has_many :notifies
+  has_many :notify_answers
   has_one :working_hour
   has_one :amenty
   has_one :price,

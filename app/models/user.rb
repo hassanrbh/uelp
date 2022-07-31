@@ -37,15 +37,15 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   devise :database_authenticatable,
-         :registerable,
-         :recoverable,
-         :rememberable,
-         :validatable,
-         :lockable,
-         :timeoutable,
-         :trackable,
-         :jwt_authenticatable,
-         jwt_revocation_strategy: JwtDenylist
+        :registerable,
+        :recoverable,
+        :rememberable,
+        :validatable,
+        :lockable,
+        :timeoutable,
+        :trackable,
+        :jwt_authenticatable,
+        jwt_revocation_strategy: JwtDenylist
 
   before_validation :merge_username
   before_validation :check_if_password_confirmation?
@@ -55,9 +55,12 @@ class User < ApplicationRecord
   has_many :shares
   has_many :answers
   has_many :business_images,
-           class_name: "Image",
-           primary_key: :id,
-           foreign_key: :user_id
+          class_name: "Image",
+          primary_key: :id,
+          foreign_key: :user_id
+  has_many :notifies
+  has_many :notify_answers, :class_name => "NotifyAnswer", :foreign_key => :notifyer_id
+
 
   validates :email, presence: true, uniqueness: { case_sensitive: true }
   validates :username,

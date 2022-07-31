@@ -9,6 +9,7 @@
 #  user_id     :bigint
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  notifyer_id :integer
 #
 
 #* according to answer a question and notify the question writer 
@@ -22,5 +23,11 @@
   #? }
 
 class NotifyAnswer < ApplicationRecord
+  belongs_to :question
 
+  belongs_to :user
+  belongs_to :notifyer, :class_name => "User", :foreign_key => :notifyer_id
+
+  belongs_to :answer
+  belongs_to :business
 end

@@ -18,4 +18,6 @@ class Answer < ApplicationRecord
   belongs_to :community
   belongs_to :question, touch: true
   belongs_to :business
+
+  has_one :notify_answer
 end

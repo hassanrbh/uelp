@@ -21,5 +21,7 @@
     #* then the business owner can check their notifes [has_many association]
 
 class Notify < ApplicationRecord
-
+  belongs_to :business
+  belongs_to :question
+  belongs_to :user
 end

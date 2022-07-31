@@ -21,6 +21,8 @@ class Question < ApplicationRecord
   belongs_to :user
   belongs_to :business
   has_many :answers
+  has_one :notify
+  has_many :notify_answers
 
   after_save :cache_count_answers
 
@@ -64,8 +66,8 @@ class Question < ApplicationRecord
 
   def check_question
     if !(
-         question =~ /.*(Why|who|why|Who|Is|is|I|what|What|Do|do|did|Did).*/
-       ).nil? && question.include?("?")
+        question =~ /.*(Why|who|why|Who|Is|is|I|what|What|Do|do|did|Did).*/
+      ).nil? && question.include?("?")
       return true
     end
 
