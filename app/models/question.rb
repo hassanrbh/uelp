@@ -12,6 +12,7 @@
 #  user_id       :integer
 #  business_id   :integer
 #  answers_count :integer          default(0)
+#  notify_me     :boolean          default(FALSE)
 #
 class Question < ApplicationRecord
   validates :question, presence: true
