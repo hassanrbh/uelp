@@ -6,9 +6,10 @@ const Search = () => {
   const location = useLocation();
   return (
     <div>
-      {location.state.all_businesses.map((business,_) => (
+      {location?.state?.fetchedBusinesses?.all_businesses?.map((business,_) => (
         <Business business={business} key={_}/>
       ))}
+      {location.state.location}
     </div>
   )
 }

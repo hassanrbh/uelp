@@ -23,7 +23,7 @@ const QuestionAnswered = ({ question, writer, answers }) => {
                 <h1 className="max-w-[760px] ml-3 text-sm font-[400] m-1 text-[rgba(45,46,47,1)] ">
                   {ans.answer}
                 </h1>
-                <div className="flex ml-3 text-sm gap-2 text-gray-600">
+                <div className="flex ml-3 text-[12px] gap-2 text-gray-600">
                   <Link
                     to={`/user_details?username=${ans?.answerer?.username}`}
                     className="text-[rgba(2,122,151,1)] hover:underline"
@@ -49,7 +49,7 @@ const QuestionAnswered = ({ question, writer, answers }) => {
                 <h1 className="max-w-[760px] ml-3 text-sm font-[400] m-1 text-[rgba(45,46,47,1)] ">
                   {ans.answer}
                 </h1>
-                <div className="flex ml-3 text-sm gap-2 text-gray-600">
+                <div className="flex ml-3 text-[12px] gap-2 text-gray-600">
                   <Link
                     to={`/user_details?username=${ans?.answerer?.username}`}
                     className="text-[rgba(2,122,151,1)] hover:underline"
