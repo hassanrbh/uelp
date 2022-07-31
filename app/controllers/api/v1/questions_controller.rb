@@ -40,44 +40,9 @@ module Api
               }
       end
 
-      def random_questions_to_answer
-        @total_entries = Question.count % 5
-        @business = Business.find_by_name(params[:business_slug])
-        @questions = Question.random_questions_unanswered(@business)
-
-        render :index, status: :ok
-      end
-
-      def sort_by_popular(page)
-        @total_entries = Question.count % 5
-        @business = Business.find_by_name(params[:business_slug])
-        @questions =
-          Question.sort_by_popular(@business).paginate(page: page, per_page: 10)
-
-        render :index, status: :ok
-      end
-
-      def sort_by_newest_questions(page)
-        @total_entries = Question.count % 5
-        @business = Business.find_by_name(params[:business_slug])
-        @questions =
-          Question.sort_by_newest_questions(@business).paginate(
-            page: page,
-            per_page: 10
-          )
-
-        render :index, status: :ok
-      end
-
-      def sort_by_most_answered_question(page)
-        @business = Business.find_by_name(params[:business_slug])
-        @questions =
-          Question.sort_by_most_answered_question(@business).paginate(
-            page: page,
-            per_page: 10
-          )
-
-        render :index, status: :ok
+      def show
+        @question = Question.find_by_id(params[:id])
+        render json: @question, status: :ok
       end
 
       def create
@@ -117,8 +82,47 @@ module Api
         render :error, status: :not_found
       end
 
+      def random_questions_to_answer
+        @total_entries = Question.count % 5
+        @business = Business.find_by_name(params[:business_slug])
+        @questions = Question.random_questions_unanswered(@business)
+
+        render :index, status: :ok
+      end
+
+      def sort_by_popular(page)
+        @total_entries = Question.count % 5
+        @business = Business.find_by_name(params[:business_slug])
+        @questions =
+          Question.sort_by_popular(@business).paginate(page: page, per_page: 10)
+
+        render :index, status: :ok
+      end
+
+      def sort_by_newest_questions(page)
+        @total_entries = Question.count % 5
+        @business = Business.find_by_name(params[:business_slug])
+        @questions =
+          Question.sort_by_newest_questions(@business).paginate(
+            page: page,
+            per_page: 10
+          )
+
+        render :index, status: :ok
+      end
+
+      def sort_by_most_answered_question(page)
+        @business = Business.find_by_name(params[:business_slug])
+        @questions =
+          Question.sort_by_most_answered_question(@business).paginate(
+            page: page,
+            per_page: 10
+          )
+
+        render :index, status: :ok
+      end
       def questions_params
-        params.require(:question).permit(:question)
+        params.require(:question).permit(:question, :notify_me)
       end
     end
   end

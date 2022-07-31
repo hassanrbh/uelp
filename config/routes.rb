@@ -41,12 +41,13 @@ Rails.application.routes.draw do
         resources :images, only: %i[create show index]
         resources :amentys, only: [:index]
         resources :share, only: [:create]
-        resources :questions, only: %i[create index], param: :slug do
-          collection do
-            get '/random_questions', to: 'questions#random_questions_to_answer'
+        resources :questions, only: %i[create index show], param: :slug do
+          resources :notifies, only: %i[index]
+          resources :answers, only: %i[index create], param: :slug do
+            resources :notify_answers, only: %i[create index]
           end
-          resources :answers, only: %i[index create]
         end
+        get '/random_questions', to: 'questions#random_questions_to_answer'
       end
       resources :yelper, only: [:show], param: :slug
       get '/latest', to: 'businesses#latest'

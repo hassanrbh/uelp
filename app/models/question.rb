@@ -25,8 +25,6 @@ class Question < ApplicationRecord
   has_one :notify
   has_many :notify_answers
 
-  after_save :cache_count_answers
-
   scope :sort_by_most_answered_question,
         lambda { |business|
           where("community_id = ?", business.community.id).order(

@@ -15,7 +15,7 @@ class questionService {
   }
   async getAnansweredQuestions(business_slug) {
     const { data } = await axios.get(
-      API_URL + `${business_slug}/questions/random_questions`,
+      API_URL + `${business_slug}/random_questions`,
       {
         headers: authHeader(),
       }

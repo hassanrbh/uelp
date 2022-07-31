@@ -26,12 +26,12 @@ module Users
           end
           render json: {
             errors: @errors
-          }, status: :ok
+          }, status: 401
         rescue NoMethodError
           @errors.push('email or password are not provided')
           render json: {
             errors: @errors
-          }, status: :ok
+          }, status: 403
         end
 
       end

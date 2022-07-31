@@ -23,5 +23,5 @@
 class Notify < ApplicationRecord
   belongs_to :business
   belongs_to :question
-  belongs_to :user
+  belongs_to :notifyer, class_name: "User", :foreign_key => :user_id
 end

@@ -3,6 +3,8 @@
 module Api
   module V1
     class YelperController < ApplicationController
+      before_action :authenticate_user!
+      
       def show
         @yelper = User.find_by_username(params[:slug])
         if @yelper.present?
