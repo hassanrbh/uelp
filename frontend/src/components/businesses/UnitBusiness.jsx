@@ -2,18 +2,18 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import UserService from "../../services/auth.service";
-import Loading from "../reusableComponents/Loading"
-import ActionsSegment from "./ActionsSegment";
-import Dividor from "../reusableComponents/Dividor";
-import OrderFood from "./OrderFood/OrderFood";
-import InfoAboutBiz from "./InfoAboutBiz/InfoAboutBiz";
-import Menu from "./Menu/Menu";
-import MenuInfo from "./Menu/MenuInfo";
-import Index from "./BusinesseWorkingHours";
-import Amenties from "./Amenties/Amenties";
-import HelpYelp from "./HelpYelp/HelpYelp";
-import AboutBusiness from "./AboutBusiness/AboutBusiness";
-import AskCommunity from "./AskCommunity/AskCommunity";
+import Loading from "../reusableComponents/Loading";
+const ActionsSegment = React.lazy(() => import("./ActionsSegment"));
+const Dividor = React.lazy(() => import("../reusableComponents/Dividor"));
+const OrderFood = React.lazy(() => import("./OrderFood/OrderFood"));
+const InfoAboutBiz = React.lazy(() => import("./InfoAboutBiz/InfoAboutBiz"));
+const Menu = React.lazy(() => import("./Menu/Menu"));
+const MenuInfo = React.lazy(() => import("./Menu/MenuInfo"));
+const Index = React.lazy(() => import("./BusinesseWorkingHours/index"));
+const Amenties = React.lazy(() => import("./Amenties/Amenties"));
+const HelpYelp = React.lazy(() => import("./HelpYelp/HelpYelp"));
+const AboutBusiness = React.lazy(() => import("./AboutBusiness/AboutBusiness"));
+const AskCommunity = React.lazy(() => import("./AskCommunity/AskCommunity"));
 
 const UnitBusiness = () => {
   const { business_name } = useParams();
@@ -22,7 +22,10 @@ const UnitBusiness = () => {
     () => UserService.getBusiness(business_name)
   );
 
-  if (isLoading) return <div className="relative mb-1"><Loading /></div>;
+  if (isLoading)
+    return (
+      <Loading />
+    );
   if (isError) return <div>{error}</div>;
 
   return (

@@ -13,7 +13,7 @@
   }
 }
 
-.markercluster-map { height: 150px; width: 315px; border: 2px solid black; border-radius: 4px }
+.markercluster-map { height: 203px; width: 315px; border-radius: 4px }
 .
 .leaflet-control { z-index: 0 !important}
 .leaflet-pane { z-index: 0 !important}
@@ -41,4 +41,8 @@
   border-radius: 50%;
   animation: spinner 1.5s linear infinite;
   position: absolute;
+}
+
+.leaflet-icon {
+  width: 24px; height: 32px; user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;
 }

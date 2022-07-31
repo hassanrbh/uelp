@@ -1,5 +1,6 @@
 import React from "react";
 import { MapContainer, TileLayer, Marker } from "react-leaflet";
+
 // import { useQuery } from "react-query";
 // import IpTracker from "../../../api/ip_info";
 import client from "../../../services/react-query";
@@ -39,6 +40,7 @@ const Map = () => {
 
   // if (isLoading) return <MapSkeleton />;
   // if (isError) return <div>{error}</div>;
+
 
   return (
     (longitude && latitude) ? <MapContainer
