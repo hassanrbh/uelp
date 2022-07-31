@@ -29,11 +29,16 @@
 }
 .loading-spinner {
   width: 50px;
+  margin:auto;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  position:fixed;
   height: 50px;
   border: 10px solid #f3f3f3; /* Light grey */
   border-top: 10px solid #383636; /* Black */
   border-radius: 50%;
   animation: spinner 1.5s linear infinite;
   position: absolute;
-  left: 25%;
 }

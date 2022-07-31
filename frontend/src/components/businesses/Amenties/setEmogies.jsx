@@ -22,6 +22,7 @@ import {
   faWheelchair,
 } from "@fortawesome/free-solid-svg-icons";
 
+
 const SetEmogies = ({item, data, className, classNameNo}) => {
   const check_item_icon = (icon) => {
     if (icon === "many_vegeterian_options" || icon === "offers_catering") return <CheckIcon className={className} /> 
