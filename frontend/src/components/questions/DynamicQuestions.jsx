@@ -10,8 +10,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const DynamicQuestions = ({ currentItem }) => {
   const { business } = useParams();
-  const [currentPos, setCurrentPos] = useState(1);
-
+  const [currentPos, setCurrentPos] = useState(1); 
   const { data: questions, isLoading } = useQuery(
     [`${currentItem}_questions_for`, business],
     () => questionService.getSortedData(business, currentItem, currentPos)
