@@ -27,6 +27,7 @@ Rails.application.routes.draw do
             }
 
   mount Resque::Server.new, at: '/jobs'
+  mount ActionCable.server => "/cable"
 
   namespace :api do
     namespace :v1 do
@@ -41,14 +42,14 @@ Rails.application.routes.draw do
         resources :images, only: %i[create show index]
         resources :amentys, only: [:index]
         resources :share, only: [:create]
-        resources :questions, only: %i[create index show], param: :slug do
-          resources :notifies, only: %i[index]
+        resources :questions, only: %i[create index show] do
           resources :answers, only: %i[index create], param: :slug do
             resources :notify_answers, only: %i[create index]
           end
         end
         get '/random_questions', to: 'questions#random_questions_to_answer'
       end
+      resources :notifies, only: %i[index]
       resources :yelper, only: [:show], param: :slug
       get '/latest', to: 'businesses#latest'
     end

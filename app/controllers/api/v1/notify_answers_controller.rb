@@ -1,3 +1,2 @@
-class Api::V1::NotifyAnswersController < ApplicationController
-  
+class Api::V1::NotifyAnswersController < Applr 
 end

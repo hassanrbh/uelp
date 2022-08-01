@@ -19,5 +19,7 @@ class Answer < ApplicationRecord
   belongs_to :question, touch: true
   belongs_to :business
 
+  validates :answer, presence: true, :uniqueness => true
+
   has_one :notify_answer
 end
