@@ -78,7 +78,7 @@ const QuestionAnswered = ({ question, writer, answers }) => {
                 </div>
                 <Link
                   to={`/questions/${business}/${question}`}
-                  className="border border-[#c8c9ca] px-[10px] relative right-9 text-xs py-[5px] top-2  rounded text-black hover:bg-gray-200 bg-gray-100 ease-in-out duration-700"
+                  className="border border-[#c8c9ca] px-[10px] relative right-9 text-xs py-[5px] top-2  rounded text-black hover:bg-gray-200 bg-gray-100 ease-in-out duration-700 font-semibold"
                 >
                   See {answers?.length} more answer
                 </Link>

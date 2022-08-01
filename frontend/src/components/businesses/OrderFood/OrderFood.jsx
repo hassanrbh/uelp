@@ -11,12 +11,12 @@ import useOnClickOutside from "../../../hooks/useOnClickOutside";
 
 const OrderFood = () => {
   const navigate = useNavigate();
-  const ref = useRef()
+  const ref = useRef();
   const [toggleForDelivery, setIsToggleForDelivery] = useState(true);
   const [isActiveDelivery, setIsActiveDelivery] = useState(true);
   const [toggleForTakeout, setIsToggleForTakeout] = useState(false);
   const [isActiveTakeout, setIsActiveTakeout] = useState(false);
-  const [addresses, setAddresses] = useState([])
+  const [addresses, setAddresses] = useState([]);
   const [captureAddress, setCaptureAddress] = useState("");
   const [closePanel, setClosePanel] = useState("");
 
@@ -24,18 +24,14 @@ const OrderFood = () => {
 
   useOnClickOutside(ref, () => setClosePanel((prev) => !prev));
 
-  const {
-    isLoading,
-    isSuccess,
-  } = useQuery(
+  const { isLoading, isSuccess } = useQuery(
     ["geoApify"],
     () => geoPifyAutoCompletion.getData(debouncedaddress),
     {
       enabled: captureAddress.length >= 1 ? Boolean(debouncedaddress) : false,
       onSuccess: (data) => {
-        setAddresses(data)
-        setCaptureAddress("");
-      }
+        setAddresses(data);
+      },
     }
   );
 
@@ -57,7 +53,7 @@ const OrderFood = () => {
     e.preventDefault();
 
     setCaptureAddress("");
-    
+
     return navigate("/order", {
       replace: true,
       state: {
@@ -135,20 +131,26 @@ const OrderFood = () => {
                     onClick={() => setClosePanel((prev) => false)}
                   />
                   {!isLoading && isSuccess && !closePanel ? (
-                    <div ref={ref} className={`bg-gray min-w-[329px]  absolute p-3 h-fit bottom-[-35px] top-[64px] z-50 overflow-y-auto shadow padding-[16px] bg-[#fff] rounded-[4px]`}>
-                    {addresses?.features?.map((address, __idx__) => (
+                    <div
+                      ref={ref}
+                      className={
+                        `bg-gray min-w-[329px] absolute p-3 h-fit bottom-[-35px] top-[64px] z-50 overflow-y-auto shadow padding-[16px] bg-[#fff] rounded-[4px]
+                        ${addresses?.features?.length >= 1 ? null : "hidden"}
+                        `}
+                    >
+                      {addresses?.features?.map((address, __idx__) => (
                         <p
                           key={__idx__}
                           className="font-light hover:bg-gray-100 text-left mt-1 cursor-pointer rounded-md"
                           onClick={(e) => {
-                            setCaptureAddress(e.target.textContent)
-                            setClosePanel((prev) => !prev)
+                            setCaptureAddress(e.target.textContent);
+                            setClosePanel((prev) => !prev);
                           }}
                         >
                           {address?.properties?.address_line2}
                         </p>
-                    ))}
-                  </div>                    
+                      ))}
+                    </div>
                   ) : null}
                 </div>
               </div>

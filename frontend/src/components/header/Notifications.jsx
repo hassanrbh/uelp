@@ -22,8 +22,8 @@ const Notifications = () => {
         channel: "NotificationsChannel",
       },
       {
-        received: (message) => {
-          setCounter(message.count)
+        received: (data) => {
+          setCounter(data.count)
         },
       }
     );
