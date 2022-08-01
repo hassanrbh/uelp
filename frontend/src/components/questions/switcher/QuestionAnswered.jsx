@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import Dividor from "../../reusableComponents/Dividor";
 import Writer from "./Writer";
 import { Link, useParams } from "react-router-dom";
 
 const QuestionAnswered = ({ question, writer, answers }) => {
-  const { business } = useParams()
+  const { business } = useParams();
+  const [more, isMore] = useState(false);
 
   return (
     <div className="font-[400] text-sm">
@@ -21,7 +22,23 @@ const QuestionAnswered = ({ question, writer, answers }) => {
               />
               <div>
                 <h1 className="max-w-[760px] ml-3 text-sm font-[400] m-1 text-[rgba(45,46,47,1)] ">
-                  {ans.answer}
+                  {ans?.answer?.slice(0, 350)}
+                  {more ? ans?.answer?.slice(350, -1) : "..."}{" "}
+                  {more ? (
+                    <span
+                      onClick={() => isMore((prev) => !prev)}
+                      className="font-bold text-[rgba(2,122,151,1)] hover:underline cursor-pointer"
+                    >
+                      less
+                    </span>
+                  ) : (
+                    <span
+                      onClick={() => isMore((prev) => !prev)}
+                      className="font-bold text-[rgba(2,122,151,1)] hover:underline cursor-pointer"
+                    >
+                      more
+                    </span>
+                  )}
                 </h1>
                 <div className="flex ml-3 text-[12px] gap-2 text-gray-600">
                   <Link
