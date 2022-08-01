@@ -63,6 +63,15 @@ module Api
               @business
             ).deliver_now
 
+            ## if the notify is active send a notification to the owner of the business
+            if (@question.notify_me)
+              @notify =
+                current_user.notifies.create(
+                  question: @question,
+                  business: @question.business
+                )
+            end
+
             return(
               render json: {
                       success: "Question Save, Community Is Happy"
@@ -76,10 +85,10 @@ module Api
             render json: {
                     error: ["Question Already Exists"],
                     question: question
-                  }
+                  }, :status => 400
           )
         end
-        render :error, status: :not_found
+        render :error, status: 400
       end
 
       def random_questions_to_answer

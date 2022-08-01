@@ -13,7 +13,9 @@ const DynamicQuestions = ({ currentItem }) => {
   const [currentPos, setCurrentPos] = useState(1); 
   const { data: questions, isLoading } = useQuery(
     [`${currentItem}_questions_for`, business],
-    () => questionService.getSortedData(business, currentItem, currentPos)
+    () => questionService.getSortedData(business, currentItem, currentPos), {
+      refetchInterval: 3000,
+    }
   );
 
   // const handleDirection = (e) => {

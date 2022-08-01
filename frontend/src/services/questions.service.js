@@ -35,7 +35,7 @@ class questionService {
   }
 
   async createQuestion(business_slug, question_data) {
-    const { data } = await axios.get(
+    const { data } = await axios.post(
       API_URL + `${business_slug}/questions`,
       question_data,
       { headers: authHeader() }
