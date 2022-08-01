@@ -38,6 +38,7 @@ const DynamicQuestions = ({ currentItem }) => {
           question={question?.question}
           writer={question?.questioner?.username}
           answers={question?.answers}
+          key={__idx__}
         />
       ))}
       {/* <Pagination count={questions?.total_pages} 

@@ -71,3 +71,15 @@
   width: 2px;
 }
 
+#notifications::after {
+  content: attr(data-count);
+  border: 1px solid black;
+  background: rgb(220, 38, 38);
+  border: 1px solid rgb(220, 38, 38);
+  border-radius: 10px;
+  top: 2px;
+  font-size: 12px;
+  color: white;
+  padding: 0 4px;
+  position: absolute;
+}

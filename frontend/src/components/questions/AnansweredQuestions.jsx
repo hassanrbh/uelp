@@ -5,7 +5,7 @@ const AnansweredQuestions = ({ questions }) => {
   const { business } = useParams();
 
   return questions?.questions?.map((question, index) => (
-    <div className="mb-4">
+    <div className="mb-4" key={index}>
       <p className="text-sm font-normal">{question.question}</p>
       <div className="text-[rgba(110,112,114,1)] mt-2 relative bottom-2 flex gap-2">
         <span className="text-xs font-light">Asked by</span>

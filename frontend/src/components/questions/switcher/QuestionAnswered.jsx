@@ -12,9 +12,9 @@ const QuestionAnswered = ({ question, writer, answers }) => {
       <div>
         {answers.length <= 1 &&
           answers.map((ans, idx) => (
-            <div className="mt-2 flex">
+            <div className="mt-2 flex" key={idx}>
               <img
-                class="inline-block h-10 w-10 rounded-full ring-2 ring-white"
+                className="inline-block h-10 w-10 rounded-full ring-2 ring-white"
                 src={ans?.answerer?.avatar}
                 alt=""
                 img="true"
@@ -38,9 +38,9 @@ const QuestionAnswered = ({ question, writer, answers }) => {
           ))}
         {answers.length >= 2 &&
           answers.slice(0, 1).map((ans, idx) => (
-            <div className="mt-2 flex">
+            <div className="mt-2 flex" key={idx}>
               <img
-                class="inline-block h-10 w-10 rounded-full ring-2 ring-white"
+                className="inline-block h-10 w-10 rounded-full ring-2 ring-white"
                 img="true"
                 src={ans?.answerer?.avatar}
                 alt=""

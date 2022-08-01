@@ -17,7 +17,7 @@ const UserProfileStatus = () => {
           className="pr-[2px]"
         >
           <style type="text/css"></style>
-          <g class="st0" id="etc" />
+          <g className="st0" id="etc" />
           <g id="Hats" />
           <g id="Crewmates" />
           <g id="ejection" />

@@ -20,9 +20,9 @@ const RightNav = ({ username, logout, avatar }) => {
           content={<span className="font-bold">Notifications</span>}
           interactive={true}
           animation="scale"
-          className="relative mr-1 bottom-1"
+          className="relative mr-1 bottom-3"
         >
-          <Link to="/profile/notifications" className="2xl:block xl:block mr-[18px]">
+          <Link to="/profile/notifications" id="notifications" className="2xl:block xl:block mr-[18px]" data-count="0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="cursor-pointer absolute right-12 top-2 mr-2"
