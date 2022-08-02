@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import questionService from "../../services/questions.service.js";
+import DynamicQuestionsSkeleton from "./DynamicQuestionsSkeleton"
 import Question from "./Question";
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 // import PaginationItem from '@mui/material/PaginationItem';
@@ -57,7 +58,7 @@ const DynamicQuestions = ({ currentItem }) => {
         )}
         onClick={(e) => handleDirection(e)}/> */}
     </div>
-  ) : null;
+  ) : <DynamicQuestionsSkeleton />;
 };
 
 export default DynamicQuestions;
