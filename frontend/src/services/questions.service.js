@@ -26,12 +26,23 @@ class questionService {
   async getSortedData(business_slug, sorting_query, page) {
     const { data } = await axios.get(
       API_URL +
-        `${business_slug}/questions?sort_by=${sorting_query}&page=${page}`, {
-          headers: authHeader(),
-        }
+        `${business_slug}/questions?sort_by=${sorting_query}&page=${page}`,
+      {
+        headers: authHeader(),
+      }
     );
 
     return data;
+  }
+
+  async getQuestionData({ question_id, business_slug }) {
+    const { data } = await axios.get(
+      API_URL + `${business_slug}/${question_id}`, {
+        headers: authHeader()
+      }
+    );
+
+    return data
   }
 
   async createQuestion(business_slug, question_data) {
