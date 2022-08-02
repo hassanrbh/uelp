@@ -3,7 +3,7 @@ import QuestionAnswered from "./switcher/QuestionAnswered";
 import QuestionAns from "./switcher/QuestionAns";
 
 const Question = ({ question, writer, answers }) => {
-  return answers.length >= 0 ? (
+  return answers.length >= 1 ? (
     <QuestionAnswered
       question={question}
       answers={answers}

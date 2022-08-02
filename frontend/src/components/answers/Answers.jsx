@@ -9,7 +9,7 @@ const Answers = () => {
   const { business , question} = useParams();
 
   return (
-    <>
+    <> 
       <Divider />
       <div className="container mx-auto max-w-[1140px]">
         <div className="flex pt-[10px] pb-[10px]">
