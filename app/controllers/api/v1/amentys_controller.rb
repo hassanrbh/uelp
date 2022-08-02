@@ -2,7 +2,6 @@
 
 module Api
   module V1
-    # this controller for amentys businesses
     class AmentysController < ApplicationController
       before_action :authenticate_user!
       def index

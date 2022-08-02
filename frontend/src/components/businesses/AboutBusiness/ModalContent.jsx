@@ -1,6 +1,5 @@
 import React from "react";
 import client from "../../../services/react-query";
-import Divider from "../../reusableComponents/Dividor";
 import { Link, useParams} from "react-router-dom";
 import {FlagIcon} from "@heroicons/react/outline";
 

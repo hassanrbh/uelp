@@ -40,7 +40,7 @@ const QuestionAnswered = ({ question, writer, answers }) => {
                     </span>
                   )}
                 </h1>
-                <div className="flex ml-3 text-[12px] gap-2 text-gray-600">
+                <div className="flex ml-3 text-[14px] gap-2 text-gray-600">
                   <Link
                     to={`/user_details?username=${ans?.answerer?.username}`}
                     className="text-[rgba(2,122,151,1)] hover:underline"
@@ -66,7 +66,7 @@ const QuestionAnswered = ({ question, writer, answers }) => {
                 <h1 className="max-w-[760px] ml-3 text-sm font-[400] m-1 text-[rgba(45,46,47,1)] ">
                   {ans.answer}
                 </h1>
-                <div className="flex ml-3 text-[12px] gap-2 text-gray-600">
+                <div className="flex ml-3 text-[14px] gap-2 text-gray-600">
                   <Link
                     to={`/user_details?username=${ans?.answerer?.username}`}
                     className="text-[rgba(2,122,151,1)] hover:underline"
@@ -78,7 +78,7 @@ const QuestionAnswered = ({ question, writer, answers }) => {
                 </div>
                 <Link
                   to={`/questions/${business}/${question}`}
-                  className="border border-[#c8c9ca] px-[10px] relative right-9 text-xs py-[5px] top-2  rounded text-black hover:bg-gray-200 bg-gray-100 ease-in-out duration-700 font-semibold"
+                  className="border border-[#c8c9ca] px-[10px] relative right-9 text-xs py-[5px] top-2  rounded text-black hover:bg-gray-200 bg-gray-100 ease-in-out duration-700 font-semibold cursor-pointer"
                 >
                   See {answers?.length} more answer
                 </Link>

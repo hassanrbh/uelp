@@ -5,7 +5,7 @@ json.ignore_nil?
 json.questions(@questions) do |question|
   @questioner = question.user
 
-  json.extract! question, :question
+  json.extract! question, :question, :id
 
   json.questioner do
     json.username @questioner.username

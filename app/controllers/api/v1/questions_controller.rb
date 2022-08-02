@@ -13,9 +13,9 @@ module Api
         @questions = @business.community_questions
 
         if sort_by.present? &&
-             !(
-               sort_by =~ /.*(popular|Popular|most_answered|Newest First).*/
-             ).nil?
+            !(
+              sort_by =~ /.*(popular|Popular|most_answered|Newest First).*/
+            ).nil?
           if !(sort_by =~ /.*(popular|Popular).*/).nil?
             return sort_by_popular(page)
           elsif !(sort_by =~ /.*(most_answered).*/).nil?
@@ -35,14 +35,19 @@ module Api
         return render :index, status: :ok if @questions.count >= 1
 
         render json: {
-                 mesg:
-                   "Yelp users haven't asked any questions yet about #{@business.name}."
-               }
+                mesg:
+                  "Yelp users haven't asked any questions yet about #{@business.name}."
+              }
       end
 
       def show
         @question = Question.find_by_id(params[:id])
-        render json: @question, status: :ok
+        if (!@question.nil?)
+          return render json: @question, status: :ok
+        end
+        return render :json => {
+          :error => ["question not Exist?"]
+        }
       end
 
       def create
@@ -73,28 +78,28 @@ module Api
 
               return(
                 render json: {
-                         success:
-                           "Great! We'll let you know as soon as there is a new answer to this question."
-                       },
-                       status: :ok
+                        success:
+                          "Great! We'll let you know as soon as there is a new answer to this question."
+                      },
+                      status: :ok
               )
             end
 
             return(
               render json: {
-                       success: "Question Save, Community Is Happy"
-                     },
-                     status: :ok
+                      success: "Question Save, Community Is Happy"
+                    },
+                    status: :ok
             )
           end
         rescue ActiveRecord::RecordNotUnique
           question = Question.where(question: params[:question][:question])
           return(
             render json: {
-                     error: ["Question Already Exists"],
-                     question: question
-                   },
-                   status: 400
+                    error: ["Question Already Exists"],
+                    question: question
+                  },
+                  status: 400
           )
         end
         render :error, status: 400

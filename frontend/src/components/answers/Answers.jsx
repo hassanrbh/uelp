@@ -1,12 +1,12 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { ChevronRightIcon } from "@heroicons/react/solid";
-import RightSection from "./RightSection";
-import LeftSection from "./LeftSection";
-import Divider from "../reusableComponents/Dividor";
+import Divider from "../reusableComponents/Dividor"
+import Discussions from "./Discussions"
+import OtherQuestions from "./OtherQuestions"
 
-const Questions = (props) => {
-  const { business } = useParams();
+const Answers = () => {
+  const { business , question} = useParams();
 
   return (
     <>
@@ -20,16 +20,21 @@ const Questions = (props) => {
             {business}
           </Link>
           <ChevronRightIcon className="h-4 relative bottom-[6px] mr-1 ml-1 w-5 font-bold text-gray-600" />
-          <p className="font-semibold text-[12px] text-gray-500 relative bottom-2 ">
+          <Link to={`/questions/${business}`} className="font-semibold text-[12px] text-gray-500 relative bottom-2 hover:underline">
             Ask the Community
+          </Link>
+          <ChevronRightIcon className="h-4 relative bottom-[6px] mr-1 ml-1 w-5 font-bold text-gray-600" />
+          <p className="font-semibold text-[12px] text-gray-500 relative bottom-2">
+            {question}
           </p>
         </div>
-        <div className="flex justify-between">
-          <div>
-            <RightSection />
+
+        <div className="flex">
+          <div className="flex-1">
+            <Discussions />
           </div>
           <div>
-            <LeftSection business={business}/>
+            <OtherQuestions />
           </div>
         </div>
       </div>
@@ -37,4 +42,4 @@ const Questions = (props) => {
   );
 };
 
-export default Questions;
+export default Answers;

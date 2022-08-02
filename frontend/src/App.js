@@ -1,10 +1,5 @@
-import {
-  Route,
-  Routes,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
-import React, { useState, lazy,useEffect } from "react";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import React, { useState, lazy, useEffect } from "react";
 import { switchHeaders } from "./utils/switchHeader";
 import { useQuery } from "react-query";
 import { ToastContainer } from "react-toastify";
@@ -26,9 +21,7 @@ import Map from "./components/Map/Map";
 
 // Questions Components
 const Questions = lazy(() => import("./components/questions/Questions"));
-const AnswersQuestions = lazy(() =>
-  import("./components/questions/AnswersQuestions")
-);
+const Answers = lazy(() => import("./components/answers/Answers"));
 // Auth Components
 // const Register = lazy(() => import("./components/register/Register"));
 const Login = lazy(() => import("./components/login/Login"));
@@ -300,7 +293,7 @@ const App = () => {
           path="/questions/:business/:question"
           element={
             <ProtectedRoute>
-              <SuspenseLazy element={<AnswersQuestions />} />
+              <SuspenseLazy element={<Answers />} />
             </ProtectedRoute>
           }
         />
@@ -309,13 +302,9 @@ const App = () => {
         <Route
           path="/"
           element={
-            <SuspenseLazy
-              element={
-                <ProtectedRoute>
-                  <SuspenseLazy element={<Home />} />
-                </ProtectedRoute>
-              }
-            />
+            <ProtectedRoute>
+              <SuspenseLazy element={<Home />} />
+            </ProtectedRoute>
           }
         />
       </Routes>
