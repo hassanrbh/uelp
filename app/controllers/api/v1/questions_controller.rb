@@ -43,7 +43,7 @@ module Api
       def show
         @question = Question.find_by_id(params[:id])
         if (!@question.nil?)
-          return render json: @question, status: :ok
+          return render :show, status: :ok
         end
         return render :json => {
           :error => ["question not Exist?"]

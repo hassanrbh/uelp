@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Dividor from "../../reusableComponents/Dividor";
 import Writer from "./Writer";
 import { Link, useParams } from "react-router-dom";
@@ -21,7 +21,7 @@ const QuestionAnswered = ({ question, writer, answers }) => {
                 img="true"
               />
               <div>
-                <h1 className="max-w-[760px] ml-3 text-sm font-[400] m-1 text-[rgba(45,46,47,1)] ">
+                <h1 className="max-w-[760px] ml-3 text-[13px] font-[500] m-1 text-[rgba(45,46,47,1)] ">
                   {ans?.answer?.slice(0, 350)}
                   {more ? ans?.answer?.slice(350, -1) : "..."}{" "}
                   {more ? (
@@ -47,8 +47,8 @@ const QuestionAnswered = ({ question, writer, answers }) => {
                   >
                     {ans?.answerer?.username}
                   </Link>
-                  <p>{ans?.created_at} ago</p>
-                  <p>4 people found this helpful</p>
+                  <p className="separator">{ans?.created_at} ago</p>
+                  <p className="separator">4 people found this helpful</p>
                 </div>
               </div>
             </div>
@@ -66,18 +66,19 @@ const QuestionAnswered = ({ question, writer, answers }) => {
                 <h1 className="max-w-[760px] ml-3 text-sm font-[400] m-1 text-[rgba(45,46,47,1)] ">
                   {ans.answer}
                 </h1>
-                <div className="flex ml-3 text-[14px] gap-2 text-gray-600">
+                <div className="flex ml-3 text-[14px] gap-1 text-gray-600">
                   <Link
                     to={`/user_details?username=${ans?.answerer?.username}`}
                     className="text-[rgba(2,122,151,1)] hover:underline"
                   >
                     {ans?.answerer?.username}
                   </Link>
-                  <p className="">{ans?.created_at} ago</p>
-                  <p>4 people found this helpful</p>
+                  <p className="separator">{ans?.created_at} ago</p>
+                  <p className="separator">4 people found this helpful</p>
                 </div>
                 <Link
-                  to={`/questions/${business}/${question}`}
+                  to={`/questions/${business}/${question?.question}`}
+                  state={{ question_id: question.id }}
                   className="border border-[#c8c9ca] px-[10px] relative right-9 text-xs py-[5px] top-2  rounded text-black hover:bg-gray-200 bg-gray-100 ease-in-out duration-700 font-semibold cursor-pointer"
                 >
                   See {answers?.length} more answer

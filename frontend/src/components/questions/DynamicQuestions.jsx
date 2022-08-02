@@ -41,7 +41,7 @@ const DynamicQuestions = ({ currentItem }) => {
     <div ref={parent}>
       {questions?.questions?.map((question, __idx__) => (
         <Question
-          question={question?.question}
+          question={question}
           writer={question?.questioner?.username}
           answers={question?.answers}
           key={__idx__}

@@ -7,8 +7,8 @@ const QuestionAns = ({ question, writer }) => {
   return (
     <>
       <div className="font-[400] text-sm">
-        <Writer question={question} writer={writer} />
-        <Answers question={question}/>
+        <Writer question={question?.question} writer={writer} />
+        <Answers question={question?.question}/>
       </div>
       <Dividor className="w-[800px]" />
     </>

@@ -9,6 +9,7 @@ const Answers = ({question}) => {
       No answers yet.{" "}
       <Link
         to={`/questions/${business}/${question}`}
+        state={{question_id: question.id}}
         className="hover:underline font-bold text-[rgba(2,122,151,1)]"
       >
         Answer this question

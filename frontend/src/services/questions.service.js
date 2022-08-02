@@ -37,7 +37,7 @@ class questionService {
 
   async getQuestionData({ question_id, business_slug }) {
     const { data } = await axios.get(
-      API_URL + `${business_slug}/${question_id}`, {
+      API_URL + `${business_slug}/questions/${question_id}`, {
         headers: authHeader()
       }
     );
