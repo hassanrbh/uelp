@@ -7,17 +7,19 @@ import { QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { SkeletonTheme } from "react-loading-skeleton";
 import client from "./services/react-query";
+
 import actioncable from "actioncable";
 
-const Cable = {}
+const Cable = {};
+
+
 Cable.cable = actioncable.createConsumer("ws://localhost:3000/cable");
 
-window.actioncable = actioncable.createConsumer("ws://localhost:3000/cable")
+window.actioncable = actioncable.createConsumer("ws://localhost:3000/cable");
 
-export const CableContext = React.createContext()
+export const CableContext = React.createContext();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
 
 root.render(
   <SkeletonTheme baseColor="#dfdfdf" highlightColor="#d6d6d6">

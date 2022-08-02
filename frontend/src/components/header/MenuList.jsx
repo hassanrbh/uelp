@@ -21,7 +21,7 @@ const MenuList = ({ username, logout, avatar }) => {
       <div>
         <Tippy content={<span className="font-bold">{username}.</span>} interactive={true}
           animation="scale">
-          <Menu.Button className=" flex text-sm rounded-full focus:outline-none">
+          <Menu.Button className="flex text-sm rounded-full focus:outline-none relative left-[10px]">
             <span className="sr-only">Open user menu</span>
             <StyledBadge
               overlap="circular"

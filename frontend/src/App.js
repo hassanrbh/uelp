@@ -1,8 +1,16 @@
-import { Route, Routes, useLocation } from "react-router-dom";
-import React, { useState, lazy } from "react";
+import {
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
+import React, { useState, lazy,useEffect } from "react";
 import { switchHeaders } from "./utils/switchHeader";
 import { useQuery } from "react-query";
 import { ToastContainer } from "react-toastify";
+
+// Monitoring
+import LogRocket from "logrocket";
 
 // Services
 import UserService from "./services/auth.service";
@@ -67,6 +75,7 @@ export const UserContext = React.createContext();
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
   let location = useLocation();
+  let navigate = useNavigate();
 
   const { isSuccess, isError, error, isLoading } = useQuery(
     ["currentUser"],
@@ -78,14 +87,19 @@ const App = () => {
     }
   );
 
+  useEffect(() => {
+    LogRocket.init("lrx9qm/global");
+  }, []);
+
   const logout = () => {
     AuthService.logout();
     setCurrentUser(undefined);
+    navigate("/login");
   };
 
   return (
     <div className="App">
-      <UserContext.Provider value={{logout, currentUser}}>
+      <UserContext.Provider value={{ logout, currentUser }}>
         {switchHeaders("/login", HeaderLogin, location, Header)}
       </UserContext.Provider>
       <ToastContainer />

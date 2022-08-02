@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { Formik, Form, Field} from "formik";
 import { useMutation, useQuery } from "react-query";
 import UserService from "../../services/auth.service";
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import { Link, useNavigate } from "react-router-dom";
 import Tippy from "@tippyjs/react";
 import "tippy.js/animations/scale.css";
@@ -32,6 +33,11 @@ const Search = () => {
     });
   }
 
+  const [parent] = useAutoAnimate({
+    duration: 250,
+    easing: 'ease-in-out'
+  });
+
   function handleChangeInput2(e) {
     setInput2(e.currentTarget.value);
   }
@@ -45,6 +51,8 @@ const Search = () => {
       },
     }
   );
+
+
 
   const { data } = useQuery(
     ["address_for_"],
@@ -150,14 +158,13 @@ const Search = () => {
       </Formik>
       {modalOpener ? (
         <ul
-          ref={ref}
+          ref={parent}
           className={`border w-[23.8%] p-[7px] bg-white ${
             input.length === 0 ||
             fetchedBusinesses?.all_businesses?.length === 0
               ? "hidden"
               : null
           } rounded absolute z-50`}
-          onBlur={() => setModalOpener(false)}
         >
           {isLoading ? null : null}
           {isSuccess && fetchedBusinesses?.all_businesses?.length >= 1

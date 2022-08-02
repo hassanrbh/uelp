@@ -28,7 +28,7 @@ module Api
                                           {
                                             count:
                                               NotifyAnswer.where(
-                                                user_id: @question.user.id
+                                                user_id: current_user.id,
                                               ).count
                                           }
               return render json: { success: ["answered correctly"] }

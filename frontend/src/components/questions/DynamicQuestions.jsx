@@ -4,11 +4,16 @@ import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import questionService from "../../services/questions.service.js";
 import Question from "./Question";
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 // import PaginationItem from '@mui/material/PaginationItem';
 // import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 // import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const DynamicQuestions = ({ currentItem }) => {
+  const [parent] = useAutoAnimate({
+    easing: "ease-in-out",
+    duration: "250"
+  })
   const { business } = useParams();
   const [currentPos, setCurrentPos] = useState(1); 
   const { data: questions, isLoading } = useQuery(
@@ -32,7 +37,7 @@ const DynamicQuestions = ({ currentItem }) => {
   // }
 
   return !isLoading ? (
-    <>
+    <div ref={parent}>
       {questions?.questions?.map((question, __idx__) => (
         <Question
           question={question?.question}
@@ -51,7 +56,7 @@ const DynamicQuestions = ({ currentItem }) => {
           />
         )}
         onClick={(e) => handleDirection(e)}/> */}
-    </>
+    </div>
   ) : null;
 };
 
