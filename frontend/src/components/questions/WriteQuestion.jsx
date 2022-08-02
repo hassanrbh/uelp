@@ -2,6 +2,7 @@ import React from "react";
 import { useMutation } from "react-query";
 import { Formik, Field, Form, useField } from "formik";
 import questionService from "../../services/questions.service.js";
+import Loading from "../reusableComponents/Loading";
 import { useParams } from "react-router-dom";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
@@ -26,12 +27,12 @@ const MyTextArea = ({ label, className, ...props }) => {
 
 const WriteQuestion = () => {
   const { business } = useParams();
-  const { mutate } = useMutation(
+  const { mutate, isLoading } = useMutation(
     (question) => questionService.createQuestion(business, question),
     {
       onSuccess: (response) => {
         toast.success(response.success);
-        document.documentElement.scrollTop = 0
+        document.documentElement.scrollTop = 0;
       },
       onError: (error) => {
         if (error.response.data.error) {
@@ -52,11 +53,11 @@ const WriteQuestion = () => {
           question: "",
           notify_me: false,
         }}
-        onSubmit={(values, { setSubmitting , resetForm}) => {
+        onSubmit={(values, { setSubmitting, resetForm }) => {
           mutate({
             question: values,
           });
-          resetForm({values: ""})
+          resetForm({ values: "" });
           setSubmitting(true);
         }}
         validationSchema={Yup.object({
@@ -94,12 +95,21 @@ const WriteQuestion = () => {
               </span>
             </label>
 
-            <button
-              type="submit"
-              className="mt-5 bg-[#e00706] px-[16px] py-[7px] rounded text-white trasntion-all ease-in-out duration-500 font-[600]"
-            >
-              Post Question
-            </button>
+            {isLoading ? (
+              <button
+                type="submit"
+                className="ml-2 mt-5 bg-[#e00706] px-[16px] w-[120px] py-[7px] flex justify-center rounded text-white trasntion-all ease-in-out duration-500 font-[600]"
+              >
+                <div className="lds-hourglass"></div>
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="ml-2 mt-5 bg-[#e00706] px-[16px] py-[7px] rounded text-white trasntion-all ease-in-out duration-500 font-[600]"
+              >
+                Post Question
+              </button>
+            )}
           </Form>
         )}
       </Formik>
