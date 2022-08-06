@@ -9,9 +9,10 @@ module Users
     def respond_with(resource, _opts = {})
       @errors = []
 
+      # checks if either the email and password fields
       if params[:user].present?
-        params[:user][:email].present? ? '' : check_providation('email')
-        params[:user][:password].present? ? '' : check_providation('password')
+        params[:user][:email].present? ? "" : check_providation("email")
+        params[:user][:password].present? ? "" : check_providation("password")
       end
 
       if resource.persisted?
@@ -20,20 +21,15 @@ module Users
         begin
           user = User.find_by_email(params[:user][:email])
           if user.active_for_authentication?
-            @errors.push('email or password are incorrect')
+            @errors.push("email or password is incorrect")
           else
-            @errors.push('account has been locked')
+            @errors.push("account has been locked")
           end
-          render json: {
-            errors: @errors
-          }, status: 401
+          render json: { errors: @errors }, status: 401
         rescue NoMethodError
-          @errors.push('email or password are not provided')
-          render json: {
-            errors: @errors
-          }, status: 403
+          @errors.push("email and password is not provided")
+          render json: { errors: @errors }, status: 403
         end
-
       end
     end
 

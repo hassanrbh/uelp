@@ -22,4 +22,6 @@ class Answer < ApplicationRecord
   validates :answer, presence: true, :uniqueness => true
 
   has_one :notify_answer
+
+  has_many :help_fuls
 end

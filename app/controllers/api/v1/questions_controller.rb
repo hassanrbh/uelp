@@ -46,7 +46,7 @@ module Api
           return render :show, status: :ok
         end
         return render :json => {
-          :error => ["question not Exist?"]
+          :error => ["question not Exists?"]
         }
       end
 

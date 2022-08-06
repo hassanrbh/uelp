@@ -16,6 +16,7 @@ class AuthService {
         },
       }),
     });
+
     this.setToken(resp);
     return resp.json();
   }

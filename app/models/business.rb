@@ -82,16 +82,19 @@ class Business < ApplicationRecord
             length: {
               in: 10..20
             },
-            uniqueness: true
-  # , :format => {
-  #   with: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
-  #   message: "not valid",
-  #   :multiline => true
-  # }
-  # validates :web_address, :uniqueness => true, :format => {
-  #   with: URI::DEFAULT_PARSER.make_regexp(%w[http https]),
-  #   message: "are not accessible"
-  # }, if: -> { !self.web_address.blank? }
+            uniqueness: true,
+            format: {
+              with: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
+              message: "not valid",
+              multiline: true
+            }
+  validates :web_address,
+            uniqueness: true,
+            format: {
+              with: URI::DEFAULT_PARSER.make_regexp(%w[http https]),
+              message: "are not accessible"
+            },
+            if: -> { !self.web_address.blank? }
   validates :hours_of_opening, numericality: true, presence: true
   validates :min_price, presence: true, numericality: true
   validates :max_price, presence: true, numericality: true
@@ -138,7 +141,7 @@ class Business < ApplicationRecord
   def self.filter_by_latest_cached
     Rails
       .cache
-      .fetch([:v1,self, :filter_by_latest_cached], expires_in: 24.hours) do
+      .fetch([:v1, self, :filter_by_latest_cached], expires_in: 24.hours) do
         filter_by_latest
       end
   end
@@ -151,12 +154,11 @@ class Business < ApplicationRecord
     if uri.port == 443 || uri.port == 80
       if uri.hostname.match(regex_check_host)
         return true if uri.scheme == "https"
-
-        errors.add(:scheme_incorrect, "Invalid schema, required https")
+        return errors.add(:scheme_incorrect, "Invalid schema, required https")
       end
-      errors.add(:host_incorrct, "Invalid host")
+      return errors.add(:host_incorrct, "Invalid host")
     end
-    errors.add(:port_incorrect, "Invalid address")
+    return errors.add(:port_incorrect, "Invalid address")
   end
 
   def get_average_amout_by_dollar_sign
@@ -191,7 +193,7 @@ class Business < ApplicationRecord
 
   def create_price_point
     if (!min_price.nil? && !max_price.nil?) &&
-        (min_price != 0 && max_price != 0)
+         (min_price != 0 && max_price != 0)
       Price.create(
         min_price: min_price,
         max_price: max_price,

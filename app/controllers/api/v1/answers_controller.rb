@@ -4,7 +4,19 @@ module Api
   module V1
     class AnswersController < ApplicationController
       before_action :authenticate_user!
-      
+
+      def index
+        @answers = Answer.where(question: params[:question_id])
+
+        render json: @answers, status: :ok
+      end
+
+      def show
+        @answer = Answer.find_by_answer(params[:id])
+        return render json: @answer, status: :ok if (!@answer.nil?)
+        return render json: { error: ["An error occurred"] }
+      end
+
       def create
         @question = Question.find(params[:question_id])
         @business = Business.find_by_name(params[:business_slug])
@@ -28,7 +40,7 @@ module Api
                                           {
                                             count:
                                               NotifyAnswer.where(
-                                                user_id: current_user.id,
+                                                user_id: current_user.id
                                               ).count
                                           }
               return render json: { success: ["answered correctly"] }

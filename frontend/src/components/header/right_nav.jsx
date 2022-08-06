@@ -7,8 +7,6 @@ import "tippy.js/animations/scale.css";
 import { Link } from "react-router-dom";
 import MenuList from "./MenuList";
 import Button from "./button";
-import "tippy.js/dist/tippy.css";
-import "tippy.js/animations/scale.css";
 
 const RightNav = ({ username, logout, avatar }) => {
   return (

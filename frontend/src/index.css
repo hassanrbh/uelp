@@ -120,3 +120,20 @@ body {
 .separator::before {
   content: '\00a0\2022\00a0'
 }
+
+.bob {
+    width: 1.3em;
+    height: 1.3em;
+    background-color: white;
+    border-radius: 4px;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.bob:checked {
+    background-color: green;
+}

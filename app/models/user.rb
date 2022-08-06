@@ -59,6 +59,7 @@ class User < ApplicationRecord
           primary_key: :id,
           foreign_key: :user_id
   has_many :notifies
+  has_many :help_fuls
   has_many :notify_answers, :class_name => "NotifyAnswer", :foreign_key => :notifyer_id
 
 
@@ -116,9 +117,7 @@ class User < ApplicationRecord
 
   def check_if_password_confirmation?
     if !(password === password_confirmation)
-      errors[:password_confirmation].push("Invalid password confirmation")
-    else
-      true
+      return errors[:password_confirmation].push("Invalid password confirmation")
     end
   end
 end

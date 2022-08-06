@@ -35,7 +35,7 @@ const RightSection = () => {
         </div>
         {isOpen ? (
           <>
-            <div className="shadow bg-[#fff] p-[15px] rounded-md max-w-fit absolute z-[100]" ref={parent}>
+            <div className="shadow-lg mt-1 bg-[#fff] p-[15px] rounded-md max-w-fit absolute z-[100]" ref={ref}>
               {Items.map((item, __idx__) => (
                 <div
                   key={__idx__}
