@@ -28,9 +28,9 @@ class Api::V1::HelpFulsController < ApplicationController
     if (params[:help_fuls][:indicator] === indicator)
       return(
         render json: {
-                error: ["you doing wierd stuff :) "]
-              },
-            status: :not_found
+                 error: ["you doing wierd stuff :) "]
+               },
+               status: :not_found
       )
     end
 

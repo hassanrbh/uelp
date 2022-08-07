@@ -11,9 +11,9 @@
 #  answer_id      :bigint           not null
 #
 class Report < ApplicationRecord
-  belongs_to :user, :class_name => "User", :foreign_key => :user_id 
-  belongs_to :malicious_user, :class_name => "User", :foreign_key => :malicious_id
-  belongs_to :answer, :class_name => "Answer", :foreign_key => :answer_id
+  belongs_to :user, class_name: "User", foreign_key: :user_id
+  belongs_to :malicious_user, class_name: "User", foreign_key: :malicious_id
+  belongs_to :answer, class_name: "Answer", foreign_key: :answer_id
 
   validates :report_content, presence: true
 end

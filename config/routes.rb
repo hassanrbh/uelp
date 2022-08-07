@@ -4,27 +4,27 @@ require "resque/server"
 
 Rails.application.routes.draw do
   devise_for :businesses,
-            controllers: {
-              sessions: "businesses/sessions",
-              registrations: "businesses/registrations"
-            },
-            path: "biz/",
-            path_names: {
-              sign_in: "login",
-              sign_out: "logout",
-              sign_up: "register"
-            }
+             controllers: {
+               sessions: "businesses/sessions",
+               registrations: "businesses/registrations"
+             },
+             path: "biz/",
+             path_names: {
+               sign_in: "login",
+               sign_out: "logout",
+               sign_up: "register"
+             }
 
   devise_for :users,
-            controllers: {
-              sessions: "users/sessions",
-              registrations: "users/registrations"
-            },
-            path: "user/",
-            path_names: {
-              sign_in: "login",
-              sign_out: "logout"
-            }
+             controllers: {
+               sessions: "users/sessions",
+               registrations: "users/registrations"
+             },
+             path: "user/",
+             path_names: {
+               sign_in: "login",
+               sign_out: "logout"
+             }
 
   mount Resque::Server.new, at: "/jobs"
   mount ActionCable.server => "/cable"
@@ -48,6 +48,8 @@ Rails.application.routes.draw do
             post "/helpful", to: "help_fuls#helpful"
             post "/unhelpful", to: "help_fuls#unhelpful"
             resources :notify_answers, only: %i[create index]
+            resources :reports, only: %i[create]
+            post "/cancel", to: "reports#cancel"
           end
         end
         get "/random_questions", to: "questions#random_questions_to_answer"

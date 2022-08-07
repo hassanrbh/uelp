@@ -13,8 +13,9 @@ module Api
 
       def show
         @answer = Answer.find_by_answer(params[:id])
-        return render json: @answer, status: :ok if (!@answer.nil?)
-        return render json: { error: ["An error occurred"] }
+        render json: @answer
+        # return render json: @answer, status: :ok if (!@answer.nil?)
+        # return render json: { error: ["An error occurred"] }
       end
 
       def create
@@ -37,12 +38,12 @@ module Api
               )
             if (@notification.save)
               ActionCable.server.broadcast "NotificationsChannel",
-                                          {
-                                            count:
-                                              NotifyAnswer.where(
-                                                user_id: current_user.id
-                                              ).count
-                                          }
+                                           {
+                                             count:
+                                               NotifyAnswer.where(
+                                                 user_id: current_user.id
+                                               ).count
+                                           }
               return render json: { success: ["answered correctly"] }
             end
           end
