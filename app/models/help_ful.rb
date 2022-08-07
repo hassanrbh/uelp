@@ -14,18 +14,4 @@ class HelpFul < ApplicationRecord
   belongs_to :answer
 
   validates :indicator, presence: true
-
-  def self.sum_indicators(answer)
-    Rails
-      .cache
-      .fetch(["v1", self, :sum_indicators], expires_in: 1.hour) do
-        @help_fuls = []
-        
-        HelpFul
-          .where(answer: answer)
-          .each { |help| @help_fuls << help.indicator }
-
-        return @help_fuls
-      end
-  end
 end

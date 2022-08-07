@@ -4,14 +4,11 @@ module Api
   module V1
     class YelperController < ApplicationController
       before_action :authenticate_user!
-      
+
       def show
         @yelper = User.find_by_username(params[:slug])
-        if @yelper.present?
-          render :show, status: :ok
-        else
-          render :error, status: :not_found
-        end
+        return render :show, status: :ok if @yelper.present?
+        return render :error, status: :not_found
       end
     end
   end
