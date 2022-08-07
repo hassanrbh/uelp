@@ -16,6 +16,7 @@ class Api::V1::ReportsController < ApplicationController
         if (@report.save)
           return render json: { message: "report created" }, status: :created
         end
+
         return render json: @report.errors.full_messages, status: 403
       end
 

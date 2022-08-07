@@ -1,12 +1,11 @@
 import axios from "axios";
 import authHeader from "./auth_header";
-
-const API_URL = "http://localhost:3000/api/v1";
+import { API_URL } from "../consts";
 
 class shareService {
   async share(business_slug, post_data) {
     const { data } = await axios.post(
-      API_URL + `/businesses/${business_slug}/share`,
+      API_URL + `${business_slug}/share`,
       post_data,
       { headers: authHeader() }
     );

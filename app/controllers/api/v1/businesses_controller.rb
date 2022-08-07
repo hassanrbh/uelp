@@ -83,14 +83,14 @@ module Api
       def edit
         @business = Business.find_by_name(params[:slug])
         if @business.update(business_params_edit) &&
-            stale?(last_modified: @business.updated_at, public: true)
+             stale?(last_modified: @business.updated_at, public: true)
           render json: @business, status: :ok
           return
         end
         render json: {
-                errors: ["May be there is not a business"]
-              },
-              status: :not_found
+                 errors: ["May be there is not a business"]
+               },
+               status: :not_found
       end
 
       def filtering_params(params)

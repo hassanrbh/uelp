@@ -1,7 +1,6 @@
 import axios from "axios";
 import authHeader from "./auth_header";
-
-const API_URL = "http://localhost:3000/api/v1/businesses/";
+import { API_URL } from "../consts";
 
 class questionService {
   async getAll(business_slug, limit) {
@@ -37,12 +36,13 @@ class questionService {
 
   async getQuestionData({ question_id, business_slug }) {
     const { data } = await axios.get(
-      API_URL + `${business_slug}/questions/${question_id}`, {
-        headers: authHeader()
+      API_URL + `${business_slug}/questions/${question_id}`,
+      {
+        headers: authHeader(),
       }
     );
 
-    return data
+    return data;
   }
 
   async createQuestion(business_slug, question_data) {

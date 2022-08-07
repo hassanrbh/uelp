@@ -13,9 +13,9 @@ module Api
           return
         end
         render json: {
-                errors: ["there is no amentys for this business"]
-              },
-              status: :not_found
+                 errors: ["there is no amentys for this business"]
+               },
+               status: :not_found
       end
     end
   end
