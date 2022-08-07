@@ -24,4 +24,5 @@ class Answer < ApplicationRecord
   has_one :notify_answer
 
   has_many :help_fuls
+  has_many :reports
 end
