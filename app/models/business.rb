@@ -44,13 +44,13 @@ class Business < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
-        :registerable,
-        :recoverable,
-        :rememberable,
-        :validatable,
-        :trackable,
-        :jwt_authenticatable,
-        jwt_revocation_strategy: JwtDenylist
+         :registerable,
+         :recoverable,
+         :rememberable,
+         :validatable,
+         :trackable,
+         :jwt_authenticatable,
+         jwt_revocation_strategy: JwtDenylist
   geocoded_by :full_address
   after_validation :geocode
   after_save :perform_caching_job
@@ -101,19 +101,19 @@ class Business < ApplicationRecord
 
   has_many_attached :images
   has_many :images_uploaded_by_user,
-          class_name: "Image",
-          primary_key: :id,
-          foreign_key: :business_id
+           class_name: "Image",
+           primary_key: :id,
+           foreign_key: :business_id
   has_one_attached :avatar
   has_one :community
   has_many :community_questions,
-          class_name: "Question",
-          primary_key: :id,
-          foreign_key: :business_id
+           class_name: "Question",
+           primary_key: :id,
+           foreign_key: :business_id
   has_many :answers,
-          class_name: "Answer",
-          primary_key: :id,
-          foreign_key: :business_id
+           class_name: "Answer",
+           primary_key: :id,
+           foreign_key: :business_id
   has_many :menus
   has_many :shares
   has_many :notifies
@@ -210,19 +210,11 @@ class Business < ApplicationRecord
     self
   end
 
-  def self.count_businesses_job
-    CountBusinessesJob.perform_now
-  end
-
   def self.filter_by_latest
     where("created_at < ?", 1.days.ago)
       .where("web_address != ?", "")
       .limit(15)
       .includes(:price)
       .with_attached_images
-  end
-
-  def perform_caching_job
-    CachingCategoriesJob.perform_now
   end
 end
