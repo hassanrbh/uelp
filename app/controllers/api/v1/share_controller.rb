@@ -38,9 +38,9 @@ module Api
           end
         else
           render json: {
-                   to: ["Yelper user dosen't exist, use Email instead"]
-                 },
-                 status: :not_found
+                  to: ["Yelper user dosen't exist, use Email instead"]
+                },
+                status: :not_found
         end
       end
 

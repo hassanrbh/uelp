@@ -59,6 +59,9 @@ module Api
       end
 
       def popular_dishes
+        render :json => {
+          :error => ["you are full of shit :)"]
+        }, :status => 403
       end
 
       private

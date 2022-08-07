@@ -5,12 +5,18 @@ class BusinessMailer < ApplicationMailer
     @question = question
     @business = business
     @user = user
-    mail(to: business.email, subject: "#{@user.username} ask a question in the community")
+    mail(
+      to: business.email,
+      subject: "#{@user.username} ask a question in the community"
+    )
   end
 
   def notify_user_questioner(user, business)
     @user = user
     @business = business
-    mail(to: user.email, subject: "you just asked a question in the community of #{@business.name}")
+    mail(
+      to: user.email,
+      subject: "you just asked a question in the community of #{@business.name}"
+    )
   end
 end

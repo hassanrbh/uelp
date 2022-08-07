@@ -16,7 +16,10 @@ module Businesses
     end
 
     def register_failed
-      render json: { errors: resource.errors.full_messages }, status: :unauthorized
+      render json: {
+              errors: resource.errors.full_messages
+            },
+            status: :unauthorized
     end
   end
 end
