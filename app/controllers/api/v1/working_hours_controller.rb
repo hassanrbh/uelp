@@ -7,12 +7,12 @@ module Api
 
       def index
         @business = Business.find_by_name(params[:business_slug])
-        @working_hours = WorkingHour.find_by(business_id: @business.id)
-        render :index, status: :ok if stale?(last_modified: @working_hours.updated_at, etag: @working_hours)
-      end
-
-      def index_cache
-        Rails.cache.fetch([self.class.name, :index], expires_in: 24.hours) do
+        @working_hours = @business.working_hour
+        if stale?(
+            last_modified: @working_hours.updated_at,
+            etag: @working_hours
+          )
+          render :index, status: :ok
         end
       end
     end
