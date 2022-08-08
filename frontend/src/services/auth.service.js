@@ -1,6 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth_header";
-import { API_URL } from "../consts";
+
+const API_URL = "http://localhost:3000/api/v1";
 
 class UserService {
   async getUser() {
@@ -8,10 +9,10 @@ class UserService {
       const { data } = await axios.get(API_URL + "/current_user", {
         headers: authHeader(),
       });
-
-      return data;
+  
+      return data
     } catch (err) {
-      console.log();
+      console.log()
     }
   }
   async getAnonymousUser(username) {

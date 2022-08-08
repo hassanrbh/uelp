@@ -1,6 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth_header";
-import { API_URL } from "../consts";
+
+const API_URL = "http://localhost:3000/api/v1/businesses/";
 
 class menuService {
   async getAllMenus(business_slug) {
@@ -36,7 +37,7 @@ class menuService {
       API_URL + `${business_slug}/menus/${menu_name}`,
       {
         menu: {
-          update_data,
+          update_data
         },
       },
       { headers: authHeader() }
@@ -45,13 +46,13 @@ class menuService {
   }
   async deleteMenu(business_slug, menu_name) {
     const { data } = await axios.delete(
-      API_URL + `${business_slug}/menus/${menu_name}`,
-      {
-        headers: authHeader(),
+      API_URL + `${business_slug}/menus/${menu_name}`, {
+        headers: authHeader()
       }
-    );
+    )
     return data;
   }
 }
 
 export default new menuService();
+

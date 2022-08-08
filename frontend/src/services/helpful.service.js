@@ -6,7 +6,7 @@ class helpfulService {
   async all(business_slug, question_id, answer_slug) {
     const { data } = await axios.get(
       API_URL +
-        EndPoint(business_slug, question_id, answer_slug) +
+      EndPoint(business_slug, question_id, answer_slug) +
         "/help_fuls",
       {
         headers: authHeader(),
@@ -18,7 +18,9 @@ class helpfulService {
 
   async helpful(business_slug, question_id, answer_slug, helpfulData) {
     const { data } = await axios.get(
-      API_URL + EndPoint(business_slug, question_id, answer_slug) + "/helpful",
+      API_URL +
+      EndPoint(business_slug, question_id, answer_slug) +
+        "/helpful",
       helpfulData,
       {
         headers: authHeader(),
@@ -31,7 +33,7 @@ class helpfulService {
   async unhelpful(business_slug, question_id, answer_slug, UnHelpFulData) {
     const { data } = await axios.get(
       API_URL +
-        EndPoint(business_slug, question_id, answer_slug) +
+      EndPoint(business_slug, question_id, answer_slug) +
         "/unhelpful",
       UnHelpFulData,
       {
