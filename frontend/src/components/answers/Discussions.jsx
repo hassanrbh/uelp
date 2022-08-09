@@ -1,38 +1,38 @@
-import React, {useRef, useState} from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
-import { Formik, Field, Form } from "formik";
-import { FlagIcon } from "@heroicons/react/outline";
-import {MyTextArea} from "../questions/WriteQuestion"
-import * as Yup from "yup";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import SortBy from "./SortBy";
-import useOnClickOutside from "../../hooks/useOnClickOutside";
-import { useQuery } from "react-query";
-import questionService from "../../services/questions.service.js"
-import Dividor from "../reusableComponents/Dividor";
-import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css";
-import "tippy.js/animations/scale.css";
+import React, { useRef, useState } from 'react';
+import { Link, useParams, useLocation } from 'react-router-dom';
+import { Formik, Field, Form } from 'formik';
+import { FlagIcon } from '@heroicons/react/outline';
+import { MyTextArea } from '../questions/WriteQuestion';
+import * as Yup from 'yup';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import SortBy from './SortBy';
+import useOnClickOutside from '../../hooks/useOnClickOutside';
+import { useQuery } from 'react-query';
+import questionService from '../../services/questions.service.js';
+import Dividor from '../reusableComponents/Dividor';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
+import 'tippy.js/animations/scale.css';
 
 const Discussions = () => {
-  const ref= useRef();
+  const ref = useRef();
 
   useOnClickOutside(ref, () => setIsOpen((prev) => false));
 
-  const [Items] = useState(["Popular", "Newest First"]);
-  const [activeMenuItem, SetActiveMenuItem] = useState("Popular");
+  const [Items] = useState(['Popular', 'Newest First']);
+  const [activeMenuItem, SetActiveMenuItem] = useState('Popular');
   const [isOpen, setIsOpen] = useState(false);
 
   const { question, business: business_slug } = useParams();
   const {
-    state: { question_id },
+    state: { question_id }
   } = useLocation();
 
   const { data, isLoading } = useQuery([`${question}_question`], () =>
     questionService.getQuestionData({
       question_id,
-      business_slug,
+      business_slug
     })
   );
 
@@ -46,7 +46,7 @@ const Discussions = () => {
           interactive={true}
         >
           <Link
-            to={"/flag_content"}
+            to={'/flag_content'}
             className=" border relative top-[3px] border-[#c8c9ca] p-[7px] rounded text-black hover:bg-gray-200 ease-in-out duration-700 h-[36px]"
           >
             <FlagIcon className="h-[16px] w-[16px] relative top-[2px]  text-gray-500" />
@@ -57,7 +57,7 @@ const Discussions = () => {
         <>
           <div className="font-[400] text-[14px] flex mt-1 text-[rgba(110,112,114,1)]">
             <p>
-              Asked by{" "}
+              Asked by{' '}
               <span className="font-bold text-[rgba(2,122,151,1)]">
                 {data?.questioner?.username}
               </span>
@@ -67,11 +67,7 @@ const Discussions = () => {
         </>
       ) : null}
       <label className="flex mt-[13px]">
-        <input
-          type="checkbox"
-          name="notify"
-          className="mr-[10px] w-[22px]"
-        />
+        <input type="checkbox" name="notify" className="mr-[10px] w-[22px]" />
         <p className="text-md font-normal">Notify me of a new answers</p>
       </label>
       {!isLoading ? (
@@ -79,25 +75,29 @@ const Discussions = () => {
           <div className="text-[26px] font-bold">
             {data?.answers?.length === 0 ? null : data?.answers?.length} Answers
           </div>
-          
-          {data?.answers?.length >= 1 ? <SortBy 
-            isOpen={isOpen} 
-            setIsOpen={setIsOpen} 
-            Items={Items}
-            activeMenuItem={activeMenuItem}
-            SetActiveMenuItem={SetActiveMenuItem} 
-            ref={ref}/> 
-            : null}
+
+          {data?.answers?.length >= 1 ? (
+            <SortBy
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+              Items={Items}
+              activeMenuItem={activeMenuItem}
+              SetActiveMenuItem={SetActiveMenuItem}
+              ref={ref}
+            />
+          ) : null}
         </div>
       ) : null}
       <Dividor />
       {!isLoading ? (
         <>
           {data?.answers?.length > 1 ? (
-            <div className="font-bold text-base ">Help out with an answer!</div>
+            <div className="font-bold text-base mb-3">
+              Help out with an answer!
+            </div>
           ) : (
             <>
-              <div className="font-bold text-base">
+              <div className="font-bold text-base mb-3">
                 There aren’t any answers for this question yet. Yours could be
                 the first!
               </div>
@@ -107,23 +107,35 @@ const Discussions = () => {
       ) : null}
       <Formik
         initialValues={{
-          question: "",
+          question: ''
         }}
         onSubmit={(values, { setSubmitting, resetForm }) => {
-          console.log(values)
-          resetForm({ values: "" });
+          console.log(values);
+          resetForm({ values: '' });
           setSubmitting(true);
         }}
         validationSchema={Yup.object({
           question: Yup.string()
             .trim()
+            .min(
+              10,
+              <p className="text-xs ml-5 text-[#e00706]">
+                You’ll need to make your answer a little bit longer before we
+                can post it.
+              </p>
+            )
+            .max(
+              150,
+              <p className="text-xs ml-5 text-[#e00706]">
+                try to minimize your answer for people to read.
+              </p>
+            )
             .required(
               <p className="text-xs ml-5 text-[#e00706]">
-                Oops! Your post needs to be in the form of a question before we
-                can publish it
+                Oops! Your answer needs to be in the form of a question before
+                we can publish it
               </p>
-            ),
-          notify_me: Yup.boolean().required("required"),
+            )
         })}
       >
         {(formik) => (
@@ -133,7 +145,7 @@ const Discussions = () => {
               rows="6"
               className={
                 formik.errors.question
-                  ? "border-[#e00706] border-2 hover:border-[#e00706]"
+                  ? 'border-[#e00706] border-2 hover:border-[#e00706]'
                   : null
               }
             />
@@ -149,13 +161,12 @@ const Discussions = () => {
                 type="submit"
                 className="ml-2 mt-5 bg-[#e00706] px-[16px] py-[7px] rounded text-white trasntion-all ease-in-out duration-500 font-[600]"
               >
-                Post Question
+                Post Answer
               </button>
             )}
           </Form>
         )}
       </Formik>
-
     </>
   );
 };
