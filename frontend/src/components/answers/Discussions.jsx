@@ -1,11 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { Link, useParams, useLocation } from 'react-router-dom';
-import { Formik, Field, Form } from 'formik';
 import { FlagIcon } from '@heroicons/react/outline';
-import { MyTextArea } from '../questions/WriteQuestion';
-import * as Yup from 'yup';
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PostAnswer from './PostAnswer';
 import SortBy from './SortBy';
 import useOnClickOutside from '../../hooks/useOnClickOutside';
 import { useQuery } from 'react-query';
@@ -29,7 +26,7 @@ const Discussions = () => {
     state: { question_id }
   } = useLocation();
 
-  const { data, isLoading } = useQuery([`${question}_question`], () =>
+  const { data, isLoading, refetch } = useQuery([`${question}_question`], () =>
     questionService.getQuestionData({
       question_id,
       business_slug
@@ -77,14 +74,16 @@ const Discussions = () => {
           </div>
 
           {data?.answers?.length >= 1 ? (
-            <SortBy
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
-              Items={Items}
-              activeMenuItem={activeMenuItem}
-              SetActiveMenuItem={SetActiveMenuItem}
-              ref={ref}
-            />
+            <div>
+              <SortBy
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                Items={Items}
+                activeMenuItem={activeMenuItem}
+                SetActiveMenuItem={SetActiveMenuItem}
+                ref={ref}
+              />
+            </div>
           ) : null}
         </div>
       ) : null}
@@ -105,68 +104,7 @@ const Discussions = () => {
           )}
         </>
       ) : null}
-      <Formik
-        initialValues={{
-          question: ''
-        }}
-        onSubmit={(values, { setSubmitting, resetForm }) => {
-          console.log(values);
-          resetForm({ values: '' });
-          setSubmitting(true);
-        }}
-        validationSchema={Yup.object({
-          question: Yup.string()
-            .trim()
-            .min(
-              10,
-              <p className="text-xs ml-5 text-[#e00706]">
-                You’ll need to make your answer a little bit longer before we
-                can post it.
-              </p>
-            )
-            .max(
-              150,
-              <p className="text-xs ml-5 text-[#e00706]">
-                try to minimize your answer for people to read.
-              </p>
-            )
-            .required(
-              <p className="text-xs ml-5 text-[#e00706]">
-                Oops! Your answer needs to be in the form of a question before
-                we can publish it
-              </p>
-            )
-        })}
-      >
-        {(formik) => (
-          <Form className="">
-            <MyTextArea
-              name="question"
-              rows="6"
-              className={
-                formik.errors.question
-                  ? 'border-[#e00706] border-2 hover:border-[#e00706]'
-                  : null
-              }
-            />
-            {isLoading ? (
-              <button
-                type="submit"
-                className="ml-2 mt-5 bg-[#e00706] px-[16px] w-[120px] py-[7px] flex justify-center rounded text-white trasntion-all ease-in-out duration-500 font-[600]"
-              >
-                <div className="lds-hourglass"></div>
-              </button>
-            ) : (
-              <button
-                type="submit"
-                className="ml-2 mt-5 bg-[#e00706] px-[16px] py-[7px] rounded text-white trasntion-all ease-in-out duration-500 font-[600]"
-              >
-                Post Answer
-              </button>
-            )}
-          </Form>
-        )}
-      </Formik>
+      <PostAnswer question_id={question_id} refetch={refetch} />
     </>
   );
 };
