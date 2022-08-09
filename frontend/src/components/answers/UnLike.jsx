@@ -1,8 +1,29 @@
 import React from 'react';
+import { useMutation } from 'react-query';
+import helpfulService from '../../services/helpful.service.js';
+import { useParams } from 'react-router-dom';
 
-const UnLike = () => {
+const UnLike = (question_id, answer, refetch) => {
+  const { business } = useParams();
+
+  const { mutate } = useMutation(
+    (unhelpful) =>
+      helpfulService.unhelpful(business, question_id, answer, unhelpful),
+    {}
+  );
+
+  const handleUnLike = () => {
+    mutate({
+      help_fuls: {
+        indicator: -1
+      }
+    });
+  };
   return (
-    <button className="flex border border-[#c8c9ca] px-[16px] py-[6px] rounded text-black hover:bg-gray-200 ease-in-out duration-700 h-max">
+    <button
+      onClick={handleUnLike}
+      className="flex border border-[#c8c9ca] px-[16px] py-[6px] rounded text-black hover:bg-gray-200 ease-in-out duration-700 h-max"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-4 w-4"

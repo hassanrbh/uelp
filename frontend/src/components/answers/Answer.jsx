@@ -11,7 +11,6 @@ const Answer = ({
   isLoading,
   answers
 }) => {
-  console.log(answers);
   return !isLoading ? (
     <div>
       {answers?.map((answer, __idx__) => (
@@ -20,7 +19,11 @@ const Answer = ({
           <div className="font-normal mt-4 text-base text-[rgba(45,46,47,1)]">
             {answer?.answer}
           </div>
-          <HelpFul answer={answer} question_id={question_id} />
+          <HelpFul
+            answer={answer}
+            refetch={refetch}
+            question_id={question_id}
+          />
           <Dividor />
         </>
       ))}

@@ -8,22 +8,72 @@ import 'tippy.js/dist/tippy.css';
 import Like from './Like';
 import UnLike from './UnLike';
 import 'tippy.js/animations/scale.css';
+import { useMutation } from 'react-query';
 import { useQuery } from 'react-query';
 import helpfulService from '../../services/helpful.service.js';
 
 const HelpFul = ({ answer, question_id }) => {
   const { business } = useParams();
   const [switcher, setSwitcher] = useState(false);
-  const { data, isLoading } = useQuery(
+  const { data, isLoading, refetch } = useQuery(
     ['active_helpfuls_for', answer?.answer],
     () => helpfulService.all(business, question_id, answer?.answer)
   );
 
+  const { mutate } = useMutation(
+    (unhelpful) =>
+      helpfulService.unhelpful(
+        business,
+        question_id,
+        answer?.answer,
+        unhelpful
+      ),
+    {
+      onSuccess: function (data) {
+        refetch();
+      }
+    }
+  );
+
+  const handleUnLike = () => {
+    mutate({
+      help_fuls: {
+        indicator: -1
+      }
+    });
+  };
+
   return (
     <div className="mt-2 flex justify-between">
       <div className="flex gap-1">
-        <Like data={data} isLoading={isLoading} />
-        <UnLike />
+        <Like
+          data={data}
+          answer={answer?.answer}
+          isLoading={isLoading}
+          question_id={question_id}
+          refetch={refetch}
+        />
+
+        <button
+          onClick={handleUnLike}
+          className="flex border border-[#c8c9ca] px-[16px] py-[6px] rounded text-black hover:bg-gray-200 ease-in-out duration-700 h-max"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M16 17l-4 4m0 0l-4-4m4 4V3"
+            />
+          </svg>
+          <p className="font-[500] text-xs">Not Helpful</p>
+        </button>
       </div>
       <Tippy
         animation="scale"
