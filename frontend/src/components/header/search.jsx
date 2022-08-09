@@ -1,19 +1,19 @@
-import React, { useState, useRef } from "react";
-import { Formik, Form, Field } from "formik";
-import { useMutation, useQuery } from "react-query";
-import UserService from "../../services/auth.service";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
-import { Link, useNavigate } from "react-router-dom";
-import Tippy from "@tippyjs/react";
-import "tippy.js/animations/scale.css";
-import IpTracker from "../../api/ip_info.js";
-import useOnClickOutside from "../../hooks/useOnClickOutside";
+import React, { useState, useRef } from 'react';
+import { Formik, Form, Field } from 'formik';
+import { useMutation, useQuery } from 'react-query';
+import UserService from '../../services/auth.service';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
+import { Link, useNavigate } from 'react-router-dom';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/animations/scale.css';
+import IpTracker from '../../api/ip_info.js';
+import useOnClickOutside from '../../hooks/useOnClickOutside';
 
 const Search = () => {
   const [fetchedBusinesses, setIsFetchedBusinesses] = useState([]);
   const [modalOpener, setModalOpener] = useState(false);
-  const [input, setInput] = useState("");
-  const [input2, setInput2] = useState("");
+  const [input, setInput] = useState('');
+  const [input2, setInput2] = useState('');
   const navigate = useNavigate();
   const ref = useRef();
 
@@ -25,17 +25,17 @@ const Search = () => {
   }
   function handleSearch(e) {
     e.preventDefault();
-    return navigate("/search", {
+    return navigate('/search', {
       state: {
         fetchedBusinesses,
-        location: input2,
-      },
+        location: input2
+      }
     });
   }
 
   const [parent] = useAutoAnimate({
     duration: 250,
-    easing: "ease-in-out",
+    easing: 'ease-in-out'
   });
 
   function handleChangeInput2(e) {
@@ -48,24 +48,24 @@ const Search = () => {
       onSuccess: function (data) {
         setIsFetchedBusinesses(data);
         setModalOpener(true);
-      },
+      }
     }
   );
 
   const { data } = useQuery(
-    ["address_for_"],
-    () => IpTracker.getPositionStack("larache magribe jadid 410"),
+    ['address_for_'],
+    () => IpTracker.getPositionStack('larache magribe jadid 410'),
     {
       onSuccess: function (data) {
         setInput2(data.data[0].label);
-      },
+      }
     }
   );
 
   return (
     <div className="">
       <Formik
-        initialValues={{ search_input: "" }}
+        initialValues={{ search_input: '' }}
         onSubmit={(values, { setSubmitting }) => {
           console.log(values);
           setSubmitting(false);
@@ -155,11 +155,11 @@ const Search = () => {
       </Formik>
       {modalOpener ? (
         <ul
-          ref={parent}
+          ref={ref}
           className={`border w-[23.8%] p-[7px] bg-white ${
             input.length === 0 ||
             fetchedBusinesses?.all_businesses?.length === 0
-              ? "hidden"
+              ? 'hidden'
               : null
           } rounded absolute z-50`}
         >
@@ -169,7 +169,7 @@ const Search = () => {
                 <Link
                   to={`/biz/${business.profile.private_details.name}`}
                   key={_}
-                  onClick={() => setInput("")}
+                  onClick={() => setInput('')}
                   className="flex m-1 hover:bg-gray-100 rounded mt-[10px] mb-[10px]"
                 >
                   <Tippy

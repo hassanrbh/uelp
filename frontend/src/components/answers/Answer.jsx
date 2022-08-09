@@ -1,9 +1,7 @@
 import React from 'react';
-import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
-import answerService from '../../services/answers.service.js';
 import Writer from './Writer';
 import HelpFul from './HelpFul';
+import Dividor from '../reusableComponents/Dividor';
 
 const Answer = ({
   activeMenuItem,
@@ -19,8 +17,11 @@ const Answer = ({
       {answers?.map((answer, __idx__) => (
         <>
           <Writer writer={answer?.writer} created_at={answer?.created_at} />
-          <div className="font-normal ">{answer?.answer}</div>
-          <HelpFul />
+          <div className="font-normal mt-4 text-base text-[rgba(45,46,47,1)]">
+            {answer?.answer}
+          </div>
+          <HelpFul answer={answer} />
+          <Dividor />
         </>
       ))}
     </div>
