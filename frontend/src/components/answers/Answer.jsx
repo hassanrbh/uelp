@@ -18,8 +18,8 @@ const Answer = ({
     <div>
       {answers?.map((answer, __idx__) => (
         <>
-          <Writer />
-          <div></div>
+          <Writer writer={answer?.writer} created_at={answer?.created_at} />
+          <div className="font-normal ">{answer?.answer}</div>
           <HelpFul />
         </>
       ))}
