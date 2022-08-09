@@ -13,9 +13,8 @@ module Api
 
       def show
         @answer = Answer.find_by_answer(params[:id])
-        render json: @answer
-        # return render json: @answer, status: :ok if (!@answer.nil?)
-        # return render json: { error: ["An error occurred"] }
+        return render json: @answer, status: :ok if (!@answer.nil?)
+        return render json: { error: ["An error occurred"] }
       end
 
       def create

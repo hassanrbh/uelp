@@ -1,11 +1,15 @@
 import React, {useRef, useState} from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
+import { Formik, Field, Form } from "formik";
 import { FlagIcon } from "@heroicons/react/outline";
-import { ChevronDownIcon } from "@heroicons/react/solid";
+import {MyTextArea} from "../questions/WriteQuestion"
+import * as Yup from "yup";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import SortBy from "./SortBy";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { useQuery } from "react-query";
-import questionService from "../../services/questions.service.js";
+import questionService from "../../services/questions.service.js"
 import Dividor from "../reusableComponents/Dividor";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
@@ -62,63 +66,35 @@ const Discussions = () => {
           </div>
         </>
       ) : null}
-      <label className="flex mt-[13px] bobi">
+      <label className="flex mt-[13px]">
         <input
           type="checkbox"
           name="notify"
-          className="mr-[10px] w-[22px] bob"
+          className="mr-[10px] w-[22px]"
         />
         <p className="text-md font-normal">Notify me of a new answers</p>
       </label>
       {!isLoading ? (
         <div className="flex justify-between mt-5">
-          <div className="text-[28px] font-bold">
-            {data?.answers?.length} Answers
+          <div className="text-[26px] font-bold">
+            {data?.answers?.length === 0 ? null : data?.answers?.length} Answers
           </div>
-          <div>
-          <div className="text-sm font-normal flex mt-2">
-          Sort by{" "}
-          <span
-            className="ml-1 text-[rgba(2,122,151,1)] font-bold flex cursor-pointer"
-            onClick={() => setIsOpen((prev) => !prev)}
-          >
-            {activeMenuItem}{" "}
-            <ChevronDownIcon className="h-4 w-4 relative mt-[2px] ml-1" />
-          </span>
-        </div>
-        {isOpen ? (
-          <>
-            <div className="shadow-lg mt-2 bg-[#fff] p-[15px] rounded-md max-w-fit absolute z-[100]" ref={ref}>
-              {Items.map((item, __idx__) => (
-                <div
-                  key={__idx__}
-                  className={`font-[400px] hover:bg-gray-100 hover:rounded cursor-pointer p-[8px]
-                  text-sm ${
-                    activeMenuItem === item
-                      ? "bg-blue-100 rounded text-[#027a97] font-semibold hover:bg-blue-100"
-                      : null
-                  }
-                  `}
-                  onClick={() => {
-                    SetActiveMenuItem(item);
-                    setIsOpen((prev) => !prev);
-                  }}
-                >
-                  {activeMenuItem === item ? activeMenuItem : item}
-                </div>
-              ))}
-            </div>
-          </>
-        ) : null}
-
-          </div>
+          
+          {data?.answers?.length >= 1 ? <SortBy 
+            isOpen={isOpen} 
+            setIsOpen={setIsOpen} 
+            Items={Items}
+            activeMenuItem={activeMenuItem}
+            SetActiveMenuItem={SetActiveMenuItem} 
+            ref={ref}/> 
+            : null}
         </div>
       ) : null}
       <Dividor />
       {!isLoading ? (
         <>
           {data?.answers?.length > 1 ? (
-            <>Here are the answers</>
+            <div className="font-bold text-base ">Help out with an answer!</div>
           ) : (
             <>
               <div className="font-bold text-base">
@@ -129,6 +105,57 @@ const Discussions = () => {
           )}
         </>
       ) : null}
+      <Formik
+        initialValues={{
+          question: "",
+        }}
+        onSubmit={(values, { setSubmitting, resetForm }) => {
+          console.log(values)
+          resetForm({ values: "" });
+          setSubmitting(true);
+        }}
+        validationSchema={Yup.object({
+          question: Yup.string()
+            .trim()
+            .required(
+              <p className="text-xs ml-5 text-[#e00706]">
+                Oops! Your post needs to be in the form of a question before we
+                can publish it
+              </p>
+            ),
+          notify_me: Yup.boolean().required("required"),
+        })}
+      >
+        {(formik) => (
+          <Form className="">
+            <MyTextArea
+              name="question"
+              rows="6"
+              className={
+                formik.errors.question
+                  ? "border-[#e00706] border-2 hover:border-[#e00706]"
+                  : null
+              }
+            />
+            {isLoading ? (
+              <button
+                type="submit"
+                className="ml-2 mt-5 bg-[#e00706] px-[16px] w-[120px] py-[7px] flex justify-center rounded text-white trasntion-all ease-in-out duration-500 font-[600]"
+              >
+                <div className="lds-hourglass"></div>
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className="ml-2 mt-5 bg-[#e00706] px-[16px] py-[7px] rounded text-white trasntion-all ease-in-out duration-500 font-[600]"
+              >
+                Post Question
+              </button>
+            )}
+          </Form>
+        )}
+      </Formik>
+
     </>
   );
 };

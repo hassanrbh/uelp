@@ -1,8 +1,8 @@
 import React, { useState, useRef } from "react";
-import { Formik, Form, Field} from "formik";
+import { Formik, Form, Field } from "formik";
 import { useMutation, useQuery } from "react-query";
 import UserService from "../../services/auth.service";
-import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { Link, useNavigate } from "react-router-dom";
 import Tippy from "@tippyjs/react";
 import "tippy.js/animations/scale.css";
@@ -35,7 +35,7 @@ const Search = () => {
 
   const [parent] = useAutoAnimate({
     duration: 250,
-    easing: 'ease-in-out'
+    easing: "ease-in-out",
   });
 
   function handleChangeInput2(e) {
@@ -51,8 +51,6 @@ const Search = () => {
       },
     }
   );
-
-
 
   const { data } = useQuery(
     ["address_for_"],
@@ -90,7 +88,7 @@ const Search = () => {
                     id="voice-search"
                     name="search_input"
                     onChange={handleChange}
-                    className="rounded relative h-[48px] left-[-13px] pt-[13px] pb-[13px] pl-[16px] outline-none  text-sm !bg-white text-[#2d2e2f] block w-[466px] p-2.5  pr-[20px] font-light border-l-red-600 border-l-[14px] border-r-0"
+                    className="rounded relative h-[48px] left-[-13px] pt-[13px] pb-[13px] pl-[16px] outline-none  text-sm !bg-white text-[#2d2e2f] block w-[466px] p-2.5  pr-[20px] font-light border-l-red-600 border-l-[14px] border-r-0 font-[800]"
                     placeholder="tacos, cheap dinner, Max's"
                     value={input}
                   />
@@ -100,13 +98,13 @@ const Search = () => {
                     id="voice-search_hello"
                     name="search_input"
                     onChange={handleChangeInput2}
-                    className="rounded pt-[13px] h-[48px] pb-[13px] pl-[16px]  outline-none  text-sm !bg-white text-[#2d2e2f] block w-[466px] p-2.5  pr-[20px] font-light border-l-0"
+                    className="rounded pt-[13px] h-[48px] pb-[13px] pl-[16px]  outline-none  text-sm !bg-white text-[#2d2e2f] block w-[466px] p-2.5  pr-[20px] font-light border-l-0 font-[800]"
                     placeholder="address neighborhood, city, state or zip"
                     value={input2}
                   />
                 </div>
               </div>
-              {!isLoading || isSubmitting ? (
+              {!isLoading || isSubmitting ? (
                 <button
                   type="submit"
                   className="inline-flex shadow-lg h-[50px] items-center pt-[11px] pb-[12px] relative left-[-1px] px-[17px] text-sm text-white border bg-red-600 !rounded-b-[1px] !rounded-t-[6px] !rounded-l-[1px] !rounded-r-[6px]"
@@ -135,7 +133,6 @@ const Search = () => {
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"

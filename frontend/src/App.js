@@ -1,4 +1,4 @@
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate, Navigate } from "react-router-dom";
 import React, { useState, lazy, useEffect } from "react";
 import { switchHeaders } from "./utils/switchHeader";
 import { useQuery } from "react-query";
@@ -87,7 +87,7 @@ const App = () => {
   const logout = () => {
     AuthService.logout();
     setCurrentUser(undefined);
-    navigate("/login");
+    return <Navigate to={"login"}/>;
   };
 
   return (

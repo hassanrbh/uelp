@@ -1,14 +1,13 @@
-import React from "react";
-import { useMutation } from "react-query";
-import { Formik, Field, Form, useField } from "formik";
-import questionService from "../../services/questions.service.js";
-import Loading from "../reusableComponents/Loading";
-import { useParams } from "react-router-dom";
-import * as Yup from "yup";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React from 'react';
+import { useMutation } from 'react-query';
+import { Formik, Field, Form, useField } from 'formik';
+import questionService from '../../services/questions.service.js';
+import { useParams } from 'react-router-dom';
+import * as Yup from 'yup';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const MyTextArea = ({ label, className, ...props }) => {
+export const MyTextArea = ({ label, className, ...props }) => {
   const [field, meta] = useField(props);
   return (
     <>
@@ -39,7 +38,7 @@ const WriteQuestion = () => {
           toast.error(error.response.data.error[0]);
         }
         toast.error(error.response.data.client[0]);
-      },
+      }
     }
   );
 
@@ -50,14 +49,14 @@ const WriteQuestion = () => {
       </h1>
       <Formik
         initialValues={{
-          question: "",
-          notify_me: false,
+          question: '',
+          notify_me: false
         }}
         onSubmit={(values, { setSubmitting, resetForm }) => {
           mutate({
-            question: values,
+            question: values
           });
-          resetForm({ values: "" });
+          resetForm({ values: '' });
           setSubmitting(true);
         }}
         validationSchema={Yup.object({
@@ -69,7 +68,7 @@ const WriteQuestion = () => {
                 can publish it
               </p>
             ),
-          notify_me: Yup.boolean().required("required"),
+          notify_me: Yup.boolean().required('required')
         })}
       >
         {(formik) => (
@@ -79,7 +78,7 @@ const WriteQuestion = () => {
               rows="6"
               className={
                 formik.errors.question
-                  ? "border-[#e00706] border-2 hover:border-[#e00706]"
+                  ? 'border-[#e00706] border-2 hover:border-[#e00706]'
                   : null
               }
               placeholder={`What would you like to know about ${business}`}
