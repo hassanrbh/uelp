@@ -17,6 +17,18 @@ module Api
         return render json: { error: ["An error occurred"] }
       end
 
+      def popular_answers
+        @question = Question.find(params[:question_id])
+        @popular_answers = Answer.popular(@question)
+        render json: @popular_answers, status: :ok
+      end
+
+      def newest_first_answers
+        @question = Question.find(params[:question_id])
+        @popular_answers = Answer.newest_first(@question)
+        render json: @popular_answers, status: :ok
+      end
+
       def create
         @question = Question.find(params[:question_id])
         @business = Business.find_by_name(params[:business_slug])
@@ -43,9 +55,11 @@ module Api
                                                  user_id: current_user.id
                                                ).count
                                            }
-              return render json: { success: ["answered correctly"] }
+              return render json: { success: ["notification is sent"] }
             end
           end
+
+          return render json: { success: ["answered posted"] }
         end
 
         return render json: @answer.errors.full_messages

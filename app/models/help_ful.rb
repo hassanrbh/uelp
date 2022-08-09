@@ -11,7 +11,7 @@
 #
 class HelpFul < ApplicationRecord
   belongs_to :user
-  belongs_to :answer
+  belongs_to :answer, counter_cache: true
 
   validates :indicator, presence: true
 end

@@ -44,6 +44,10 @@ Rails.application.routes.draw do
         resources :share, only: [:create]
         resources :questions, only: %i[create index show] do
           resources :answers, only: %i[index create show] do
+            collection do
+              get "/popular_answers", to: "answers#popular_answers"
+              get "/newest_answers", to: "answers#newest_first_answers"
+            end
             resources :help_fuls, only: %i[index]
             post "/helpful", to: "help_fuls#helpful"
             post "/unhelpful", to: "help_fuls#unhelpful"
