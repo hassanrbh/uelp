@@ -5,7 +5,9 @@ class Api::V1::HelpFulsController < ApplicationController
 
     HelpFul.where(answer: @answer).each { |help| @help_fuls << help.indicator }
 
-    render json: { counter: @help_fuls.sum }
+    return render json: { counter: @help_fuls.sum } if !(@help_fuls.sum === -1)
+
+    return render json: { counter: 0 }
   end
 
   def helpful

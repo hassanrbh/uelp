@@ -43,7 +43,7 @@ const Like = ({ data, isLoading, question_id, answer, refetch }) => {
         />
       </svg>
       <p className="font-[500] text-xs">
-        Helpful {!isLoading ? data.counter : 0}
+        Helpful {!isLoading ? (data.counter === 0 ? null : data.counter) : 0}
       </p>
     </button>
   );
