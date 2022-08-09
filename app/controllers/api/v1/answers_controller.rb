@@ -20,13 +20,13 @@ module Api
       def popular_answers
         @question = Question.find(params[:question_id])
         @popular_answers = Answer.popular(@question)
-        render json: @popular_answers, status: :ok
+        render :popular_answers, status: :ok
       end
 
       def newest_first_answers
         @question = Question.find(params[:question_id])
-        @popular_answers = Answer.newest_first(@question)
-        render json: @popular_answers, status: :ok
+        @newest_first_answers = Answer.newest_first(@question)
+        render :newest_first_answers, status: :ok
       end
 
       def create

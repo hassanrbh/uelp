@@ -25,19 +25,9 @@ class answersService {
 
     return data;
   }
-  async getPopularAnswers(business_slug, question_id) {
-    const { data } = await axios.post(
-      API_URL + EndPoint(business_slug, question_id) + '/popular_answers',
-      {
-        headers: authHeader()
-      }
-    );
-
-    return data;
-  }
-  async getNewestAnswers(business_slug, question_id) {
-    const { data } = await axios.post(
-      API_URL + EndPoint(business_slug, question_id) + '/newest_answers',
+  async getSortAnswers(business_slug, question_id, sort_by) {
+    const { data } = await axios.get(
+      API_URL + EndPoint(business_slug, question_id) + `/answers/${sort_by}`,
       {
         headers: authHeader()
       }

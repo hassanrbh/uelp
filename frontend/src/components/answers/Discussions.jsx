@@ -1,11 +1,13 @@
 import React, { useRef, useState } from 'react';
 import { Link, useParams, useLocation } from 'react-router-dom';
 import { FlagIcon } from '@heroicons/react/outline';
+import Answer from './Answer';
 import 'react-toastify/dist/ReactToastify.css';
 import PostAnswer from './PostAnswer';
 import SortBy from './SortBy';
 import useOnClickOutside from '../../hooks/useOnClickOutside';
 import { useQuery } from 'react-query';
+import answerService from '../../services/answers.service.js';
 import questionService from '../../services/questions.service.js';
 import Dividor from '../reusableComponents/Dividor';
 import Tippy from '@tippyjs/react';
@@ -25,6 +27,19 @@ const Discussions = () => {
   const {
     state: { question_id }
   } = useLocation();
+
+  const {
+    data: answers,
+    isLoading: isLoadingAnswers,
+    isSuccess,
+    refetch: isRefetch
+  } = useQuery([activeMenuItem, question], () =>
+    answerService.getSortAnswers(
+      business_slug,
+      question_id,
+      activeMenuItem === 'Popular' ? 'popular_answers' : 'newest_answers'
+    )
+  );
 
   const { data, isLoading, refetch } = useQuery([`${question}_question`], () =>
     questionService.getQuestionData({
@@ -88,6 +103,13 @@ const Discussions = () => {
         </div>
       ) : null}
       <Dividor />
+      <Answer
+        answers={answers}
+        isLoading={isLoadingAnswers}
+        isSuccess={isSuccess}
+        refetch={isRefetch}
+        question_id={question_id}
+      />
       {!isLoading ? (
         <>
           {data?.answers?.length > 1 ? (
@@ -104,7 +126,11 @@ const Discussions = () => {
           )}
         </>
       ) : null}
-      <PostAnswer question_id={question_id} refetch={refetch} />
+      <PostAnswer
+        question_id={question_id}
+        refetch={refetch}
+        isRefetch={isRefetch}
+      />
     </>
   );
 };

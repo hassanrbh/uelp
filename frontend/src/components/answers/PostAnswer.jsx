@@ -7,7 +7,7 @@ import { Formik, Form } from 'formik';
 import { useMutation } from 'react-query';
 import answerService from '../../services/answers.service.js';
 
-const PostAnswer = ({ question_id, refetch }) => {
+const PostAnswer = ({ question_id, refetch, isRefetch }) => {
   const { business } = useParams();
   const { mutate, isLoading } = useMutation(
     (answer) => answerService.postAnswer(business, question_id, answer),
@@ -16,6 +16,7 @@ const PostAnswer = ({ question_id, refetch }) => {
         toast.success(response.success[0]);
         document.documentElement.scrollTop = 0;
         refetch();
+        isRefetch();
       },
       onError: (error) => {
         console.log(error);
