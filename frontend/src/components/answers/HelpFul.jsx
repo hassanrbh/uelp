@@ -5,14 +5,26 @@ import { FlagIcon } from '@heroicons/react/outline';
 import AnswerContent from './AnswerContent';
 import Modal from '../reusableComponents/Modal';
 import 'tippy.js/dist/tippy.css';
+import Like from './Like';
+import UnLike from './UnLike';
 import 'tippy.js/animations/scale.css';
+import { useQuery } from 'react-query';
+import helpfulService from '../../services/helpful.service.js';
 
-const HelpFul = ({ answer }) => {
+const HelpFul = ({ answer, question_id }) => {
+  const { business } = useParams();
   const [switcher, setSwitcher] = useState(false);
+  const { data, isLoading } = useQuery(
+    ['active_helpfuls_for', answer?.answer],
+    () => helpfulService.all(business, question_id, answer?.answer)
+  );
 
   return (
     <div className="mt-2 flex justify-between">
-      <div></div>
+      <div className="flex gap-1">
+        <Like data={data} isLoading={isLoading} />
+        <UnLike />
+      </div>
       <Tippy
         animation="scale"
         content={<span className="font-bold">Report answer</span>}

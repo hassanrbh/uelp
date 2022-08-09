@@ -20,7 +20,7 @@ const Answer = ({
           <div className="font-normal mt-4 text-base text-[rgba(45,46,47,1)]">
             {answer?.answer}
           </div>
-          <HelpFul answer={answer} />
+          <HelpFul answer={answer} question_id={question_id} />
           <Dividor />
         </>
       ))}
