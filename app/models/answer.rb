@@ -17,7 +17,7 @@
 class Answer < ApplicationRecord
   belongs_to :user
   belongs_to :community
-  belongs_to :question, touch: true
+  belongs_to :question, counter_cache: true
   belongs_to :business
 
   validates :answer, presence: true, uniqueness: true

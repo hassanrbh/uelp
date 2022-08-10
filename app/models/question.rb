@@ -11,8 +11,8 @@
 #  updated_at    :datetime         not null
 #  user_id       :integer
 #  business_id   :integer
-#  answers_count :integer          default(0)
 #  notify_me     :boolean          default(FALSE)
+#  answers_count :integer          default(0), not null
 #
 class Question < ApplicationRecord
   validates :question, presence: true
@@ -21,7 +21,7 @@ class Question < ApplicationRecord
   belongs_to :community
   belongs_to :user
   belongs_to :business
-  has_many :answers
+  has_many :answers, counter_cache: true
   has_one :notify
   has_many :notify_answers
 
@@ -65,8 +65,8 @@ class Question < ApplicationRecord
 
   def check_question
     if !(
-        question =~ /.*(Why|who|why|Who|Is|is|I|what|What|Do|do|did|Did).*/
-      ).nil? && question.include?("?")
+         question =~ /.*(Why|who|why|Who|Is|is|I|what|What|Do|do|did|Did).*/
+       ).nil? && question.include?("?")
       return true
     end
 
