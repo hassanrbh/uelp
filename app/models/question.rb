@@ -32,12 +32,40 @@ class Question < ApplicationRecord
           )
         }
 
+  def self.cache_sort_by_most_answered_question(business)
+    Rails
+      .cache
+      .fetch(
+        [
+          "v1",
+          self.class.name,
+          :cache_sort_by_most_answered_question,
+          business.id
+        ],
+        expires_in: 15.minutes
+      ) { self.sort_by_most_answered_question(business) }
+  end
+
   scope :random_questions_unanswered,
         lambda { |business|
           where("community_id = ?", business.community.id)
             .where.not(id: Answer.select(:question_id))
             .take(3)
         }
+
+  def self.cache_random_questions_unanswered(business)
+    Rails
+      .cache
+      .fetch(
+        [
+          "v1",
+          self.class.name,
+          :cache_random_questions_unanswered,
+          business.id
+        ],
+        expires_in: 15.minutes
+      ) { self.random_questions_unanswered(business) }
+  end
 
   scope :sort_by_newest_questions,
         lambda { |business|
@@ -46,8 +74,26 @@ class Question < ApplicationRecord
           )
         }
 
+  def self.cache_sort_by_newest_questions(business)
+    Rails
+      .cache
+      .fetch(
+        ["v1", self.class.name, :cache_sort_by_newest_questions, business.id],
+        expires_in: 15.minutes
+      ) { self.sort_by_newest_questions(business) }
+  end
+
   scope :sort_by_popular,
         ->(business) { where("community_id = ?", business.community.id) }
+
+  def self.cache_sort_by_popular(business)
+    Rails
+      .cache
+      .fetch(
+        ["v1", self.class.name, :cache_sort_by_popular, business.id],
+        expires_in: 15.minutes
+      ) { self.sort_by_popular(business) }
+  end
 
   def cache_count_answers
     Rails

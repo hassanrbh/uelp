@@ -40,6 +40,7 @@ Rails.application.routes.draw do
         get "/popular_dishes", to: "menu#popular_dishes"
         resources :working_hours, only: [:index]
         resources :images, only: %i[create show index]
+        resources :reviews, only: %i[create index]
         resources :amentys, only: [:index]
         resources :share, only: [:create]
         resources :questions, only: %i[create index show] do

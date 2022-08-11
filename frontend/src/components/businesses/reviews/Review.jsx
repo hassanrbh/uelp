@@ -10,7 +10,7 @@ const Review = () => {
           <div>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-[#1f8eff]"
+              className="h-8 relative top-2 w-8 text-[#1f8eff]"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -23,12 +23,9 @@ const Review = () => {
               />
             </svg>
           </div>
-          <div>
-            <span className="font-bold text-base">
-              Your trust is our top concern,
-            </span>{' '}
-            so businesses can't pay to alter or remove their reviews. Learn
-            more.
+          <div className="max-w-[671px] text-[16px] mr-10">
+            <span className="font-bold">Your trust is our top concern,</span> so
+            businesses can't pay to alter or remove their reviews. Learn more.
           </div>
           <div>
             <svg

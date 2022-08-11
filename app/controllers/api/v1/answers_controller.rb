@@ -19,13 +19,14 @@ module Api
 
       def popular_answers
         @question = Question.find(params[:question_id])
-        @popular_answers = Answer.popular(@question)
+        @popular_answers = Answer.cache_popular(@question)
+
         render :popular_answers, status: :ok
       end
 
       def newest_first_answers
         @question = Question.find(params[:question_id])
-        @newest_first_answers = Answer.newest_first(@question)
+        @newest_first_answers = Answer.cache_newest_first(@question)
         render :newest_first_answers, status: :ok
       end
 

@@ -3,7 +3,10 @@ class Api::V1::HelpFulsController < ApplicationController
     @help_fuls = []
     @answer = Answer.find_by_answer(params[:answer_id])
 
-    HelpFul.where(answer: @answer).each { |help| @help_fuls << help.indicator }
+    HelpFul
+      .includes(:answer)
+      .where(answer: @answer)
+      .each { |help| @help_fuls << help.indicator }
 
     return render json: { counter: @help_fuls.sum } if !(@help_fuls.sum === -1)
 

@@ -35,4 +35,22 @@ class Answer < ApplicationRecord
         ->(question) {
           where("question_id = ?", question.id).order("help_fuls_count DESC")
         }
+
+  def self.cache_popular(question)
+    Rails
+      .cache
+      .fetch(
+        ["v1", self.class.name, :popular, question],
+        expires_in: 10.minutes
+      ) { self.popular(question) }
+  end
+
+  def self.cache_newest_first(question)
+    Rails
+      .cache
+      .fetch(
+        ["v1", self.class.name, :popular, question],
+        expires_in: 10.minutes
+      ) { self.newest_first(question) }
+  end
 end
