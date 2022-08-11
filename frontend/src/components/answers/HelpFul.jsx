@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import Tippy from '@tippyjs/react';
 import { useParams, Link } from 'react-router-dom';
 import { FlagIcon } from '@heroicons/react/outline';
-import AnswerContent from './AnswerContent';
+import ReportContent from './ReportContent';
 import Modal from '../reusableComponents/Modal';
 import 'tippy.js/dist/tippy.css';
 import Like from './Like';
-import UnLike from './UnLike';
 import 'tippy.js/animations/scale.css';
 import { useMutation } from 'react-query';
 import { useQuery } from 'react-query';
@@ -91,7 +90,7 @@ const HelpFul = ({ answer, question_id }) => {
       {switcher ? (
         <Modal
           setSwitcher={setSwitcher}
-          component={<AnswerContent answer={answer} />}
+          component={<ReportContent answer={answer} />}
           component_name={
             <span className="font-bold text-2xl">Report Answer</span>
           }

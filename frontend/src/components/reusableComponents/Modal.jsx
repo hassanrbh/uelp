@@ -1,6 +1,6 @@
-import React, { useRef } from "react";
-import useOnClickOutside from "../../hooks/useOnClickOutside";
-import { XIcon } from "@heroicons/react/outline";
+import React, { useRef } from 'react';
+import useOnClickOutside from '../../hooks/useOnClickOutside';
+import { XIcon } from '@heroicons/react/outline';
 
 const Modal = ({ setSwitcher, component, component_name }) => {
   const ref = useRef();
@@ -23,7 +23,10 @@ const Modal = ({ setSwitcher, component, component_name }) => {
             ref={ref}
           >
             <div className="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse m-3 justify-between">
-              <XIcon className="h-6 w-6 cursor-pointer" onClick={() => setSwitcher((prev) => !prev)}/>
+              <XIcon
+                className="h-6 w-6 cursor-pointer"
+                onClick={() => setSwitcher((prev) => !prev)}
+              />
               {component_name && component_name}
             </div>
             <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 text-center">

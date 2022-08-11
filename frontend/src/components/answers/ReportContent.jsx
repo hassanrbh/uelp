@@ -1,7 +1,7 @@
 import React from 'react';
 
-const AnswerContent = ({ answer }) => {
+const ReportContent = ({ answer }) => {
   return <div>{answer?.answer}</div>;
 };
 
-export default AnswerContent;
+export default ReportContent;
