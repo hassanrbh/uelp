@@ -7,6 +7,7 @@ const OtherQuestions = () => {
   const { business } = useParams();
   const ques = ['questions_no_answered', business];
   const other_questions = client.getQueryData(ques);
+
   return (
     <div className="ml-[70px] relative right-[42px] font-bold text-xl">
       Other questions for Urban Griddle

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import Loadmore from "./loadmore";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import Loadmore from './loadmore';
+import { Link } from 'react-router-dom';
 
 const Answers = ({ answer, question }) => {
   const [more, isMore] = useState(false);
@@ -13,18 +13,22 @@ const Answers = ({ answer, question }) => {
             <div>
               <p>
                 {answer.answer.slice(0, 350)}
-                {more ? answer.answer.slice(350, -1) : "..."}{" "}
-                {more ? <span
-                  onClick={() => isMore((prev) => !prev)}
-                  className="font-bold text-[rgba(2,122,151,1)] hover:underline cursor-pointer"
-                >
-                  less
-                </span> : <span
-                  onClick={() => isMore((prev) => !prev)}
-                  className="font-bold text-[rgba(2,122,151,1)] hover:underline cursor-pointer"
-                >
-                  more
-                </span>}
+                {more ? answer.answer.slice(350, -1) : '...'}{' '}
+                {more ? (
+                  <span
+                    onClick={() => isMore((prev) => !prev)}
+                    className="font-bold text-[rgba(2,122,151,1)] hover:underline cursor-pointer"
+                  >
+                    less
+                  </span>
+                ) : (
+                  <span
+                    onClick={() => isMore((prev) => !prev)}
+                    className="font-bold text-[rgba(2,122,151,1)] hover:underline cursor-pointer"
+                  >
+                    more
+                  </span>
+                )}
               </p>
             </div>
           ) : (
@@ -49,6 +53,7 @@ const Answers = ({ answer, question }) => {
             <Loadmore
               count={question?.answers?.length}
               question={question?.question}
+              answer={question?.answers}
             />
           </>
         ) : null}

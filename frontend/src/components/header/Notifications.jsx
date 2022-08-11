@@ -1,30 +1,28 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { CableContext } from "../../index";
-import { useQuery } from "react-query";
-import answersService from "../../services/answers.service.js";
+import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { CableContext } from '../../index';
+import { useQuery } from 'react-query';
+import answersService from '../../services/answers.service.js';
 
 const Notifications = () => {
   const value = useContext(CableContext);
   const [count, setCounter] = useState(0);
 
-  const { } = useQuery(
-    ["notifications"], answersService.getNotifications,{
-      onSuccess: function(response){
-        setCounter(response.count)
-      }
+  const {} = useQuery(['notifications'], answersService.getNotifications, {
+    onSuccess: function (response) {
+      setCounter(response.count);
     }
-  );
+  });
 
   useEffect(() => {
     value?.subscriptions?.create(
       {
-        channel: "NotificationsChannel",
+        channel: 'NotificationsChannel'
       },
       {
         received: (data) => {
-          setCounter(data.count)
-        },
+          setCounter(data.count);
+        }
       }
     );
   }, [value?.subscriptions]);
@@ -34,7 +32,7 @@ const Notifications = () => {
       to="/profile/notifications"
       id="notifications"
       className="2xl:block xl:block mr-[18px]"
-      data-count={count ? count : 0}
+      data-count={count ? (count >= 10 ? '9+' : count) : 0}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
