@@ -90,9 +90,29 @@ const HelpFul = ({ answer, question_id }) => {
       {switcher ? (
         <Modal
           setSwitcher={setSwitcher}
-          component={<ReportContent answer={answer} />}
+          component={
+            <ReportContent
+              answer={answer}
+              setSwitcher={setSwitcher}
+              question_id={question_id}
+            />
+          }
           component_name={
             <span className="font-bold text-2xl">Report Answer</span>
+          }
+          custom={
+            <div className="m-3 px-[1.5rem] font-[400] text-[15px]">
+              Please refer to our{' '}
+              <Link to="/content-guidelines" className="text-[#027a97]">
+                Content Guidelines
+              </Link>{' '}
+              and{' '}
+              <Link to="/terms-of-service" className="text-[#027a97]">
+                Terms of Service
+              </Link>{' '}
+              and let us know why you think the content you’ve reported may
+              violate these guidelines.
+            </div>
           }
         />
       ) : null}

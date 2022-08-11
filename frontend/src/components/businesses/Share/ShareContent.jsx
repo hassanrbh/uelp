@@ -1,19 +1,18 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   FacebookShareButton,
   TwitterShareButton,
-  TwitterIcon,
-} from "react-share";
+  TwitterIcon
+} from 'react-share';
 // import Alert from "@mui/material/Alert";
-import OrLineUp from "../../login/OrLineUp";
+import OrLineUp from '../../login/OrLineUp';
 // import { ClipboardIcon } from "@heroicons/react/outline";
-import { TextField } from "@mui/material";
-import { useMutation } from "react-query";
-import shareService from "../../../services/share.service";
-import client from "../../../services/react-query";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { useParams } from "react-router-dom";
+import { TextField } from '@mui/material';
+import { useMutation } from 'react-query';
+import shareService from '../../../services/share.service';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useParams } from 'react-router-dom';
 
 const ShareContent = () => {
   const [saved, isSaved] = useState(false);
@@ -24,28 +23,28 @@ const ShareContent = () => {
       isSaved((prev) => !prev);
     }, 1000);
   };
-  const [to, setTo] = useState("");
-  const [note, setNote] = useState("");
-  const {business_name} = useParams()
+  const [to, setTo] = useState('');
+  const [note, setNote] = useState('');
+  const { business_name } = useParams();
   const { mutate, isLoading } = useMutation(
     (params) => shareService.share(business_name, params),
     {
       onSuccess: (data) => {
         notify_success(data.send);
-        setTo("")
-        setNote("")
+        setTo('');
+        setNote('');
       },
       onError: (error) => {
         if (error.response.data.error) {
           notify_error(error.response.data.error[0]);
-          setTo("")
-          setNote("")
+          setTo('');
+          setNote('');
         } else if (error.response.data.to) {
           notify_error(error.response.data.to[0]);
-          setTo("")
-          setNote("")
+          setTo('');
+          setNote('');
         }
-      },
+      }
     }
   );
   const notify_success = (msg) => toast.success(msg);
@@ -57,8 +56,8 @@ const ShareContent = () => {
     mutate({
       share: {
         to,
-        note,
-      },
+        note
+      }
     });
   };
 
@@ -75,7 +74,7 @@ const ShareContent = () => {
       ) : null} */}
       <div className="flex justify-between mb-7 cursor-pointer">
         <div className="bg-[#1a77f2] hover:bg-[#4896fc] transition-colors pt-[5px] pb-[4px] pl-[14px] pr-[30px] rounded ease-in-out duration-700">
-          <FacebookShareButton url={"google.com"} className="flex">
+          <FacebookShareButton url={'google.com'} className="flex">
             <svg
               viewBox="0 0 64 64"
               width="32"
@@ -94,7 +93,7 @@ const ShareContent = () => {
           </FacebookShareButton>
         </div>
         <div className="pt-[5px] pb-[4px] cursor-pointer px-[30px] rounded bg-[#05abed] group hover:bg-[#56c6f3] transition-colors ease-in-out duration-700">
-          <TwitterShareButton url={"twitter.com"} className="flex ">
+          <TwitterShareButton url={'twitter.com'} className="flex ">
             <TwitterIcon
               size={32}
               className="group-hover:bg-[#05abed] mr-[3px]"
@@ -114,14 +113,14 @@ const ShareContent = () => {
         <TextField
           label="To"
           color="primary"
-          variant={"outlined"}
-          margin={"normal"}
-          sx={{ width: "100%" }}
+          variant={'outlined'}
+          margin={'normal'}
+          sx={{ width: '100%' }}
           autoComplete="off"
           value={to}
           onChange={(e) => setTo(e.currentTarget.value)}
           InputProps={{
-            className: "p-0 h-[48px]",
+            className: 'p-0 h-[48px]'
           }}
         />
         <p className="font-light text-xs text-gray-500 text-left ml-2">
@@ -130,9 +129,9 @@ const ShareContent = () => {
         <TextField
           label="Add a note (optional)"
           color="primary"
-          variant={"outlined"}
-          margin={"normal"}
-          sx={{ width: "100%" }}
+          variant={'outlined'}
+          margin={'normal'}
+          sx={{ width: '100%' }}
           value={note}
           onChange={(e) => setNote(e.currentTarget.value)}
           autoComplete="off"
@@ -140,7 +139,7 @@ const ShareContent = () => {
           minRows={3}
           maxRows={10}
           InputProps={{
-            className: "p-0 h-[100px]",
+            className: 'p-0 h-[100px]'
           }}
         />
         {isLoading ? (

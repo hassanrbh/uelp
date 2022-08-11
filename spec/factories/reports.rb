@@ -9,6 +9,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  answer_id      :bigint           not null
+#  more_details   :string
 #
 FactoryBot.define do
   factory :report do

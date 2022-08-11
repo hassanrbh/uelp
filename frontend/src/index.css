@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif
+  font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 @layer components {
@@ -68,7 +68,7 @@ body {
 #voice-search::after {
   background-color: #ebebeb;
   bottom: 12px;
-  content: "";
+  content: '';
   position: absolute;
   right: 0;
   top: 12px;
@@ -93,7 +93,7 @@ body {
   position: relative;
 }
 .lds-hourglass:after {
-  content: " ";
+  content: ' ';
   display: block;
   border-radius: 50%;
   width: 0;
@@ -118,22 +118,35 @@ body {
 }
 
 .separator::before {
-  content: '\00a0\2022\00a0'
+  content: '\00a0\2022\00a0';
 }
 
 .bob {
-    width: 1.3em;
-    height: 1.3em;
-    background-color: white;
-    border-radius: 4px;
-    vertical-align: middle;
-    border: 1px solid #ddd;
-    appearance: none;
-    -webkit-appearance: none;
-    outline: none;
-    cursor: pointer;
+  width: 1.3em;
+  height: 1.3em;
+  background-color: white;
+  border-radius: 4px;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
 }
 
 .bob:checked {
-    background-color: green;
+  background-color: green;
+}
+
+.css-319lph-ValueContainer {
+  margin: 5px;
+}
+.css-14el2xx-placeholder {
+  color: #2d2e2f !important;
+}
+
+.css-dpjnhs-MuiInputBase-root-MuiOutlinedInput-root {
+  position: relative;
+  right: -4px;
+  margin-right: 9px;
 }

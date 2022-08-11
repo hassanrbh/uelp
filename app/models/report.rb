@@ -9,6 +9,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  answer_id      :bigint           not null
+#  more_details   :string
 #
 class Report < ApplicationRecord
   belongs_to :user, class_name: "User", foreign_key: :user_id

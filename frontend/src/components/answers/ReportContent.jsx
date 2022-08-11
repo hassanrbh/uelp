@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useMutation } from 'react-query';
 import Select from 'react-select';
+import reportService from '../../services/reports.service.js';
 import { TextField } from '@mui/material';
+import { useParams } from 'react-router-dom';
 
 const reportOptions = [
   {
@@ -22,10 +24,22 @@ const reportOptions = [
   }
 ];
 
-const ReportContent = ({ answer }) => {
+const ReportContent = ({ answer, setSwitcher, question_id }) => {
   const [reportValue, setReportValue] = useState('');
-  const submitReport = (e) => {};
+  const { business } = useParams();
+  const { mutate, isLoading } = useMutation((report) =>
+    reportService.report(business, question_id, answer?.answer, report)
+  );
   const [moreDetails, setMoreDetails] = useState('');
+  const submitReport = (e) => {
+    e.preventDefault();
+    mutate({
+      reports: {
+        report_content: reportValue,
+        more_details: moreDetails
+      }
+    });
+  };
 
   return (
     <div className="">
@@ -56,7 +70,20 @@ const ReportContent = ({ answer }) => {
             }}
           />
 
-          <input type="submit" value="Send" />
+          <div className="flex justify-end gap-4 my-3 mx-1">
+            <p
+              className="cursor-pointer font-medium text-lg text-[rgba(2,122,151,1)] relative top-[4px]"
+              onClick={() => setSwitcher((prev) => !prev)}
+            >
+              Cancel
+            </p>
+
+            <input
+              type="submit"
+              value="Send"
+              className="flex bg-[#e00706] hover:bg-[#f24a4a] ease-in-out duration-700 px-[16px] py-[7px] rounded text-white font-bold"
+            />
+          </div>
         </form>
       ) : null}
     </div>

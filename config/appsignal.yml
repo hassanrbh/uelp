@@ -1,7 +1,6 @@
 default: &defaults
   # Your push api key, it is possible to set this dynamically using ERB:
-  # push_api_key: "<%= ENV['APPSIGNAL_PUSH_API_KEY'] %>"
-  push_api_key: "27ff545f-86da-4364-aa77-43fc85301f91"
+  push_api_key: "<%= ENV['APPSIGNAL_PUSH_API_KEY'] %>"
 
   # Your app's name
   name: "Uelp"
@@ -35,10 +34,10 @@ development:
   <<: *defaults
   active: true
   name: "Uelp"
-  push_api_key: "27ff545f-86da-4364-aa77-43fc85301f91"
+  push_api_key: "<%= ENV['APPSIGNAL_PUSH_API_KEY'] %>"
 
 production:
   <<: *defaults
   active: true
   name: "Uelp"
-  push_api_key: "27ff545f-86da-4364-aa77-43fc85301f91"
+  push_api_key: "<%= ENV['APPSIGNAL_PUSH_API_KEY'] %>"

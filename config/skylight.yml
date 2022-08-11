@@ -1,6 +1,0 @@
----
-# The authentication token for the application.
-authentication: SazxhyaroCfezn2GkdwMZ-me2Hso3n4ec4-KG8tdSlk
-
-config.skylight.environments += ["development", "staging"]
-

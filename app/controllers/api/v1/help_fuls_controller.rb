@@ -42,6 +42,8 @@ class Api::V1::HelpFulsController < ApplicationController
       @help_ful.user = current_user
       @help_ful.answer = @answer
 
+      raise "Not found answer" if (@answer.nil?)
+
       @expected =
         HelpFul.where(answer: @answer, user: current_user, indicator: indicator)
       @expected.first.destroy if (@expected.count === 1)
