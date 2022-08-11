@@ -37,15 +37,15 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   devise :database_authenticatable,
-        :registerable,
-        :recoverable,
-        :rememberable,
-        :validatable,
-        :lockable,
-        :timeoutable,
-        :trackable,
-        :jwt_authenticatable,
-        jwt_revocation_strategy: JwtDenylist
+         :registerable,
+         :recoverable,
+         :rememberable,
+         :validatable,
+         :lockable,
+         :timeoutable,
+         :trackable,
+         :jwt_authenticatable,
+         jwt_revocation_strategy: JwtDenylist
 
   before_validation :merge_username
   before_validation :check_if_password_confirmation?
@@ -53,17 +53,20 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many :login_activities, as: :user
   has_many :shares
-  has_many :reports, :class_name => "Report", :foreign_key => :user_id
-  has_many :acussations, :class_name => "Report", :foreign_key => :malicious_id
+  has_many :reviews
+  has_many :business_reviews, through: :reviews, source: :business
+  has_many :reports, class_name: "Report", foreign_key: :user_id
+  has_many :acussations, class_name: "Report", foreign_key: :malicious_id
   has_many :answers
   has_many :business_images,
-          class_name: "Image",
-          primary_key: :id,
-          foreign_key: :user_id
+           class_name: "Image",
+           primary_key: :id,
+           foreign_key: :user_id
   has_many :notifies
   has_many :help_fuls
-  has_many :notify_answers, :class_name => "NotifyAnswer", :foreign_key => :notifyer_id
-
+  has_many :notify_answers,
+           class_name: "NotifyAnswer",
+           foreign_key: :notifyer_id
 
   validates :email, presence: true, uniqueness: { case_sensitive: true }
   validates :username,
@@ -119,7 +122,9 @@ class User < ApplicationRecord
 
   def check_if_password_confirmation?
     if !(password === password_confirmation)
-      return errors[:password_confirmation].push("Invalid password confirmation")
+      return(
+        errors[:password_confirmation].push("Invalid password confirmation")
+      )
     end
   end
 end
