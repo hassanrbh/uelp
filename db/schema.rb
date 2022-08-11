@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_11_142853) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_11_154645) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -251,6 +251,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_11_142853) do
     t.index ["malicious_id"], name: "index_reports_on_malicious_id"
     t.index ["user_id", "report_content", "more_details", "malicious_id"], name: "avoid_repeated_reports", unique: true
     t.index ["user_id"], name: "index_reports_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "business_id"
+    t.integer "rating", null: false
+    t.text "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_id"], name: "index_reviews_on_business_id"
+    t.index ["description"], name: "index_reviews_on_description"
+    t.index ["rating"], name: "index_reviews_on_rating"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "shares", force: :cascade do |t|

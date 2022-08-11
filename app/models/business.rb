@@ -51,9 +51,13 @@ class Business < ApplicationRecord
          :trackable,
          :jwt_authenticatable,
          jwt_revocation_strategy: JwtDenylist
+
   geocoded_by :full_address
+
   after_validation :geocode
+
   after_save :perform_caching_job
+
   validates :name,
             presence: true,
             length: {
@@ -64,7 +68,9 @@ class Business < ApplicationRecord
               with: /(?:\s*[a-zA-Z0-9,_.\077\0100*+&\#'~;\-!@;]{2,}\s*)*/,
               message: "not valid business name"
             }
+
   validates :email, presence: true, uniqueness: { case_sensitive: true }
+
   validates :description,
             presence: true,
             length: {

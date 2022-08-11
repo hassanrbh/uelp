@@ -14,7 +14,7 @@ const Amenties = React.lazy(() => import('./Amenties/Amenties'));
 const HelpYelp = React.lazy(() => import('./HelpYelp/HelpYelp'));
 const AboutBusiness = React.lazy(() => import('./AboutBusiness/AboutBusiness'));
 const AskCommunity = React.lazy(() => import('./AskCommunity/AskCommunity'));
-const Reviews = React.lazy(() => import('../reviews/Reviews'));
+const Reviews = React.lazy(() => import('./reviews/Review'));
 
 const UnitBusiness = () => {
   const { business_name } = useParams();
@@ -43,7 +43,6 @@ const UnitBusiness = () => {
             <AboutBusiness />
             <Dividor />
             <AskCommunity />
-            <Dividor />
             <Reviews />
           </div>
           <div className="sticky top-[19px] h-full">
