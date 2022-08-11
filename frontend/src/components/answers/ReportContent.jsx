@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useMutation } from 'react-query';
 import Select from 'react-select';
 import reportService from '../../services/reports.service.js';
+import { toast } from 'react-toastify';
 import { TextField } from '@mui/material';
 import { useParams } from 'react-router-dom';
 
@@ -27,12 +28,23 @@ const reportOptions = [
 const ReportContent = ({ answer, setSwitcher, question_id }) => {
   const [reportValue, setReportValue] = useState('');
   const { business } = useParams();
-  const { mutate, isLoading } = useMutation((report) =>
-    reportService.report(business, question_id, answer?.answer, report)
+  const { mutate, isLoading } = useMutation(
+    (report) =>
+      reportService.report(business, question_id, answer?.answer, report),
+    {
+      onSuccess: (response) => {
+        setReportValue('');
+        toast.success(response.message);
+      },
+      onError: (response) => {
+        toast.error(response.response.data.message);
+      }
+    }
   );
   const [moreDetails, setMoreDetails] = useState('');
   const submitReport = (e) => {
     e.preventDefault();
+
     mutate({
       reports: {
         report_content: reportValue,

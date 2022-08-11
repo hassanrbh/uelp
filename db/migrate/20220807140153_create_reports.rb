@@ -8,6 +8,5 @@ class CreateReports < ActiveRecord::Migration[7.0]
       t.timestamps
     end
     add_index :reports, :malicious_id
-    add_index :reports, %i[user_id report_content malicious_id], unique: true
   end
 end
