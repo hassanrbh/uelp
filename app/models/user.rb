@@ -53,6 +53,8 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many :login_activities, as: :user
   has_many :shares
+  has_many :drafts
+  has_many :business_drafts, class_name: "Draft"
   has_many :reviews
   has_many :business_reviews, through: :reviews, source: :business
   has_many :reports, class_name: "Report", foreign_key: :user_id

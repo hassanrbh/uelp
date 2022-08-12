@@ -115,6 +115,8 @@ class Business < ApplicationRecord
            primary_key: :id,
            foreign_key: :business_id
   has_many :menus
+  has_many :drafts
+  has_many :user_drafts, class_name: "Draft"
   has_many :reviews
   has_many :user_reviews, through: :reviews, source: :user
   has_many :shares

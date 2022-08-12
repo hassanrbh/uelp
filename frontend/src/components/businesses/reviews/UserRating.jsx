@@ -4,7 +4,7 @@ import RateReview from './templates/RateReview';
 
 const UserRating = () => {
   return (
-    <div className="rating mt-7 bg-white h-[100px] w-full flex rounded p-6 justify-between">
+    <div className="rating mt-7 bg-white h-fit w-full flex rounded p-6 justify-between">
       <UserProfile />
       <RateReview />
     </div>
