@@ -18,17 +18,17 @@ module Api
             if @share.save
               render json: { send: "Sent" }, status: :ok
               if !@share.to.match(Devise.email_regexp)
-                UserMailer.share_note(
+                UserMailer.delay.share_note(
                   current_user,
                   expected_user.email,
                   @share.note
-                ).deliver_now
+                )
               else
-                UserMailer.share_note(
+                UserMailer.delay.share_note(
                   current_user,
                   @share.to,
                   @share.note
-                ).deliver_now
+                )
               end
             else
               render json: @share.errors.full_messages, status: 403
@@ -38,9 +38,9 @@ module Api
           end
         else
           render json: {
-                  to: ["Yelper user dosen't exist, use Email instead"]
-                },
-                status: :not_found
+                   to: ["Yelper user dosen't exist, use Email instead"]
+                 },
+                 status: :not_found
         end
       end
 

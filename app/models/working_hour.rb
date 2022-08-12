@@ -32,4 +32,7 @@ class WorkingHour < ApplicationRecord
       save!
     end
   end
+
+  handle_asynchronously :check_if_business_open,
+                        run_at => Proc.new { 1.day.from_now }
 end

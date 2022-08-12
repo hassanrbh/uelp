@@ -70,3 +70,7 @@ gem 'appsignal'
 
 
 
+
+gem "delayed_job", "~> 4.1"
+
+gem "delayed_job_active_record", "~> 4.1"

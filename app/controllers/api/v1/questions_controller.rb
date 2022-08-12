@@ -55,15 +55,13 @@ module Api
 
         begin
           if @question.save
-            BusinessMailer.notify_business_owner(
+            BusinessMailer.delay.notify_business_owner(
               current_user,
               @business,
               @question
-            ).deliver_later
-            BusinessMailer.notify_user_questioner(
-              current_user,
-              @business
-            ).deliver_later
+            )
+
+            BusinessMailer.delay.notify_user_questioner(current_user, @business)
 
             ## if the notify is active send a notification to the owner of the business
             if (@question.notify_me)
