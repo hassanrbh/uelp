@@ -1,13 +1,36 @@
 import React, { useState } from 'react';
-import { useLocation, useParams, Link } from 'react-router-dom';
+import { useLocation, useParams, Link, useNavigate } from 'react-router-dom';
 import Dividor from '../reusableComponents/Dividor';
 import Review from '../businesses/reviews/templates/Review';
+import reviewService from '../../services/reviews.service.js';
+import { useMutation } from 'react-query';
 
 const WriteReview = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { business } = useParams();
   const [currentStar, setCurrentStar] = useState(undefined);
   const [currentStatusStar, setCurrentStatus] = useState('');
+  const [description, setDescription] = useState('');
+  const { mutate } = useMutation(
+    (postData) => reviewService.createReview(business, postData),
+    {
+      onSuccess: () => {
+        navigate(`/biz/${business}`);
+      }
+    }
+  );
+
+  const triggerPostReview = (e) => {
+    e.preventDefault();
+
+    mutate({
+      reviews: {
+        rating: currentStar ? currentStar : location.state.rate,
+        description
+      }
+    });
+  };
 
   return (
     <div>
@@ -40,7 +63,22 @@ const WriteReview = () => {
                 {currentStatusStar}
               </p>
             </div>
-            <textarea className="w-full h-[216px] mt-3 titiz" placeholder={"Doesn't look like much when you walk past, but I was practically dying of hunger so I popped in. The definition of a hole-in-the-wall. I got the regular hamburger and wow…  there are no words. A classic burger done right. Crisp bun, juicy patty, stuffed with all the essentials (ketchup, shredded lettuce, tomato, and pickles). There`s about a million options available between the menu board and wall full of specials, so it can get a little overwhelming, but you really can`t go wrong. Not much else to say besides go see for yourself! You won't be disappointed."}></textarea>
+            <textarea
+              className="w-full h-[216px] mt-3 titiz"
+              onChange={(e) => setDescription(e.target.value)}
+              value={description}
+              placeholder={
+                "Doesn't look like much when you walk past, but I was practically dying of hunger so I popped in. The definition of a hole-in-the-wall. I got the regular hamburger and wow…  there are no words. A classic burger done right. Crisp bun, juicy patty, stuffed with all the essentials (ketchup, shredded lettuce, tomato, and pickles). There`s about a million options available between the menu board and wall full of specials, so it can get a little overwhelming, but you really can`t go wrong. Not much else to say besides go see for yourself! You won't be disappointed."
+              }
+            ></textarea>
+          </div>
+          <div>
+            <button
+              onClick={(e) => triggerPostReview(e)}
+              className="flex font-bold bg-[#e00706] hover:bg-[#f24a4a] ease-in-out duration-700 px-[35px] py-[9px] mt-[26px] rounded text-white"
+            >
+              Post Review
+            </button>
           </div>
         </main>
       </div>
