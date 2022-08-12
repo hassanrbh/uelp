@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+json.ignore_nil?
+
 json.id current_user.id
 json.email current_user.email
 json.username current_user.username
@@ -11,3 +13,5 @@ json.gender current_user.gender
 json.first_name current_user.first_name
 json.last_name current_user.last_name
 json.phone_number current_user.phone_number
+json.friends 0
+json.reviews @reviews

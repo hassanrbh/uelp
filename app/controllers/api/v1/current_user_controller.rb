@@ -6,6 +6,7 @@ module Api
       before_action :authenticate_user!
 
       def index
+        @reviews = Review.where(user: current_user).count
         render :index, status: :ok
       end
     end
