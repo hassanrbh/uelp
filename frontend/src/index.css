@@ -154,3 +154,7 @@ body {
 .rating {
   box-shadow: 0 0 10px #0000001a;
 }
+
+.titiz {
+  outline: none;
+}
