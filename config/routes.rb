@@ -41,6 +41,7 @@ Rails.application.routes.draw do
         resources :working_hours, only: [:index]
         resources :images, only: %i[create show index]
         resources :reviews, only: %i[create index]
+        resources :drafts, only: %i[create index destroy]
         resources :amentys, only: [:index]
         resources :share, only: [:create]
         resources :questions, only: %i[create index show] do

@@ -247,7 +247,7 @@ const App = () => {
             }
           />
           <Route
-            path="/writereview"
+            path="/writereview/biz/:business/"
             element={
               <ProtectedRoute>
                 <SuspenseLazy element={<WriteReview />} />

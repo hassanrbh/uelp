@@ -1,10 +1,11 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 const WriteReview = () => {
   const location = useLocation();
-  console.log(location);
-  return <div>WriteReview</div>;
+  const { business } = useParams();
+
+  return <div>{business}</div>;
 };
 
 export default WriteReview;

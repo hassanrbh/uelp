@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import Rating from 'react-rating';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useMutation } from 'react-query';
-import 'tippy.js/dist/tippy.css';
-import 'tippy.js/animations/scale.css';
-import Tippy from '@tippyjs/react';
 
 const RateReview = () => {
   const { business_name } = useParams();
@@ -16,7 +13,9 @@ const RateReview = () => {
     //   `rating_${business_name}`,
     //   JSON.stringify({ rate: { rate: e, backgroundColor } })
     // );
-    navigate(`/writereview`, { state: { rate: e } });
+    navigate(`/writereview/biz/${business_name}`, {
+      state: { rate: e }
+    });
   };
 
   return (
