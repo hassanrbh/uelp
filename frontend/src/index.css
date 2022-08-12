@@ -150,3 +150,7 @@ body {
   right: -4px;
   margin-right: 9px;
 }
+
+.rating {
+  box-shadow: 0 0 10px #0000001a;
+}

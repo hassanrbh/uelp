@@ -31,13 +31,11 @@ const Questions = ({ business_slug }) => {
                     {question?.answers
                       .slice(0, 1)
                       ?.map((answer, __idxans__) => (
-                        <>
-                          <Answers
-                            key={__idxans__}
-                            question={question}
-                            answer={answer}
-                          />
-                        </>
+                        <Answers
+                          key={__idxans__}
+                          question={question}
+                          answer={answer}
+                        />
                       ))}
                   </div>
                 ) : (

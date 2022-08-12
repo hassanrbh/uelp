@@ -8,7 +8,7 @@ const Answers = ({ answer, question }) => {
     <>
       <div className="font-[400] flex text-base mt-3">
         <span className="min-w-[30px] font-bold max-w-[797px]">A: </span>
-        <p className="max-w-[797px]">
+        <div className="max-w-[797px]">
           {answer?.answer.length >= 350 ? (
             <div>
               <p>
@@ -34,7 +34,7 @@ const Answers = ({ answer, question }) => {
           ) : (
             <p>{answer?.answer}</p>
           )}
-        </p>
+        </div>
       </div>
       <div className="font-normal mt-1 text-sm  text-[rgba(110,112,114,1)] gap-x-2 flex ml-[10px] relative left-[22px]">
         <Link

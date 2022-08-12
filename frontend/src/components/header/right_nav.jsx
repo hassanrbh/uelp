@@ -1,26 +1,19 @@
-import Stack from "@mui/material/Stack";
-import Notifications from "./Notifications"
-import Tippy from "@tippyjs/react";
-import React from "react";
-import "tippy.js/dist/tippy.css";
-import "tippy.js/animations/scale.css";
-import { Link } from "react-router-dom";
-import MenuList from "./MenuList";
-import Button from "./button";
+import Stack from '@mui/material/Stack';
+import Notifications from './Notifications';
+import Tippy from '@tippyjs/react';
+import React from 'react';
+import 'tippy.js/dist/tippy.css';
+import 'tippy.js/animations/scale.css';
+import { Link } from 'react-router-dom';
+import MenuList from './MenuList';
+import Button from './button';
 
 const RightNav = ({ username, logout, avatar }) => {
   return (
     <div className="relative right-8 flex flex-row-reverse">
       <Stack direction="row-reverse" spacing={2}>
         <MenuList username={username} logout={logout} avatar={avatar} />
-        <Tippy
-          content={<span className="font-bold">Notifications</span>}
-          interactive={true}
-          animation="scale"
-          className="relative mr-1 bottom-3"
-        >
-          <Notifications />
-        </Tippy>
+        <Notifications />
         <Link to="/profile/messages" className="2xl:block xl:block">
           <Tippy
             animation="scale"
