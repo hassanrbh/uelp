@@ -66,6 +66,7 @@ end
 
 gem 'ruby-lsp', '~> 0.2.1', group: :development
 gem 'appsignal'
+gem "rails-erd"
 
 
 
@@ -73,5 +74,3 @@ gem 'appsignal'
 gem "delayed_job", "~> 4.1"
 
 gem "delayed_job_active_record", "~> 4.1"
-
-gem "rails-erd", "~> 1.7"
