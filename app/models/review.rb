@@ -19,14 +19,13 @@ class Review < ApplicationRecord
             }
   validates :description, presence: true
 
-  enum rating: {
-         not_good: 1,
-         could_have_been_better: 2,
-         ok: 3,
-         good: 4,
-         great: 5
-       }
-
+  # enum rating: {
+  #        not_good: 1,
+  #        could_have_been_better: 2,
+  #        ok: 3,
+  #        good: 4,
+  #        great: 5
+  #      }
 
   belongs_to :business
   belongs_to :user
