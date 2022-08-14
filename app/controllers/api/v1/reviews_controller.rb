@@ -11,11 +11,12 @@ class Api::V1::ReviewsController < ApplicationController
   def create
     @business = Business.find_by_name(params[:business_slug])
     @review = current_user.reviews.new(reviews_params)
-
     @review.business = @business
-
-    return render :create, status: :ok if (@review.save)
-
+    
+    if (@review.save)
+      Draft.where(business: @business, :user => current_user).destroy_all
+      return render :create, status: :ok if (@review.save)
+    end
     return render json: { error: ["something went wrong"] }, status: 404
   end
 
