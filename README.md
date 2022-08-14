@@ -1,3 +1,3 @@
 # README
 
-[embed]https://github.com/hassanrbh/uelp/blob/hassantarif/erd.pdf[/embed]
+![alt text](https://github.com/hassanrbh/uelp/blob/hassantarif/erd.pdf?raw=true)
