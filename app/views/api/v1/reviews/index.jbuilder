@@ -12,7 +12,3 @@ json.two_star (star(2) / @reviews * 100).round(0)
 json.three_star (star(3) / @reviews * 100).round(0)
 json.four_star (star(4) / @reviews * 100).round(0)
 json.five_star (star(5) / @reviews * 100).round(0)
-
-# json.all_reviews(@reviews) do |review|
-
-# end

@@ -8,6 +8,7 @@ import draftService from '../../../services/draft.service.js';
 import reviewService from '../../../services/reviews.service.js';
 import ReviewDraft from './draft/ReviewDraft';
 import ReviewStatus from './status/ReviewStatus';
+import UserReviews from './displayUserReviews/UserReviews';
 
 const UserRating = () => {
   const { business_name } = useParams();
@@ -77,6 +78,7 @@ const UserRating = () => {
         ) : null}
       </div>
       <ReviewStatus reviews={reviews} />
+      <UserReviews />
     </>
   );
 };

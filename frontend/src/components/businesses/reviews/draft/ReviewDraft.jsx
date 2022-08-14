@@ -30,7 +30,7 @@ const ReviewDraft = ({ star, size }) => {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className={`${
-              size ? `h-[37px] w-[37px]` : 'h-[22px] w-[22px]'
+              size ? `h-[34px] w-[34px]` : 'h-[22px] w-[22px]'
             }  text-white p-[4px]`}
             fill="white"
             viewBox="0 0 24 24"
@@ -53,7 +53,7 @@ const ReviewDraft = ({ star, size }) => {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className={`${
-              size ? `h-[37px] w-[37px]` : 'h-[22px] w-[22px]'
+              size ? `h-[34px] w-[34px]` : 'h-[22px] w-[22px]'
             }  text-white p-[4px]`}
             fill="white"
             viewBox="0 0 24 24"
@@ -73,7 +73,7 @@ const ReviewDraft = ({ star, size }) => {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className={` text-white p-[4px] ${
-              size ? `h-[37px] w-[37px]` : 'h-[22px] w-[22px]'
+              size ? `h-[34px] w-[34px]` : 'h-[22px] w-[22px]'
             }`}
             fill="white"
             viewBox="0 0 24 24"

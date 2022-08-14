@@ -162,3 +162,20 @@ body {
 .flex_basis {
   flex-basis: calc(100% - 28%);
 }
+
+.adding_shadow {
+  box-shadow: 0 0 18px #00000026;
+}
+
+.css-17zv03e-MuiFormControl-root-MuiTextField-root {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  height: fit-content;
+  width: 271px !important;
+}
+
+.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+  font-size: 0.9rem !important;
+  color: black !important;
+  margin-top: -3px !important;
+}
