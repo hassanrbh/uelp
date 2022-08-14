@@ -143,8 +143,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_12_160913) do
   create_table "drafts", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "business_id"
-    t.integer "rating"
-    t.text "description"
+    t.integer "rating", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["business_id"], name: "index_drafts_on_business_id"
