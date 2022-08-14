@@ -5,7 +5,7 @@ import Dividor from '../../reusableComponents/Dividor';
 import { useQuery, useMutation } from 'react-query';
 import { useParams, Link } from 'react-router-dom';
 import draftService from '../../../services/draft.service.js';
-import reviewService from "../../../services/reviews.service.js"
+import reviewService from '../../../services/reviews.service.js';
 import ReviewDraft from './draft/ReviewDraft';
 import ReviewStatus from './status/ReviewStatus';
 
@@ -17,9 +17,8 @@ const UserRating = () => {
     () => draftService.showDrafts(business_name)
   );
 
-  const reviews = useQuery(
-    ['reviews_for_', business_name],
-    () => 
+  const reviews = useQuery(['reviews_for_', business_name], () =>
+    reviewService.getAllReviews(business_name)
   );
 
   const handleDeleteDraft = () => {
@@ -77,7 +76,7 @@ const UserRating = () => {
           ) : null
         ) : null}
       </div>
-      <ReviewStatus />
+      <ReviewStatus reviews={reviews} />
     </>
   );
 };

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Rating from 'react-rating';
 
-const ReviewDraft = ({ star }) => {
+const ReviewDraft = ({ star, size }) => {
   const [backgroundColor, setBackgroundColor] = useState('');
 
   const ColorsSwitch = (star) => {
-    switch (star) {
+    switch (parseInt(star)) {
       case 1:
         return 'bg-yellow-300';
       case 2:
@@ -29,7 +29,9 @@ const ReviewDraft = ({ star }) => {
         <p className="bg-[#ebebec] rounded-md mr-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-[22px] w-[22px] text-white p-[4px] "
+            className={`${
+              size ? `h-[40px] w-[40px]` : 'h-[22px] w-[22px]'
+            } h-[22px] w-[22px] text-white p-[4px]`}
             fill="white"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -45,12 +47,14 @@ const ReviewDraft = ({ star }) => {
       }
       placeholderSymbol={
         <p
-          className={`${ColorsSwitch(star)}
-          } rounded-md mr-1`}
+          className={`${ColorsSwitch(star)} 
+        rounded-md mr-1`}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-[22px] w-[22px] text-white p-[4px]"
+            className={`${
+              size ? `h-[40px] w-[40px]` : 'h-[22px] w-[22px]'
+            } h-[22px] w-[22px] text-white p-[4px]`}
             fill="white"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -68,7 +72,9 @@ const ReviewDraft = ({ star }) => {
         <p className={`${backgroundColor} rounded-md mr-1`}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-[22px] w-[22px] text-white p-[4px]"
+            className={` text-white p-[4px] ${
+              size ? `h-[40px] w-[40px]` : 'h-[22px] w-[22px]'
+            }`}
             fill="white"
             viewBox="0 0 24 24"
             stroke="currentColor"

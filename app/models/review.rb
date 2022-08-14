@@ -29,4 +29,13 @@ class Review < ApplicationRecord
 
   belongs_to :business
   belongs_to :user
+
+  def self.get_persentage(business, rating)
+    return(
+      (
+        Review.where(business: @business, rating: rating).size.to_f /
+          Review.all.size * 100
+      ).round(0)
+    )
+  end
 end

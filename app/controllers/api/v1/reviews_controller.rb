@@ -1,10 +1,17 @@
 class Api::V1::ReviewsController < ApplicationController
   def index
+    @business = Business.find_by_name(params[:business_slug])
+    @reviews_count = @business.reviews.count
+    @overall_rating =
+      Review.where(business: @business).average(:rating).round(2).to_s
+
+    return render :index, status: :ok
   end
 
   def create
     @business = Business.find_by_name(params[:business_slug])
     @review = current_user.reviews.new(reviews_params)
+
     @review.business = @business
 
     return render :create, status: :ok if (@review.save)
